@@ -19,4 +19,5 @@ Route::get('/', function () {
 
 
 Route::get('admin/dashboard', [AdminController::class, 'dashboard']);
+Route::match(['GET', 'POST'], 'admin/login', [AdminController::class, 'login']);
 
