@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::middleware('admin')->group(function(){
     Route::get('admin/dashboard', [AdminController::class, 'dashboard']);
+    
 });
 
 Route::match(['GET', 'POST'], 'admin/login', [AdminController::class, 'login']);
