@@ -9,6 +9,7 @@ use Auth;
 use Validator;
 use Hash;
 use Image;
+use Session;
 
 class AdminController extends Controller
 {
@@ -41,6 +42,7 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
+        Session::put('page', 'dashboard');
         // echo "<pre>"; print_r(Auth::guard('admin')->user()); die;
         return view('admin.dashboard');
     }
@@ -51,6 +53,7 @@ class AdminController extends Controller
     }
 
     public function updatePassword(Request $request){
+        Session::put('page', 'update-password');
         if($request->isMethod('post')){
             $data = $request->all();
             // Check if current password is correct
@@ -81,7 +84,8 @@ class AdminController extends Controller
     }
 
     public function updateDetails(Request $request){
-            if($request->isMethod('post')){
+        Session::put('page', 'update-details');
+        if($request->isMethod('post')){
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
 

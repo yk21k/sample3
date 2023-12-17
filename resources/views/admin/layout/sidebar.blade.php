@@ -11,10 +11,14 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('admin/images/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          @if(!empty(Auth::guard('admin')->user()->image))
+            <img src="{{ asset('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" class="img-circle elevation-2" alt="User Image">
+          @else
+            <img src="{{ asset('admin/images/phptos/no-image.png')}}" class="img-circle elevation-2" alt="User Image">
+          @endif  
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::guard('admin')->user()->name }}</a>
         </div>
       </div>
 
@@ -35,23 +39,52 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          @if(Session::get('page')=="dashboard")
+            @php $active="active" @endphp
+          @else
+            @php $active= "" @endphp
+          @endif     
+          <li class="nav-item">
+            <a href="{{ url('admin/dashboard') }}" class="nav-link {{ $active }}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Dashboard
+                <span class="right badge badge-danger">dashboard</span>
+              </p>
+            </a>
+          </li>
+          @if(Session::get('page')=="update-password" || Session::get('page')=="update-details")
+            @php $active="active" @endphp
+          @else
+            @php $active= "" @endphp
+          @endif     
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link {{ $active }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Settings
+                Settings&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">seting</span>&nbsp;
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @if(Session::get('page')=="update-password")
+                @php $active="active" @endphp
+              @else
+                @php $active= "" @endphp
+              @endif
               <li class="nav-item">
-                <a href="{{ url('admin/update-password')}}" class="nav-link active">
+                <a href="{{ url('admin/update-password')}}" class="nav-link {{ $active }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Update Admin Password</p>
                 </a>
               </li>
+              @if(Session::get('page')=="update-details")
+                @php $active="active" @endphp
+              @else
+                @php $active= "" @endphp
+              @endif
               <li class="nav-item">
-                <a href="{{ url('admin/update-details')}}" class="nav-link">
+                <a href="{{ url('admin/update-details')}}" class="nav-link {{ $active }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Update Admin Details</p>
                 </a>
@@ -73,65 +106,65 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Layout Options
+                CMS Page
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right">cms page</span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Navbar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li>
-            </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="pages/layout/top-nav.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Top Navigation</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Top Navigation + Sidebar</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/layout/boxed.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Boxed</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Fixed Sidebar</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/layout/fixed-topnav.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Fixed Navbar</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/layout/fixed-footer.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Fixed Footer</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Collapsed Sidebar</p>
+                  </a>
+                </li>
+              </ul>  
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
