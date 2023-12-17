@@ -8,6 +8,7 @@ use App\Models\Admin;
 use Auth;
 use Validator;
 use Hash;
+use Image;
 
 class AdminController extends Controller
 {
@@ -84,10 +85,10 @@ class AdminController extends Controller
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
 
-
             $rules = [
                 'admin_name' => 'required|regex:/^[\pL\s\-]+$/u|max:10',
-                'admin_mobile' => 'required|numeric|digits:10'
+                'admin_mobile' => 'required|numeric|digits:10',
+                'admin_image' => 'image',
             ];
 
             $customMessages = [
@@ -97,12 +98,30 @@ class AdminController extends Controller
                 'admin_mobile.required' => 'Mobile is required !!',
                 'admin_mobile.numeric' => 'Valid Mobile(number) is required!!',
                 'admin_mobile.digits' => 'Valid Mobile(10 digits) is required!!',
+                'admin_image.image' => 'Valid Image is required!!',
             ];
 
             $this->validate($request, $rules, $customMessages);
 
+            // Update Admin Image
+            if($request->hasFile('admin_image')){
+                $image_tmp = $request->file('admin_image');
+                if($image_tmp->isValid()){
+                    // Get Image extention
+                    $extention = $image_tmp->getClientOriginalExtension();
+                    // Generate New Image Name
+                    $imageName = rand(111,99999).'.'.$extention;
+                    $image_path = 'admin/images/photos/'.$imageName;
+                    Image::make($image_tmp)->save($image_path);
+                }
+            }else if(!empty($data['current_image'])){
+                $imageName = $data['current_image'];
+            }else{
+                $imageName = "";
+            }
+
             // Update Admin Details
-            Admin::where('email', Auth::guard('admin')->user()->email)->update(['name'=>$data['admin_name'], 'mobile'=>$data['admin_mobile']]);
+            Admin::where('email', Auth::guard('admin')->user()->email)->update(['name'=>$data['admin_name'], 'mobile'=>$data['admin_mobile'], 'image'=>$imageName]);
             
             return redirect()->back()->with("success_message", "Admin Details has been updated Successfully!!");
 
