@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CmsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,8 @@ Route::middleware('admin')->group(function(){
     Route::match(['GET', 'POST'], 'admin/update-details', [AdminController::class, 'updateDetails']);
     Route::post('admin/check-current-password', [AdminController::class, 'checkCurrentPassword']);
 
+    // Display CMS Pages (CRUD - READ)
+    Route::get('admin/cms-pages', [CmsController::class, 'index']);
 });
 
 Route::match(['GET', 'POST'], 'admin/login', [AdminController::class, 'login']);

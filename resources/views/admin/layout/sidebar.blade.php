@@ -98,16 +98,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link">
+            <a href="{{ url('admin/cms-pages') }}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 CMS Page
@@ -115,6 +106,15 @@
                 <span class="badge badge-info right">cms page</span>
               </p>
             </a>
+          </li>
+          <li class="nav-item menu-open">
+              <a href="pages/widgets.html" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Widgets
+                  <span class="right badge badge-danger">New</span>
+                </p>
+              </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="pages/layout/top-nav.html" class="nav-link">
