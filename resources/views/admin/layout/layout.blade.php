@@ -66,7 +66,6 @@
 <!-- Custom JS -->
 <script src="{{ url('admin/js/custom.js') }}"></script>
 <!-- jQuery -->
-<script src="{{ url('admin/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ url('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- DataTables  & Plugins -->
@@ -84,8 +83,6 @@
 <script src="{{ url('admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ url('admin/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ url('admin/js/demo.js') }}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
