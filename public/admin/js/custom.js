@@ -23,7 +23,7 @@ $(document).ready(function(){
 	});
 
 	// Update CMS Page Status
-	$(document).on("click", ".updateCmsPageStatus", function(){
+	$(document).on("click", "#updateCmsPageStatus", function(){
 		var status = $(this).children("i").attr("status");
 		var page_id = $(this).attr("page_id");
 		// alert(page_id);
