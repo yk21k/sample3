@@ -39,11 +39,10 @@ $(document).ready(function(){
         			$("#page-"+page_id).html("<i class='fas fa-toggle-off' style='color:grey' status='Inactive'></i>");
         		}else if(resp['status']==1){
         			$("#page-"+page_id).html("<i class='fas fa-toggle-on' style='color: #078aed;' status='Active'></i>");
-
         		}
         	},error:function(){
         		alert("Error");
         	}     	
 		})
-	})
+	});
 });
