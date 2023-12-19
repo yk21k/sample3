@@ -48,7 +48,13 @@
                       <td>{{ $page['title'] }}</td>
                       <td>{{ $page['url'] }}</td>
                       <td>{{ $page['created_at'] }}</td>
-                      <td></td>
+                      <td>
+                      @if($page['status']==1)
+                        <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on fa-beat-fade" style="color: #078aed;" status="Action"></i></a>
+                      @else
+                        <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off fa-beat-fade" style="color: grey;" status="Inaction"></i></a>
+                      @endif  
+                      </td>
                     </tr>
                     @endforeach 
                   </tbody>
