@@ -5,7 +5,7 @@ $(document).ready(function(){
 		// alert(current_pwd);
 		$.ajax({
         	headers: {
-        	    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        	    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
         	},
 			type:'post',
 			url:'/admin/check-current-password',
