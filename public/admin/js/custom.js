@@ -31,7 +31,7 @@ $(document).ready(function(){
         	    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
         	},
         	type:'post',
-        	url:'/admin/update-cms-page-status',
+        	url:'/admin/update-cmspage-status',
         	data:{status:status, page_id:page_id},
         	success:function(resp){
         		if(resp['status']==0){
