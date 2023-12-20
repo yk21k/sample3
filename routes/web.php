@@ -29,6 +29,8 @@ Route::middleware('admin')->group(function(){
     // Display CMS Pages (CRUD - READ)
     Route::get('admin/cms-pages', [CmsController::class, 'index']);
     Route::post('admin/update-cms-page-status', [CmsController::class, 'update']);
+    Route::match(['GET', 'POST'], 'admin/add-edit-cms-page', [CmsController::class, 'edit']);
+
 });
 
 Route::match(['GET', 'POST'], 'admin/login', [AdminController::class, 'login']);

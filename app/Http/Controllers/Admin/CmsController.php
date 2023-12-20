@@ -45,15 +45,20 @@ class CmsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CmsPage $cmsPage)
+    public function edit(Request $request, $id=null)
     {
-        //
+        if($id==""){
+            $title = "Add CMS Page";
+        }else{
+            $title = "Edit CMS Page";
+        }
+        return view('admin.pages.add_edit_cmspage')->with(compact('title'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CmsPage $cmsPage)
+    public function update(Request $request)
     {
         if($request->ajax()){
             $data = $request->all();

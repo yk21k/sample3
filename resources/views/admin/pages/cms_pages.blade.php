@@ -28,6 +28,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">CMS Pages</h3>
+                <a style="max-width: 150px; float:right; display:inline-block; "href="{{ url('admin/add-edit-cms-page') }}" class="btn btn-block btn-info">Add CMS PAGE</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
