@@ -40,6 +40,17 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12">
+              	@if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible fade show">
+                    @foreach ($errors->all() as $error)
+                      <div>
+                        <strong>Error: </strong> {{ $error }}  
+                        <button style="float:right; display:inline-block;" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>  
+                    @endforeach
+                  </div>
+                @endif
 	              <!-- form start -->
 	              <form name="cmsForm" id="cmsForm" action="{{ url('admin/add-edit-cms-page') }}" method="post">@csrf
 	                <div class="card-body">
@@ -54,27 +65,19 @@
                       <!-- textarea -->
                       <div class="form-group">
                         <label for="description">Description*</label>
-                        <textarea class="form-control" rows="3" id=="description" name=="description" placeholder="Enter Descrption"></textarea>
+                        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Enter Descrption"></textarea>
                       </div>
 	                  <div class="form-group">
-	                    <label for="meta_title">Meta Title*</label>
+	                    <label for="meta_title">Meta Title</label>
 	                    <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="Enter Page Meta Title">
 	                  </div>
 	                  <div class="form-group">
-	                    <label for="meta_description">Meta Description*</label>
+	                    <label for="meta_description">Meta Description</label>
 	                    <input type="text" class="form-control" id="meta_description" name="meta_description" placeholder="Enter Page Meta Description">
 	                  </div>
 	                  <div class="form-group">
-	                    <label for="meta_keywords">Meta Keyword*</label>
+	                    <label for="meta_keywords">Meta Keyword</label>
 	                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Enter Page Meta Keyword">
-	                  </div>
-	                  <div class="form-group">
-	                    <label for="url">URL*</label>
-	                    <input type="text" class="form-control" id="url" name="url" placeholder="Enter Page URL">
-	                  </div>
-	                  <div class="form-group">
-	                    <label for="url">URL*</label>
-	                    <input type="text" class="form-control" id="url" name="url" placeholder="Enter Page URL">
 	                  </div>
 	                </div>
 	                <!-- /.card-body -->

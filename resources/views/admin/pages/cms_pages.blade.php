@@ -25,6 +25,14 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
+            @if(Session::has('success_message'))
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success:</strong> {{ Session::get('success_message') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            @endif
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">CMS Pages</h3>
@@ -48,7 +56,7 @@
                       <td>{{ $page['id'] }}</td>
                       <td>{{ $page['title'] }}</td>
                       <td>{{ $page['url'] }}</td>
-                      <td>{{ $page['created_at'] }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($page['created_at'])); }}</td>
                       <td>
                       @if($page['status']==1)
                         <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on fa-beat-fade" style="color: #078aed;" status="Action"></i></a>

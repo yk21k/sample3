@@ -48,7 +48,7 @@
                 </div>
                 @endif
                 @if ($errors->any())
-                  <div class="alert alert-danger">
+                  <div class="alert alert-danger alert-dismissible fade show">
                     @foreach ($errors->all() as $error)
                       <div>
                         <strong>Error: </strong> {{ $error }}  
