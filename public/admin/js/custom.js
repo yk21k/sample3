@@ -5,7 +5,7 @@ $(document).ready(function(){
 		// alert(current_pwd);
 		$.ajax({
         	headers: {
-        	    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        	    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         	},
 			type:'post',
 			url:'/admin/check-current-password',
@@ -29,7 +29,7 @@ $(document).ready(function(){
 		// alert(page_id);
 		$.ajax({
 			headers: {
-        	    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        	    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         	},
         	type:'post',
         	url:'/admin/update-cms-page-status',
