@@ -73,8 +73,6 @@
 <script src="{{ url('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ url('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 
-<!-- AdminLTE App -->
-<script src="{{ url('admin/js/adminlte.min.js') }}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
