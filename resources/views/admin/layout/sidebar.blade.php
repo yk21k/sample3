@@ -97,12 +97,16 @@
               </li>
             </ul>
           </li>
+          @if(Session::get('page')=="cms-pages")
+            @php $active="active" @endphp
+          @else
+            @php $active= "" @endphp
+          @endif
           <li class="nav-item">
-            <a href="{{ url('admin/cms-pages') }}" class="nav-link">
+            <a href="{{ url('admin/cms-pages') }}" class="nav-link {{ $active }}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 CMS Page
-                <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right">cms page</span>
               </p>
             </a>
