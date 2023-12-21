@@ -58,11 +58,13 @@
                       <td>{{ $page['url'] }}</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($page['created_at'])); }}</td>
                       <td>
-                      @if($page['status']==1)
-                        <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on fa-beat-fade" style="color: #078aed;" status="Action"></i></a>
-                      @else
-                        <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off fa-beat-fade" style="color: grey;" status="Inaction"></i></a>
-                      @endif  
+                        @if($page['status']==1)
+                          <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on fa-beat-fade" style="color: #078aed;" status="Action"></i></a>
+                        @else
+                          <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off fa-beat-fade" style="color: grey;" status="Inaction"></i></a>
+                        @endif
+                        &nbsp;&nbsp;
+                        <a style='color:#3f6ed3;' href="{{ url('admin/add-edit-cms-page/'.$page['id']) }}"><i class="fas fa-edit"></i></a> 
                       </td>
                     </tr>
                     @endforeach 
