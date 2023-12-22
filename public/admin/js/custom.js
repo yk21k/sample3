@@ -44,8 +44,7 @@ $(document).ready(function(){
         		alert("Error");
         	}     	
 		})
-	});
-	// Confirm the delection of CMS Page
+			// Confirm the delection of CMS Page
 	$(document).on("click", ".confirmDelete", function(){
 		var name = $(this).attr('name');
 		if(confirm('Are you sure to delete this '+name+'?')){
@@ -53,6 +52,8 @@ $(document).ready(function(){
 		}
 		return false;
 	});
+	});
+
 
 	// $(document).on("click", "#confirmDelete", function(){
 	// 	var record = $(this).attr('record');
