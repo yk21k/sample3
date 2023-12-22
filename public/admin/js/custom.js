@@ -67,9 +67,6 @@ $(document).ready(function(){
 		    )
 		    windows.location.href = "/admin/delete-"+record+"/"+recordid;
 		  }
-		});
-
+		})
 	});
-
-
 });
