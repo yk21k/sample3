@@ -87,5 +87,7 @@
 <script>
   $('.select2').select2();
 </script>
+<!-- Sweet Alert 2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
