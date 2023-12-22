@@ -85,7 +85,7 @@
 <!-- Select2 -->
 <script src="{{ url('admin/plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
-  $('.select2').select2;
+  $('.select2').select2();
 </script>
 <!-- Sweet Alert 2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
