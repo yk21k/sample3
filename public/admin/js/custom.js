@@ -45,7 +45,6 @@ $(document).ready(function(){
         	}     	
 		})
 	});
-
 	// Confirm Deletion with SweetAlert
 	$(document).on("click", ".confirmDelete", function(){
 		var record = $(this).attr('record');
