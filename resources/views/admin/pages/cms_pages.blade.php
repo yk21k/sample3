@@ -66,7 +66,7 @@
                         &nbsp;&nbsp;
                         <a style='color:#078aed;' href="{{ url('admin/add-edit-cms-page/'.$page['id']) }}"><i class="fas fa-edit"></i></a>
                         &nbsp;&nbsp;
-                        <a style='color:#078aed;' class="confirmDelete" name="CMS Page" title="Delete CMS Page" <?php /* href="javascript:void(0)" record="cms-page" recordid="{{ $page['id'] }}"*/ ?> href="{{ url('admin/delete-cms-page/'.$page['id']) }}" ><i class="fas fa-trash"></i></a>  
+                        <a style='color:#078aed;' class="confirmDelete" name="CMS Page" title="Delete CMS Page"  href="{{ url('admin/delete-cms-page/'.$page['id']) }}" ><i class="fas fa-trash"></i></a>  
                       </td>
                     </tr>
                     @endforeach 
