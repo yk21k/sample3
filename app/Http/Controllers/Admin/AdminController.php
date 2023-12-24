@@ -17,8 +17,6 @@ class AdminController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
-
-
             $rules = [
                 'email' => 'required|email|max:255',
                 'password' => 'required|max:30'
@@ -33,6 +31,14 @@ class AdminController extends Controller
             $this->validate($request, $rules, $customMessages);
 
             if(Auth::guard('admin')->attempt(['email'=>$data['email'], 'password'=>$data['password']])){
+                // Remember Admin Email & Password with cookies
+                if(isset($data['remember'])&&!empty($data['remember'])){
+                    setcookie("email", $data['email'], time()+30);
+                    setcookie("password", $data['password'], time()+30);    
+                }else{
+                    setcookie("email", "");
+                    setcookie("password", "");
+                }
                 return redirect("admin/dashboard");
             }else{
                 return redirect()->back()->with("error_message", "Invalid Email or Password!!");
