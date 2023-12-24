@@ -34,6 +34,9 @@ Route::middleware('admin')->group(function(){
 
     // Sub Admins
     Route::get('admin/subadmins', [AdminController::class, 'subadmins']);
+    Route::post('admin/update-subadmin-status', [AdminController::class, 'updateSubadminStatus']);
+    Route::get('admin/delete-subadmin/{id?}', [AdminController::class, 'deleteSubadmin']);
+
 
 
 });

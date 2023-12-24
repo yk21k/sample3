@@ -106,7 +106,7 @@
             <a href="{{ url('admin/subadmins') }}" class="nav-link {{ $active }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Sub Admins&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">subadmin</span>&nbsp;
+                Sub Admins&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">sub admin</span>&nbsp;
               </p>
             </a>
           </li>
