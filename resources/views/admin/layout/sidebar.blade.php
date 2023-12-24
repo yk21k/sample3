@@ -62,7 +62,7 @@
             <a href="#" class="nav-link {{ $active }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Settings&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">seting</span>&nbsp;
+                Settings&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">setting</span>&nbsp;
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -97,6 +97,19 @@
               </li>
             </ul>
           </li>
+          @if(Session::get('page')=="subadmins")
+            @php $active="active" @endphp
+          @else
+            @php $active= "" @endphp
+          @endif
+          <li class="nav-item">
+            <a href="{{ url('admin/subadmins') }}" class="nav-link {{ $active }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Sub Admins&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">subadmin</span>&nbsp;
+              </p>
+            </a>
+          </li>
           @if(Session::get('page')=="cms-pages")
             @php $active="active" @endphp
           @else
@@ -111,6 +124,7 @@
               </p>
             </a>
           </li>
+
           <li class="nav-item menu-open">
               <a href="pages/widgets.html" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>

@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">CMS Pages</h1>
+            <h1 class="m-0">Sub Admins</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ url('admin/dashboard') }}">Home</a></li>
-              <li class="breadcrumb-item active">CMS Pages</li>
+              <li class="breadcrumb-item"><a href="{{ url('admin/dashboard')}}">Home</a></li>
+              <li class="breadcrumb-item active">Sub Admins</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -35,39 +35,34 @@
             @endif
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">CMS Pages</h3>
-                <a style="max-width: 150px; float:right; display:inline-block; "href="{{ url('admin/add-edit-cms-page') }}" class="btn btn-block btn-info">Add CMS PAGE</a>
+                <h3 class="card-title">Sub Admins</h3>
+                <a style="max-width: 150px; float:right; display:inline-block; "href="{{ url('admin/add-edit-subadmins') }}" class="btn btn-block btn-info">Add Sub Admins</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="cmspages" class="table table-bordered table-hover">
+                <table id="subadmins" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>URL</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Type</th>
                     <th>Created on</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach($CmsPages as $page)
+                    @foreach($subadmins as $subadmin)
                     <tr>
-                      <td>{{ $page['id'] }}</td>
-                      <td>{{ $page['title'] }}</td>
-                      <td>{{ $page['url'] }}</td>
-                      <td>{{ date("Y-m-d H:i:s", strtotime($page['created_at'])); }}</td>
+                      <td>{{ $subadmin->id }}</td>
+                      <td>{{ $subadmin->name }}</td>
+                      <td>{{ $subadmin->mobile }}</td>
+                      <td>{{ $subadmin->email }}</td>
+                      <td>{{ $subadmin->type }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($subadmin->created_at)); }}</td>
                       <td>
-                        @if($page['status']==1)
-                          <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Action"></i></a>
-                        @else
-                          <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off" style="color: grey;" status="Inaction"></i></a>
-                        @endif
-                        &nbsp;&nbsp;
-                        <a style='color:#078aed;' href="{{ url('admin/add-edit-cms-page/'.$page['id']) }}"><i class="fas fa-edit"></i></a>
-                        &nbsp;&nbsp;
-                        <a style='color:#078aed;' class="confirmDelete" name="CMS Page" title="Delete CMS Page" href="{{ url('admin/delete-cms-page/'.$page['id']) }}" ><i class="fas fa-trash"></i></a>  
-                      </td>
+                      </td>  
                     </tr>
                     @endforeach 
                   </tbody>

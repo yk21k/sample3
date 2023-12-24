@@ -138,4 +138,11 @@ class AdminController extends Controller
         }
         return view('admin.update_details');
     }
+
+    public function subadmins(){
+        $subadmins = Admin::where('type', 'subadmin')->get();
+        return view('admin.subadmins.subadmins')->with(compact('subadmins'));
+    }
+
+
 }

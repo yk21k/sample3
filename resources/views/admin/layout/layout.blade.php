@@ -80,6 +80,7 @@
 <script>
   $(function () {
     $("#cmspages").DataTable();
+    $("#subadmins").DataTable();
   });
 </script>
 <!-- Select2 -->

@@ -32,6 +32,10 @@ Route::middleware('admin')->group(function(){
     Route::match(['GET', 'POST'], 'admin/add-edit-cms-page/{id?}', [CmsController::class, 'edit']);
     Route::get('admin/delete-cms-page/{id?}', [CmsController::class, 'destroy']);
 
+    // Sub Admins
+    Route::get('admin/subadmins', [AdminController::class, 'subadmins']);
+
+
 });
 
 Route::match(['GET', 'POST'], 'admin/login', [AdminController::class, 'login']);
