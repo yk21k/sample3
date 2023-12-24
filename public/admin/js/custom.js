@@ -93,11 +93,11 @@ $(document).ready(function(){
 		  confirmButtonText: "Yes, delete it!"
 		}).then((result) => {
 		  if (result.isConfirmed) {
-		    Swal.fire({
-		      title: "Deleted!",
-		      text: "Your file has been deleted.",
-		      icon: "success"
-		    });
+		    Swal.fire(
+		      "Deleted!",
+		      "Your file has been deleted.",
+		      "success"
+		    );
 		    window.location.href = "/admin/delete-"+record+"/"+recordid;
 		  }
 		});
