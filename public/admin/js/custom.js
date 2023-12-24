@@ -45,7 +45,7 @@ $(document).ready(function(){
         	}     	
 		})
 	});
-	
+
 	// Update Sub Admin Status
 	$(document).on("click", ".updateSubadminStatus", function(){
 	// $("#updateSubadminStatus").on("click", function){
@@ -72,6 +72,13 @@ $(document).ready(function(){
 	});
     // Confirm the delection of CMS Page
 	$(document).on("click", ".confirmDelete", function(){
+
+		Swal.fire({
+		  title: "Good job!",
+		  text: "You clicked the button!",
+		  icon: "success"
+		});
+		
 		var name = $(this).attr('name');
 		if(confirm('Are you sure to delete this '+name+'?')){
 			return true ;
