@@ -68,9 +68,9 @@
                           <a class="updateSubadminStatus" id="subadmin-{{ $subadmin->id }}" subadmin_id="{{ $subadmin->id }}" href="javascript:void(0)"><i class="fas fa-toggle-off" style="color: grey;" status="Inaction"></i></a>
                         @endif
                         &nbsp;&nbsp;
-                        <a style='color:#078aed;' href="{{ url('admin/add-edit-subadmin/'.$subadmin->id) }}"><i class="fas fa-edit"></i></a>
-                        &nbsp;&nbsp;
-                        <a style='color:#078aed;' class="confirmDelete" name="Subadmin" title="Delete Sub Admin" href="{{ url('admin/delete-subadmin/'.$subadmin->id) }}" ><i class="fas fa-trash"></i></a>
+                        <?php /* <a style='color:#078aed;' href="{{ url('admin/add-edit-subadmin/'.$subadmin->id) }}"><i class="fas fa-edit"></i></a>
+                        &nbsp;&nbsp; */ ?>
+                        <a style='color:#078aed;' class="confirmDelete" name="Subadmin" title="Delete Sub Admin" href="javascript:void(0)" record="subadmin" recordid="{{ $subadmin->id }}" <?php /* href="{{ url('admin/delete-subadmin/'.$subadmin->id) }}" */ ?> ><i class="fas fa-trash"></i></a>
                       </td>  
                     </tr>
                     @endforeach 
