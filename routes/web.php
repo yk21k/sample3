@@ -37,6 +37,7 @@ Route::middleware('admin')->group(function(){
     Route::post('admin/update-subadmin-status', [AdminController::class, 'updateSubadminStatus']);
     Route::match(['GET', 'POST'], 'admin/add-edit-subadmin/{id?}', [AdminController::class, 'addEditSubadmin']);
     Route::get('admin/delete-subadmin/{id?}', [AdminController::class, 'deleteSubadmin']);
+    Route::match(['GET', 'POST'], 'admin/update-role/{id?}', [AdminController::class, 'updateRole']);
 
 
 

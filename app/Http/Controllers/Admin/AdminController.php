@@ -231,5 +231,14 @@ class AdminController extends Controller
         return redirect()->back()->with('success_message', 'Sub Admin deleted Successfully!!');
     }
 
+    public function updateRole($id, Request $request){
+        $title = "Update Subadmin Roles/Permission";
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            echo "<pre>"; print_r($data); die;
+        }
+        return view('admin.subadmins.update_roles')->with(compact('title', 'id'));
+    }
 
 }
