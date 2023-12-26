@@ -36,7 +36,9 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">CMS Pages</h3>
-                <a style="max-width: 150px; float:right; display:inline-block; "href="{{ url('admin/add-edit-cms-page') }}" class="btn btn-block btn-info">Add CMS PAGE</a>
+                @if($pagesModule['edit_access']==1 || $pagesModule['full_access']==1)
+                  <a style="max-width: 150px; float:right; display:inline-block; "href="{{ url('admin/add-edit-cms-page') }}" class="btn btn-block btn-info">Add CMS PAGE</a>
+                @endif
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -58,15 +60,21 @@
                       <td>{{ $page['url'] }}</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($page['created_at'])); }}</td>
                       <td>
-                        @if($page['status']==1)
-                          <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Action"></i></a>
-                        @else
-                          <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off" style="color: grey;" status="Inaction"></i></a>
+                        @if($pagesModule['edit_access']==1 || $pagesModule['full_access']==1)
+                          @if($page['status']==1)
+                            <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Action"></i></a>
+                          @else
+                            <a class="updateCmsPageStatus" id="page-{{ $page['id'] }}" page_id="{{ $page['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off" style="color: grey;" status="Inaction"></i></a>
+                          @endif
+                          &nbsp;&nbsp;
                         @endif
-                        &nbsp;&nbsp;
-                        <a style='color:#078aed;' href="{{ url('admin/add-edit-cms-page/'.$page['id']) }}"><i class="fas fa-edit"></i></a>
-                        &nbsp;&nbsp;
-                        <a style='color:#078aed;' class="confirmDelete" name="CMS Page" title="Delete CMS Page" href="javascript:void(0)" record="cms-page" record="{{ $page['id'] }}" <?php /* href="{{ url('admin/delete-cms-page/'.$page['id']) }}" */ ?>  ><i class="fas fa-trash"></i></a>  
+                        @if($pagesModule['edit_access']==1 || $pagesModule['full_access']==1)
+                          <a style='color:#078aed;' href="{{ url('admin/add-edit-cms-page/'.$page['id']) }}"><i class="fas fa-edit"></i></a>
+                          &nbsp;&nbsp;
+                        @endif
+                        @if($pagesModule['edit_access']==1)  
+                          <a style='color:#078aed;' class="confirmDelete" name="CMS Page" title="Delete CMS Page" href="javascript:void(0)" record="cms-page" record="{{ $page['id'] }}" <?php /* href="{{ url('admin/delete-cms-page/'.$page['id']) }}" */ ?>  ><i class="fas fa-trash"></i></a>
+                        @endif    
                       </td>
                     </tr>
                     @endforeach 
