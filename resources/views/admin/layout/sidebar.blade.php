@@ -1,9 +1,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ url('admin/dashboard') }}" class="brand-link">
       <img src="{{ asset('admin/images/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Admin Panel</span>
     </a>
 
     <!-- Sidebar -->
@@ -53,63 +53,65 @@
               </p>
             </a>
           </li>
-          @if(Session::get('page')=="update-password" || Session::get('page')=="update-details")
-            @php $active="active" @endphp
-          @else
-            @php $active= "" @endphp
-          @endif     
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link {{ $active }}">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Settings&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">setting</span>&nbsp;
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              @if(Session::get('page')=="update-password")
-                @php $active="active" @endphp
-              @else
-                @php $active= "" @endphp
-              @endif
-              <li class="nav-item">
-                <a href="{{ url('admin/update-password')}}" class="nav-link {{ $active }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Update Admin Password</p>
-                </a>
-              </li>
-              @if(Session::get('page')=="update-details")
-                @php $active="active" @endphp
-              @else
-                @php $active= "" @endphp
-              @endif
-              <li class="nav-item">
-                <a href="{{ url('admin/update-details')}}" class="nav-link {{ $active }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Update Admin Details</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @if(Session::get('page')=="subadmins")
-            @php $active="active" @endphp
-          @else
-            @php $active= "" @endphp
+          @if(Auth::guard('admin')->user()->type=="admin")
+            @if(Session::get('page')=="update-password" || Session::get('page')=="update-details")
+              @php $active="active" @endphp
+            @else
+              @php $active= "" @endphp
+            @endif     
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{ $active }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Settings&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">setting</span>&nbsp;
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @if(Session::get('page')=="update-password")
+                  @php $active="active" @endphp
+                @else
+                  @php $active= "" @endphp
+                @endif
+                <li class="nav-item">
+                  <a href="{{ url('admin/update-password')}}" class="nav-link {{ $active }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Update Admin Password</p>
+                  </a>
+                </li>
+                @if(Session::get('page')=="update-details")
+                  @php $active="active" @endphp
+                @else
+                  @php $active= "" @endphp
+                @endif
+                <li class="nav-item">
+                  <a href="{{ url('admin/update-details')}}" class="nav-link {{ $active }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Update Admin Details</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index3.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v3</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            @if(Session::get('page')=="subadmins")
+              @php $active="active" @endphp
+            @else
+              @php $active= "" @endphp
+            @endif
+            <li class="nav-item">
+              <a href="{{ url('admin/subadmins') }}" class="nav-link {{ $active }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Sub Admins&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">sub admin</span>&nbsp;
+                </p>
+              </a>
+            </li>
           @endif
-          <li class="nav-item">
-            <a href="{{ url('admin/subadmins') }}" class="nav-link {{ $active }}">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Sub Admins&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">sub admin</span>&nbsp;
-              </p>
-            </a>
-          </li>
           @if(Session::get('page')=="cms-pages")
             @php $active="active" @endphp
           @else
