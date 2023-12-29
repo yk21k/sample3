@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CmsController;
-
+use App\Http\Controllers\Admin\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +38,11 @@ Route::middleware('admin')->group(function(){
     Route::match(['GET', 'POST'], 'admin/add-edit-subadmin/{id?}', [AdminController::class, 'addEditSubadmin']);
     Route::get('admin/delete-subadmin/{id?}', [AdminController::class, 'deleteSubadmin']);
     Route::match(['GET', 'POST'], 'admin/update-role/{id?}', [AdminController::class, 'updateRole']);
+
+    // Categories
+    Route::get('admin/categories', [CategoryController::class, 'categories']);
+    Route::post('admin/update-category-status', [CategoryController::class, 'updateCategoryStatus']);
+    Route::get('admin/delete-category/{id?}', [CategoryController::class, 'deleteCategory']);
 
 
 
