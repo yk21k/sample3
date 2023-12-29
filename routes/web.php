@@ -43,7 +43,7 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/categories', [CategoryController::class, 'categories']);
     Route::post('admin/update-category-status', [CategoryController::class, 'updateCategoryStatus']);
     Route::get('admin/delete-category/{id?}', [CategoryController::class, 'deleteCategory']);
-    Route::match(['GET', 'POST'], 'admin/add-edit-category/{id?}', [CategoryController::class, 'addEditCategory']);
+    Route::match(['get', 'post'], 'admin/add-edit-category/{id?}', [CategoryController::class, 'addEditCategory']);
 
 
 

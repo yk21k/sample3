@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Session;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -39,11 +40,49 @@ class CategoryController extends Controller
         if($id==""){
             // Add Category
             $title = "Add Category";
+            $category = new Category;
+            $message = "Category Added Successfully!!";
+
         }else{
             // Update Edit
             $title = "Edit Category";
+           
         }
-        return view('admin.categories.add_edit_category')->with(compact('title'));
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data);die;
+
+            // Update Category Image
+            if($request->hasFile('category_image')){
+                $image_tmp = $request->file('category_image');
+                if($image_tmp->isValid()){
+                    // Get Image extention
+                    $extention = $image_tmp->getClientOriginalExtension();
+                    // Generate New Image Name
+                    $imageName = rand(111,99999).'.'.$extention;
+                    $image_path = 'front/images/categories/'.$imageName;
+                    // Upload the Category Image 
+                    Image::make($image_tmp)->save($image_path);
+                    $category->category_image = $imageName;
+
+                }
+            }else{
+                $category->category_image = "";
+            }
+
+            $category->category_name = $data['category_name'];
+            $category->category_discount = $data['category_discount'];
+            $category->description = $data['description'];
+            $category->url = $data['url'];
+            $category->meta_title = $data['meta_title'];
+            $category->meta_description = $data['meta_description'];
+            $category->meta_keywords = $data['meta_keywords'];
+            $category->status = 1;
+            $category->save();
+            return redirect('admin/categories')->with('success_message', $message);
+
+        }
+        return view('admin.categories.add_edit_category')->with(compact('title','category'));
     }
 
 }
