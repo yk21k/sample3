@@ -34,4 +34,16 @@ class CategoryController extends Controller
         Category::where('id', $id)->delete();
         return redirect()->back()->with('success_message', 'Category deleted Successfully!!');
     }
+
+    public function addEditCategory(Request $request, $id=null){
+        if($id==""){
+            // Add Category
+            $title = "Add Category";
+        }else{
+            // Update Edit
+            $title = "Edit Category";
+        }
+        return view('admin.categories.add_edit_category')->with(compact('title'));
+    }
+
 }
