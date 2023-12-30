@@ -64,7 +64,7 @@
                         <option value="">Select</option>
                         <option value="0">Main Category</option>
                         @foreach($getCategories as $cat)
-                          <option style="font-weight:bold" value="{{ $cat['id'] }}"> $cat['category_name'] }}</option>
+                          <option value="{{ $cat['id'] }}">{{ $cat['category_name'] }}</option>
                           @if(!empty($cat['subcategories']))
                             @foreach($cat['subcategories'] as $subcat)
                               <option value="{{ $subcat['id'] }}">&nbsp;&nbsp;&raquo;{{ $subcat['category_name'] }}</option>
