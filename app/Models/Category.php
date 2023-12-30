@@ -21,6 +21,7 @@ class Category extends Model
         $getCategories = Category::with(['subcategories'=>function($query){
             $query->with('subcategories');
         }])->where('parent_id', 0)->where('status', 1)->get()->toArray();
+        // echo "<pre>" ;print_r($getCategories);die;
         return $getCategories;    
     }
 }

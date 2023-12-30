@@ -64,10 +64,10 @@
                         <option value="">Select</option>
                         <option value="0" @if($category['parent_id']==0) selected="" @endif>Main Category</option>
                         @foreach($getCategories as $cat)
-                          <option @if(isset($category['parent_id'])&&$category['parent_id'])==$cat['id'] selected @endif value="{{ $cat['id'] }}">{{ $cat['category_name'] }}</option>
+                          <option @if(isset($category['parent_id'])&&$category['parent_id']==$cat['id']) selected @endif value="{{ $cat['id'] }}">{{ $cat['category_name'] }}</option>
                           @if(!empty($cat['subcategories']))
                             @foreach($cat['subcategories'] as $subcat)
-                              <option value="{{ $subcat['id'] }}" @if(isset($category['parent_id'])&&$category['parent_id'])==$subcat['id'] selected @endif>&nbsp;&nbsp;&raquo;{{ $subcat['category_name'] }}</option>
+                              <option value="{{ $subcat['id'] }}" @if(isset($category['parent_id'])&&$category['parent_id']==$subcat['id']) selected @endif>&nbsp;&nbsp;&raquo;{{ $subcat['category_name'] }}</option>
                               @if(!empty($subcat['subcategories']))
                                 @foreach($subcat['subcategories'] as $subsubcat)
                                   <option value="{{ $subsubcat['id'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{ $subsubcat['category_name'] }}</option>
