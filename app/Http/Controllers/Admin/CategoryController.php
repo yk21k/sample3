@@ -88,6 +88,10 @@ class CategoryController extends Controller
                 $data['category_discount'] = 0;    
             }
 
+            if(empty($data['description'])){
+                $data['description'] = "Coming Soon";
+            }
+
             $category->category_name = $data['category_name'];
             $category->parent_id = $data['parent_id'];
             $category->category_discount = $data['category_discount'];
