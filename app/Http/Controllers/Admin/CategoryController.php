@@ -47,16 +47,24 @@ class CategoryController extends Controller
         }else{
             // Update Edit
             $title = "Edit Category";
-           
+            $category = Category::find($id);
+            $message = "Category Updated Successfully!!";           
         }
         if($request->isMethod('post')){
             $data = $request->all();
             // echo "<pre>"; print_r($data);die;
 
-            $rules = [ 
-                'category_name' => 'required',
-                'url' => 'required|unique:categories', 
-            ];
+            if($id==""){
+                $rules = [
+                    'category_name' => 'required',
+                    'url' => 'required|unique:categories',
+                ];
+            }else{
+                $rules = [
+                    'category_name' => 'required',
+                    'url' => 'required',
+                ];
+            }
 
             $customMessages = [
                 'category_name.required' => 'Category Name is required',
@@ -105,7 +113,7 @@ class CategoryController extends Controller
             return redirect('admin/categories')->with('success_message', $message);
 
         }
-        return view('admin.categories.add_edit_category')->with(compact('title','category', 'getCategories'));
+        return view('admin.categories.add_edit_category')->with(compact('title', 'getCategories', 'category'));
     }
 
 }

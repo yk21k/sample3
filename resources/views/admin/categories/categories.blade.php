@@ -65,10 +65,12 @@
                       <td>{{ date("Y-m-d H:i:s", strtotime($category['created_at'])); }}</td>
                       <td>
                           @if($category['status']==1)
-                            <a class="updateCategoryStatus" id="category-{{ $category['id'] }}" category_id="{{ $category['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Action"></i></a>
+                            <a class="updateCategoryStatus" id="category-{{ $category['id'] }}" category_id="{{ $category['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Active"></i></a>
                           @else
-                            <a class="updateCategoryStatus" id="category-{{ $category['id'] }}" category_id="{{ $category['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off" style="color: grey;" status="Inaction"></i></a>
+                            <a class="updateCategoryStatus" id="category-{{ $category['id'] }}" category_id="{{ $category['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off" style="color: grey;" status="Inactive"></i></a>
                           @endif
+                          &nbsp;&nbsp;
+                          <a style='color:#078aed;' href="{{ url('admin/add-edit-category/'.$category['id']) }}"><i class="fas fa-edit"></i></a>
                           &nbsp;&nbsp;
                           <a style='color:#078aed;' class="confirmDelete" name="category" title="Delete Category" href="javascript:void(0)" record="category" recordid="{{ $category['id'] }}" <?php /* href="{{ url('admin/delete-category/'.$category['id']) }}" */ ?>  ><i class="fas fa-trash"></i></a>
                       </td>
