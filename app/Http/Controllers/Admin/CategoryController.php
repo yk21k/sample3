@@ -37,6 +37,7 @@ class CategoryController extends Controller
     }
 
     public function addEditCategory(Request $request, $id=null){
+        $getCategories = Category::getCategories();
         if($id==""){
             // Add Category
             $title = "Add Category";
@@ -51,6 +52,19 @@ class CategoryController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
             // echo "<pre>"; print_r($data);die;
+
+            $rules = [ 
+                'category_name' => 'required',
+                'url' => 'required|unique:categories', 
+            ];
+
+            $customMessages = [
+                'category_name.required' => 'Category Name is required',
+                'url.required' => 'Category URL is required',
+                'url.unique' => 'Unique Category URL is required', 
+            ];
+
+            $this->validate($request, $rules, $customMessages);
 
             // Update Category Image
             if($request->hasFile('category_image')){
@@ -70,7 +84,12 @@ class CategoryController extends Controller
                 $category->category_image = "";
             }
 
+            if(empty($data['category_discount'])){
+                $data['category_discount'] = 0;    
+            }
+
             $category->category_name = $data['category_name'];
+            $category->parent_id = $data['parent_id'];
             $category->category_discount = $data['category_discount'];
             $category->description = $data['description'];
             $category->url = $data['url'];
@@ -82,7 +101,7 @@ class CategoryController extends Controller
             return redirect('admin/categories')->with('success_message', $message);
 
         }
-        return view('admin.categories.add_edit_category')->with(compact('title','category'));
+        return view('admin.categories.add_edit_category')->with(compact('title','category', 'getCategories'));
     }
 
 }

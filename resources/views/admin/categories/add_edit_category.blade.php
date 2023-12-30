@@ -56,36 +56,56 @@
 	                <div class="card-body">
 	                  <div class="form-group">
 	                    <label for="category_name">Category Name*</label>
-	                    <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter Category Name">
+	                    <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter Category Name" value="{{ old('category_name') }}">
 	                  </div>
                     <div class="form-group">
-                      <label for="category_image">Category Image*</label>
+                      <label for="category_level">Category Level*</label>
+                      <select name="parent_id" class="form-control">
+                        <option value="">Select</option>
+                        <option value="0">Main Category</option>
+                        @foreach($getCategories as $cat)
+                          <option style="font-weight:bold" value="{{ $cat['id'] }}"> $cat['category_name'] }}</option>
+                          @if(!empty($cat['subcategories']))
+                            @foreach($cat['subcategories'] as $subcat)
+                              <option value="{{ $subcat['id'] }}">&nbsp;&nbsp;&raquo;{{ $subcat['category_name'] }}</option>
+                              @if(!empty($subcat['subcategories']))
+                                @foreach($subcat['subcategories'] as $subsubcat)
+                                  <option value="{{ $subsubcat['id'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{ $subsubcat['category_name'] }}</option>
+                                @endforeach
+                              @endif
+                            @endforeach
+                          @endif
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="category_image">Category Image</label>
                       <input type="file" class="form-control" id="category_image" name="category_image">
                     </div>
                     <div class="form-group">
-                      <label for="category_discount">Category Discount*</label>
-                      <input type="text" class="form-control" id="category_discount" name="category_discount" placeholder="Enter Category Discount">
+                      <label for="category_discount">Category Discount</label>
+                      <input type="text" class="form-control" id="category_discount" name="category_discount" placeholder="Enter Category Discount" value="{{ old('category_discount') }}">
                     </div>
 	                  <div class="form-group">
 	                    <label for="url">Category URL*</label>
-	                    <input type="text" class="form-control" id="url" name="url" placeholder="Enter Page Category URL" @if(!empty($category['url'])) value="{{ $category['url'] }}" @endif>
+	                    <input type="text" class="form-control" id="url" name="url" placeholder="Enter Page Category URL" value="{{ old('url') }}">
 	                  </div>
                       <!-- textarea -->
                       <div class="form-group">
-                        <label for="description">Category Description*</label>
-                        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Enter Category Descrption"></textarea>
+                        <label for="description">Category Description</label>
+                        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Enter Category Descrption">{{ old('description') }}</textarea>
                       </div>
 	                  <div class="form-group">
 	                    <label for="meta_title">Meta Title</label>
-	                    <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="Enter Page Meta Title">
+	                    <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="Enter Page Meta Title" value="{{ old('meta_title') }}">
 	                  </div>
 	                  <div class="form-group">
 	                    <label for="meta_description">Meta Description</label>
-	                    <input type="text" class="form-control" id="meta_description" name="meta_description" placeholder="Enter Page Meta Description">
+	                    <input type="text" class="form-control" id="meta_description" name="meta_description" placeholder="Enter Page Meta Description" value="{{ old('meta_description') }}">
 	                  </div>
 	                  <div class="form-group">
 	                    <label for="meta_keywords">Meta Keyword</label>
-	                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Enter Page Meta Keyword">
+	                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Enter Page Meta Keyword" value="{{ old('meta_keywords') }}">
 	                  </div>
 	                </div>
 	                <!-- /.card-body -->
