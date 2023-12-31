@@ -34,10 +34,12 @@
               </div>
             @endif
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Categories</h3>
-                <a style="max-width: 150px; float:right; display:inline-block; "href="{{ url('admin/add-edit-category') }}" class="btn btn-block btn-info">Add CATEGORY</a>
-              </div>
+              @if($categoriesModule['edit_access']==1 || $categoriesModule['full_access']==1)
+                <div class="card-header">
+                  <h3 class="card-title">Categories</h3>
+                  <a style="max-width: 150px; float:right; display:inline-block; "href="{{ url('admin/add-edit-category') }}" class="btn btn-block btn-info">Add CATEGORY</a>
+                </div>
+              @endif
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="categories" class="table table-bordered table-hover">
@@ -64,15 +66,21 @@
                       <td>{{ $category['url'] }}</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($category['created_at'])); }}</td>
                       <td>
+                        @if($categoriesModule['edit_access']==1 || $categoriesModule['full_access']==1)
                           @if($category['status']==1)
                             <a class="updateCategoryStatus" id="category-{{ $category['id'] }}" category_id="{{ $category['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Active"></i></a>
                           @else
                             <a class="updateCategoryStatus" id="category-{{ $category['id'] }}" category_id="{{ $category['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off" style="color: grey;" status="Inactive"></i></a>
                           @endif
+                        @endif
+                        @if($categoriesModule['edit_access']==1 || $categoriesModule['full_access']==1)  
                           &nbsp;&nbsp;
                           <a style='color:#078aed;' href="{{ url('admin/add-edit-category/'.$category['id']) }}"><i class="fas fa-edit"></i></a>
                           &nbsp;&nbsp;
+                        @endif
+                        @if($categoriesModule['full_access']==1)    
                           <a style='color:#078aed;' class="confirmDelete" name="category" title="Delete Category" href="javascript:void(0)" record="category" recordid="{{ $category['id'] }}" <?php /* href="{{ url('admin/delete-category/'.$category['id']) }}" */ ?>  ><i class="fas fa-trash"></i></a>
+                        @endif  
                       </td>
                     </tr>
                     @endforeach 
