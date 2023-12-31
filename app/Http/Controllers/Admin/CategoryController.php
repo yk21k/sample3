@@ -116,4 +116,22 @@ class CategoryController extends Controller
         return view('admin.categories.add_edit_category')->with(compact('title', 'getCategories', 'category'));
     }
 
+    public function deleteCategoryImage($id){
+        // Get Category Image
+        $categoryImage = Category::select('category_image')->where('id', $id)->first();
+
+        // Get Category Image Path
+        $category_image_path = 'front/images/categories/';
+
+        // Delete Category Image from categories folder if exists
+        if(file_exists($category_image_path.$categoryImage->category_image)){
+            unlink($category_image_path.$categoryImage->category_image);
+        } 
+
+        // Delete Category Image from category table
+        Category::where('id', $id)->update(['category_image'=>'']);
+
+        return redirect()->back()->with('success_message', 'Category Image Deleted Successfully!!');
+    }
+
 }
