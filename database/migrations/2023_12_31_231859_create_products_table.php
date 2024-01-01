@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('family_color');
             $table->string('group_code');
             $table->float('product_price');
+            $table->string('product_weight');
             $table->float('product_discount');
             $table->string('discount_type');
             $table->float('final_price');
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('wash_care');
             $table->text('keywords');
-            $table->string('fablic');
+            $table->string('fabric');
             $table->string('pattern');
             $table->string('sleeve');
             $table->string('fit');
