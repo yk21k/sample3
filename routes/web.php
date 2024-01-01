@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +48,10 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/delete-category-image/{id?}', [CategoryController::class, 'deleteCategoryImage']);
     Route::match(['get', 'post'], 'admin/add-edit-category/{id?}', [CategoryController::class, 'addEditCategory']);
 
-
+    // Products
+    Route::get('admin/products', [ProductsController::class, 'products']);
+    Route::post('admin/update-product-status', [ProductsController::class, 'updateProductStatus']);
+    Route::get('admin/delete-product/{id?}', [ProductsController::class, 'deleteProduct']);
 
 
 });
