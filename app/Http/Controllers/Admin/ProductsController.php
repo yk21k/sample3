@@ -43,7 +43,12 @@ class ProductsController extends Controller
             // Edit Product
             $title = "Edit Produt";
         }
+        // Get Categories and their Sub Categories
         $getCategories = Category::getCategories();
-        return view('admin.products.add_edit_product')->with(compact('title', 'getCategories'));
+
+        // Product Filters
+        $productsFilters = Product::productsFilters();
+
+        return view('admin.products.add_edit_product')->with(compact('title', 'getCategories', 'productsFilters'));
     }
 }
