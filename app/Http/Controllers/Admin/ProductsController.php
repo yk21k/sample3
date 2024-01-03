@@ -35,14 +35,79 @@ class ProductsController extends Controller
         return redirect()->back()->with('success_message', 'Product deleted Successfully!!');
     }
 
-    public function addEditProduct($id=null){
+    public function addEditProduct(Request $request, $id=null){
         if($id==""){
             // Add Product
             $title = "Add Product";
+            $product = new Product;
+            $productdata = array();
+            $message = 'Product added Successfully!!';
         }else{
             // Edit Product
             $title = "Edit Produt";
         }
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data);die;
+
+            // Product Validation
+            $rules = [
+                'category_id' => 'required',
+                'product_name' => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+                'product_code' => 'required|regex:/^[\w-]*$/u|max:30',
+                'product_price' => 'required|numeric',
+                'product_color' => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+                'family_color' => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+            ];
+
+            $customMessages = [
+                'category_id.required' => 'Category is required',
+                'product_name.required' => 'Product Name is required',
+                'product_name.regex' => 'Valid Product Name is required',
+                'product_code.required' => 'Product Code is required',
+                'product_code.regex' => 'Valid Product Code is required',
+                'product_price.required' => 'Product Price is required',
+                'product_price.numeric' => 'Valid Product Price is required',
+                'product_color.required' => 'Product Color is required',
+                'product_color.regex' => 'Valid Product Color is required',
+                'family_color.required' => 'Product Family Color is required',
+                'family_color.regex' => 'Valid Product Family Color is required',
+
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
+            $product->category_id = $data['category_id'];
+            $product->product_name = $data['product_name'];
+            $product->product_code = $data['product_code'];
+            $product->product_color = $data['product_color'];
+            $product->family_color = $data['family_color'];
+            $product->group_code = $data['group_code'];
+            $product->product_price = $data['product_price'];
+            $product->product_discount = $data['product_discount'];
+            $product->product_weight = $data['product_weight'];
+            $product->description = $data['description'];
+            $product->wash_care = $data['wash_care'];
+            $product->fabric = $data['fabric'];
+            $product->pattern = $data['pattern'];
+            $product->sleeve = $data['sleeve'];
+            $product->fit = $data['fit'];
+            $product->occasion = $data['occasion'];
+            $product->meta_title = $data['meta_title'];
+            $product->meta_keywords = $data['meta_keywords'];
+            $product->meta_description = $data['meta_description'];
+            if(!empty($data['is_featured'])){
+                $product->is_featured = $data['is_featured'];
+            }else{
+                $product->is_featured = "No";
+            }
+            $product->status =1;
+            $product->save();
+            return redirect('admin/products')->with('success_message', $message);
+        
+        }
+
         // Get Categories and their Sub Categories
         $getCategories = Category::getCategories();
 
