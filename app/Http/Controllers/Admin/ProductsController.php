@@ -88,7 +88,7 @@ class ProductsController extends Controller
 
                     $videoExtension = $video_tmp->getClientOriginalExtension();
                     $videoName = rand().'.'.$videoExtension;
-                    $videoPath = "front/videos/";
+                    $videoPath = "front/videos/products/";
                     $video_tmp->move($videoPath, $videoName);
                     // Save Video name in products table
                     $product->product_video = $videoName; 
@@ -156,5 +156,23 @@ class ProductsController extends Controller
         $productsFilters = Product::productsFilters();
 
         return view('admin.products.add_edit_product')->with(compact('title', 'getCategories', 'productsFilters', 'product'));
+    }
+
+    public function deleteProductsImage($id){
+        // Get Product Video
+        $productVideo = Product::select('product_video')->where('id', $id)->first();
+
+        // Get Product Video Path
+        $product_path = "front/videos/products/";
+
+        // Delete Product Video from Folder if exists
+        if(file_exists($product_path.$productVideo->product_video)){
+            unlink($product_path.$productVideo->product_video);
+        }
+        // Delete Product Video from table
+        Product::where('id', $id)->update(['product_video'=>'']);
+
+        $message = "Product Video has been Deleted Successfully!!";
+        return redirect()->back()->with('success_message', $message);
     }
 }

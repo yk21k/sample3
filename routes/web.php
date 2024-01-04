@@ -53,6 +53,8 @@ Route::middleware('admin')->group(function(){
     Route::post('admin/update-product-status', [ProductsController::class, 'updateProductStatus']);
     Route::get('admin/delete-product/{id?}', [ProductsController::class, 'deleteProduct']);
     Route::match(['get', 'post'], 'admin/add-edit-product/{id?}', [ProductsController::class, 'addEditProduct']);
+    Route::get('admin/delete-product-video/{id?}', [ProductsController::class, 'deleteProductsImage']);
+
 
 
 });
