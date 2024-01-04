@@ -40,11 +40,13 @@ class ProductsController extends Controller
             // Add Product
             $title = "Add Product";
             $product = new Product;
-            $productdata = array();
             $message = 'Product added Successfully!!';
         }else{
             // Edit Product
             $title = "Edit Produt";
+            $product = Product::find($id);
+            // dd($product);
+            $message = 'Product Updated Successfully!!';
         }
 
         if($request->isMethod('post')){
@@ -78,6 +80,29 @@ class ProductsController extends Controller
 
             $this->validate($request, $rules, $customMessages);
 
+            // Update Product Video
+            if($request->hasFile('product_video')){
+                $video_tmp = $request->file('product_video');
+                if($video_tmp->isValid()){
+                    // Upload Video
+
+                    $videoExtension = $video_tmp->getClientOriginalExtension();
+                    $videoName = rand().'.'.$videoExtension;
+                    $videoPath = "front/videos/";
+                    $video_tmp->move($videoPath, $videoName);
+                    // Save Video name in products table
+                    $product->product_video = $videoName; 
+                }
+            }
+
+            if(!isset($data['product_discount'])){
+                $data['product_discount'] = 0;
+            }
+
+            if(!isset($data['product_weight'])){
+                $data['product_weight'] = 0;
+            }
+
             $product->category_id = $data['category_id'];
             $product->product_name = $data['product_name'];
             $product->product_code = $data['product_code'];
@@ -86,9 +111,25 @@ class ProductsController extends Controller
             $product->group_code = $data['group_code'];
             $product->product_price = $data['product_price'];
             $product->product_discount = $data['product_discount'];
+
+            if(!empty($data['product_discount'])&&$data['product_discount']>0){
+                $product->discount_type = 'product';
+                $product->final_price = $data['product_price'] - ($data['product_price'] * $data['product_discount'])/100;
+            }else{
+                $getCategoryDiscount = Category::select('category_discount')->where('id', $data['category_id'])->first();
+                if($getCategoryDiscount->category_discount == 0){
+                    $product->discount_type = "";
+                    $product->final_price = $data['product_price'];
+                }else{
+                    $product->discount_type = 'category';
+                    $product->final_price = $data['product_price'] - ($data['product_price'] * $getCategoryDiscount->category_discount)/100;
+                }
+            }
+
             $product->product_weight = $data['product_weight'];
             $product->description = $data['description'];
             $product->wash_care = $data['wash_care'];
+            $product->search_keywords = $data['search_keywords'];
             $product->fabric = $data['fabric'];
             $product->pattern = $data['pattern'];
             $product->sleeve = $data['sleeve'];
@@ -114,6 +155,6 @@ class ProductsController extends Controller
         // Product Filters
         $productsFilters = Product::productsFilters();
 
-        return view('admin.products.add_edit_product')->with(compact('title', 'getCategories', 'productsFilters'));
+        return view('admin.products.add_edit_product')->with(compact('title', 'getCategories', 'productsFilters', 'product'));
     }
 }
