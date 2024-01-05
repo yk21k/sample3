@@ -110,6 +110,14 @@ class ProductsController extends Controller
                 $data['description'] = "Coming Soon";
             }
 
+            if(!isset($data['wash_care'])){
+                $data['wash_care'] = "Coming Soon";
+            }
+
+            if(!isset($data['search_keywords'])){
+                $data['search_keywords'] = "Coming Soon";
+            }
+
             $product->category_id = $data['category_id'];
             $product->product_name = $data['product_name'];
             $product->product_code = $data['product_code'];
