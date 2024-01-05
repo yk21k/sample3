@@ -120,6 +120,10 @@
                       <input type="text" class="form-control" id="product_weight" name="product_weight" placeholder="Enter Product Code" @if(!empty($product['product_weight'])) value="{{ $product['product_weight'] }}" @else value="{{ @old('product_weight') }}" @endif>
                     </div>
                     <div class="form-group">
+                      <label for="product_video">Product Image's</label>
+                      <input type="file" class="form-control" id="product_images" name="product_images[]" multiple="">
+                    </div>
+                    <div class="form-group">
                       <label for="product_video">Product Video</label>
                       <input type="file" class="form-control" id="product_video" name="product_video">
                       @if(!empty($product['product_video']))

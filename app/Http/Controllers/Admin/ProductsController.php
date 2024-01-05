@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductsImage;
 use App\Models\Category;
+use DB;
+use Image;
 
 class ProductsController extends Controller
 {
@@ -145,6 +148,47 @@ class ProductsController extends Controller
             }
             $product->status =1;
             $product->save();
+
+            if($id==""){
+                $product_id = DB::getPdo()->lastInsertId();
+            }else{
+                $product_id = $id;
+            }
+
+            // Upload Product Images
+            if($request->hasFile('product_images')){
+                $images = $request->file('product_images');
+                // echo "<pre>"; print_r($images); die;
+
+                foreach($images as $key => $image){
+
+                    //Generate Temp Image
+                    $image_temp = Image::make($image);
+
+                    //Get Image Extension 
+                    $extension = $image->getClientOriginalExtension();
+
+                    //Generate New Image Name
+                    $imageName = 'product-'.rand(1111,9999999).'.'.$extension;
+
+                    // Image Path for Small Medium and Large Images
+                    $largeImagePath = 'front/images/products/large/'.$imageName; 
+                    $mediumImagePath = 'front/images/products/medium/'.$imageName; 
+                    $smallImagePath = 'front/images/products/small/'.$imageName;
+
+                    // Upload the Large, Medium and Small Images after Resize
+                    Image::make($image_temp)->resize(1040,1200)->save($largeImagePath);
+                    Image::make($image_temp)->resize(520,600)->save($mediumImagePath);
+                    Image::make($image_temp)->resize(260,300)->save($smallImagePath);
+
+                    // Insert Image Name in products_images table
+                    $image = new ProductsImage;
+                    $image->image = $imageName;
+                    $image->product_id = $product_id;
+                    $image->status = 1;
+                    $image->save();
+                }
+            }
             return redirect('admin/products')->with('success_message', $message);
         
         }
