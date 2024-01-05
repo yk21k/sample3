@@ -122,6 +122,14 @@
                     <div class="form-group">
                       <label for="product_video">Product Image's</label>
                       <input type="file" class="form-control" id="product_images" name="product_images[]" multiple="">
+                      <table cellpadding="4" cellspacing="4" border="1" style="margin-top:5px;"><tr>
+                        @foreach($product['images'] as $image)
+                          <td style="background-color:#f9f9f9;">
+                            <a target="_blank" href="{{ url('front/images/products/medium/'.$image['image']) }}"><img style="width:80px;" src="{{ asset('front/images/products/small/'.$image['image']) }}"></a>&nbsp;
+                            <a style='color:#078aed;' class="confirmDelete" title="Delete Product Image" href="javascript:void(0)" record="product-image" recordid="{{ $image['id'] }}"><i class="fas fa-trash"></i></a>
+                          </td>  
+                        @endforeach
+                      </table>
                     </div>
                     <div class="form-group">
                       <label for="product_video">Product Video</label>

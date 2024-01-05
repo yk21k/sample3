@@ -47,8 +47,8 @@ class ProductsController extends Controller
         }else{
             // Edit Product
             $title = "Edit Produt";
-            $product = Product::find($id);
-            // dd($product);
+            $product = Product::with('images')->find($id);
+            // dd($product['images']);
             $message = 'Product Updated Successfully!!';
         }
 
@@ -226,7 +226,7 @@ class ProductsController extends Controller
         return view('admin.products.add_edit_product')->with(compact('title', 'getCategories', 'productsFilters', 'product'));
     }
 
-    public function deleteProductsImage($id){
+    public function deleteProductsVideo($id){
         // Get Product Video
         $productVideo = Product::select('product_video')->where('id', $id)->first();
 
@@ -241,6 +241,37 @@ class ProductsController extends Controller
         Product::where('id', $id)->update(['product_video'=>'']);
 
         $message = "Product Video has been Deleted Successfully!!";
+        return redirect()->back()->with('success_message', $message);
+    }
+
+    public function deleteProductsImage($id){
+        // Get Product Image
+        $productImage = ProductsImage::select('image')->where('id', $id)->first();
+
+        // Get Product Image Paths
+        $small_image_path = 'front/images/products/small/';
+        $medium_image_path = 'front/images/products/medium/';
+        $large_image_path = 'front/images/products/large/';
+
+        // Delete Product Small Image if exists in small folder
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+
+        // Delete Product Medium Image if exists in medium folder
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        // Delete Product Large Image if exists in large folder
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+
+        // Delete Product Image from products_images table
+        ProductsImage::where('id', $id)->delete();
+
+        $message = "Product Image has been deleted Successfully!!";
         return redirect()->back()->with('success_message', $message);
     }
 }
