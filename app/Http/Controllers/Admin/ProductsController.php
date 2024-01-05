@@ -105,6 +105,10 @@ class ProductsController extends Controller
             if(!isset($data['product_weight'])){
                 $data['product_weight'] = 0;
             }
+            
+            if(!isset($data['description'])){
+                $data['description'] = "Coming Soon";
+            }
 
             $product->category_id = $data['category_id'];
             $product->product_name = $data['product_name'];
