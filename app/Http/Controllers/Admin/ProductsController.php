@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductsImage;
+use App\Models\ProductsAttribute;
 use App\Models\Category;
 use DB;
 use Image;
@@ -224,6 +225,31 @@ class ProductsController extends Controller
                     foreach($data['image'] as $key => $image){
                         ProductsImage::where(['product_id'=>$id, 'image'=>$image])->update(['image_sort'=>$data['image_sort'][$key]]);
                     }
+                }
+            }
+            foreach($data['sku'] as $key => $value){
+                if(!empty($value)){
+                    // SKU already exists check
+                    $countSKU = ProductsAttribute::where('sku', $value)->count();
+                    if($countSKU>0){
+                        $message = "SKU already exists. Please add another SKU";
+                        return redirect()->back()->with('success_message', $message);
+                    }
+                    // Size already exists check
+                    $countSize = ProductsAttribute::where(['product_id'=>$id, 'size'=>$data['size'][$key]])->count();
+                    if($countSize>0){
+                        $message = "Size already exists. Please add another Size";
+                        return redirect()->back()->with('success_message', $message);
+                    }
+
+                    $attribute = new ProductsAttribute;
+                    $attribute->product_id = $id;
+                    $attribute->sku = $value;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->price = $data['price'][$key];
+                    $attribute->stock = $data['stock'][$key];
+                    $attribute->status = 1;
+                    $attribute->save();
                 }
             }
             return redirect('admin/products')->with('success_message', $message);
