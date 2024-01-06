@@ -126,6 +126,8 @@
                         @foreach($product['images'] as $image)
                           <td style="background-color:#f9f9f9;">
                             <a target="_blank" href="{{ url('front/images/products/medium/'.$image['image']) }}"><img style="width:80px;" src="{{ asset('front/images/products/small/'.$image['image']) }}"></a>&nbsp;
+                            <input type="hidden" name="image[]" value="{{ $image['image'] }}">
+                            <input style="width:30px;" type="text" name="image_sort[]" value="{{ $image['image_sort'] }}">&nbsp;
                             <a style='color:#078aed;' class="confirmDelete" title="Delete Product Image" href="javascript:void(0)" record="product-image" recordid="{{ $image['id'] }}"><i class="fas fa-trash"></i></a>
                           </td>  
                         @endforeach

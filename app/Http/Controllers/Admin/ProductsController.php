@@ -130,6 +130,10 @@ class ProductsController extends Controller
                 $data['meta_keywords'] = "Coming Soon";
             }
 
+            if(!isset($data['meta_description'])){
+                $data['meta_description'] = "Coming Soon";
+            }
+
             $product->category_id = $data['category_id'];
             $product->product_name = $data['product_name'];
             $product->product_code = $data['product_code'];
@@ -211,6 +215,15 @@ class ProductsController extends Controller
                     $image->product_id = $product_id;
                     $image->status = 1;
                     $image->save();
+                }
+            }
+
+            // Sort Products Images
+            if($id!=""){
+                if(isset($data['image'])){
+                    foreach($data['image'] as $key => $image){
+                        ProductsImage::where(['product_id'=>$id, 'image'=>$image])->update(['image_sort'=>$data['image_sort'][$key]]);
+                    }
                 }
             }
             return redirect('admin/products')->with('success_message', $message);
