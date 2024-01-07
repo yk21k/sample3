@@ -143,6 +143,29 @@
                       @endif
                     </div>
                     <div class="form-group">
+                      <label>Added Attributes</label>
+                        <table style="background-color: #264D80; width:60%; cellpadding:"5";>
+                          <tr>
+                            <th>ID</th>
+                            <th>Size</th>
+                            <th>SKU</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                          </tr>
+                          @foreach($product['attributes'] as $attribute)
+                            <tr>
+                              <td>{{ $attribute['id'] }}</td>
+                              <td>{{ $attribute['size'] }}</td>
+                              <td>{{ $attribute['sku'] }}</td>
+                              <td>{{ $attribute['price'] }}</td>
+                              <td>{{ $attribute['stock'] }}</td>
+                              <td></td>
+                            </tr>
+                          @endforeach
+                        </table>
+                    </div>
+                    <div class="form-group">
                       <label>Product Attributes</label>
                       <div class="field_wrapper">
                         <div>

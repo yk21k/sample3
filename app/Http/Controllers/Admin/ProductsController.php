@@ -48,8 +48,8 @@ class ProductsController extends Controller
         }else{
             // Edit Product
             $title = "Edit Produt";
-            $product = Product::with('images')->find($id);
-            // dd($product['images']);
+            $product = Product::with(['images', 'attributes'])->find($id);
+            // dd($product);
             $message = 'Product Updated Successfully!!';
         }
 
