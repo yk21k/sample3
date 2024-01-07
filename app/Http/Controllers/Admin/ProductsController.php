@@ -8,15 +8,35 @@ use App\Models\Product;
 use App\Models\ProductsImage;
 use App\Models\ProductsAttribute;
 use App\Models\Category;
+use App\Models\AdminsRole;
+use Session;
 use DB;
 use Image;
+use Auth;
+
 
 class ProductsController extends Controller
 {
     public function products(){
+        Session::put('page', 'products');
         $products = Product::with('category')->get()->toArray();
         // dd($products);
-        return view('admin.products.products')->with(compact('products'));
+
+        // Set Admin/Sub Admins Permissions for Products
+        $productsModuleCount = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'products'])->count();
+        $productsModule = array();
+        if(Auth::guard('admin')->user()->type=="admin"){
+            $productsModule['view_access'] = 1;
+            $productsModule['edit_access'] = 1;
+            $productsModule['full_access'] = 1;
+        }else if($productsModuleCount==0){
+            $message = "This feature is restricted for you !";
+            return redirect('admin/dashboard')->with('error_message', $message);
+        }else{
+            $productsModule = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'products'])->first()->toArray();
+        }
+
+        return view('admin.products.products')->with(compact('products', 'productsModule'));
     }
 
     public function updateProductStatus(Request $request){
@@ -40,6 +60,7 @@ class ProductsController extends Controller
     }
 
     public function addEditProduct(Request $request, $id=null){
+        Session::put('page', 'products');
         if($id==""){
             // Add Product
             $title = "Add Product";
@@ -55,7 +76,7 @@ class ProductsController extends Controller
 
         if($request->isMethod('post')){
             $data = $request->all();
-            // echo "<pre>"; print_r($data);die;
+            echo "<pre>"; print_r($data);die;
 
             // Product Validation
             $rules = [
