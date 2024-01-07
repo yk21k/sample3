@@ -89,10 +89,6 @@
                           @php $fullCMSPages = "" @endphp
                         @endif
                       @endif
-                    @endforeach
-                  @endif
-                  @if(!empty($subadminRoles))
-                    @foreach($subadminRoles as $role)    
                       @if($role['module']=="categories")
                         @if($role['view_access']==1)
                           @php $viewCategories = "checked" @endphp
@@ -110,10 +106,6 @@
                           @php $fullCategories = "" @endphp
                         @endif
                       @endif
-                    @endforeach
-                  @endif
-                  @if(!empty($subadminRoles))
-                    @foreach($subadminRoles as $role)    
                       @if($role['module']=="products")
                         @if($role['view_access']==1)
                           @php $viewProducts = "checked" @endphp
@@ -148,9 +140,9 @@
                     </div>
                     <div class="form-group col-md-6">
                       <label for="products">Products: &nbsp;&nbsp;&nbsp;</label>
-                      <input type="checkbox" name="products[view]" value=1 @if(isset($viewCategories)) {{ $viewCategories }} @endif>&nbsp;View Access &nbsp;&nbsp;&nbsp;&nbsp;
-                      <input type="checkbox" name="products[edit]" value=1 @if(isset($editCategories)) {{ $editCategories }} @endif>&nbsp;View/Edit Access &nbsp;&nbsp;&nbsp;&nbsp;
-                      <input type="checkbox" name="products[full]" value=1 @if(isset($fullCategories)) {{ $fullCategories }} @endif>&nbsp;View/Full Access &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="products[view]" value=1 @if(isset($viewProducts)) {{ $viewProducts }} @endif>&nbsp;View Access &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="products[edit]" value=1 @if(isset($editProducts)) {{ $editProducts }} @endif>&nbsp;View/Edit Access &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="products[full]" value=1 @if(isset($fullProducts)) {{ $fullProducts }} @endif>&nbsp;View/Full Access &nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
 	                </div>
 	                <div class="card-footer">
