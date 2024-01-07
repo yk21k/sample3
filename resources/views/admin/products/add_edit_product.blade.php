@@ -166,7 +166,15 @@
                               <td>
                                 <input style="width:100px;" type="number" name="stock[]" value="{{ $attribute['stock'] }}">
                               </td>
-                              <td></td>
+                              <td>
+                                @if($attribute['status']==1)
+                                  <a class="updateAttributeStatus" id="attribute-{{ $attribute['id'] }}" attribute_id="{{ $attribute['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Active"></i></a>
+                                @else
+                                  <a class="updateAttributeStatus" id="attribute-{{ $attribute['id'] }}" attribute_id="{{ $attribute['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-off" style="color: grey;" status="Inactive"></i></a>
+                                @endif
+                                &nbsp;&nbsp;
+                                <a style='color:#078aed;' class="confirmDelete" name="attribute" title="Delete Attribute" href="javascript:void(0)" record="attribute" recordid="{{ $attribute['id'] }}"><i class="fas fa-trash"></i></a>
+                              </td>
                             </tr>
                           @endforeach
                         </table>

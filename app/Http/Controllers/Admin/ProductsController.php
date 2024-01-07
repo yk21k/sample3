@@ -321,4 +321,24 @@ class ProductsController extends Controller
         $message = "Product Image has been deleted Successfully!!";
         return redirect()->back()->with('success_message', $message);
     }
+
+    public function updateAttributeStatus(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data);
+            if($data['status']=="Active"){
+                $status = 0;
+            }else{
+                $status = 1;
+            }
+            ProductsAttribute::where('id', $data['attribute_id'])->update(['status'=>$status]);
+            return response()->json(['status'=>$status, 'attribute_id'=>$data['attribute_id']]);
+        }
+    }
+
+    public function deleteAttribute($id){
+        //Delete Attribute 
+        ProductsAttribute::where('id', $id)->delete();
+        return redirect()->back()->with('success_message', 'Attribute deleted Successfully!!');
+    }
 }

@@ -121,6 +121,31 @@ $(document).ready(function(){
 		})
 	});
 
+	// Update Attribute Status
+	$(document).on("click", ".updateAttributeStatus", function(){
+	// $("#updateAttributeStatus").on("click", function){
+		var status = $(this).children("i").attr("status");
+		var attribute_id = $(this).attr("attribute_id");
+		// alert(attribute);
+		$.ajax({
+			headers: {
+        	    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        	},
+        	type:'post',
+        	url:'/admin/update-attribute-status',
+        	data:{status:status, attribute_id:attribute_id},
+        	success:function(resp){
+        		if(resp['status']==0){
+        			$("#attribute-"+attribute_id).html("<i class='fas fa-toggle-off' style='color:grey' status='Inactive'></i>");
+        		}else if(resp['status']==1){
+        			$("#attribute-"+attribute_id).html("<i class='fas fa-toggle-on' style='color: #078aed;' status='Active'></i>");
+        		}
+        	},error:function(){
+        		alert("Error");
+        	}     	
+		})
+	});
+
     // Confirm the delection of CMS Page
 	/* $(document).on("click", ".confirmDelete", function(){
 		var name = $(this).attr('name');
