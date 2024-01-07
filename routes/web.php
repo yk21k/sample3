@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,10 @@ Route::middleware('admin')->group(function(){
     Route::post('admin/update-attribute-status', [ProductsController::class, 'updateAttributeStatus']);
     Route::get('admin/delete-attribute/{id?}', [ProductsController::class, 'deleteAttribute']);
 
+    // Brands
+    Route::get('admin/brands', [BrandController::class, 'brands']);
+    Route::post('admin/update-brand-status', [BrandController::class, 'updateBrandStatus']);
+    Route::get('admin/delete-brand/{id?}', [BrandController::class, 'deleteBrand']);
 
 });
 
