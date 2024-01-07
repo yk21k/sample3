@@ -227,6 +227,7 @@ class ProductsController extends Controller
                     }
                 }
             }
+            // Add Product Attributes
             foreach($data['sku'] as $key => $value){
                 if(!empty($value)){
                     // SKU already exists check
@@ -250,6 +251,13 @@ class ProductsController extends Controller
                     $attribute->stock = $data['stock'][$key];
                     $attribute->status = 1;
                     $attribute->save();
+                }
+            }
+
+            // Edit Product Attributes
+            foreach ($data['attributeId'] as $akey => $attribute) {
+                if(!empty($attribute)){
+                    ProductsAttribute::where(['id'=>$data['attributeId'][$akey]])->update(['price'=>$data['price'][$akey], 'stock'=>$data['stock'][$akey]]);
                 }
             }
             return redirect('admin/products')->with('success_message', $message);
