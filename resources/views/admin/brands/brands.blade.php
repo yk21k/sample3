@@ -47,6 +47,7 @@
                     <th>Name</th>
                     <th>URL</th>
                     <th>Created on</th>
+                    <th>Updated</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
@@ -59,6 +60,7 @@
                       </td>
                       <td>{{ $brand['url'] }}</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($brand['created_at'])); }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($brand['updated_at'])); }}</td>
                       <td>
                           @if($brand['status']==1)
                             <a class="updateBrandStatus" id="brand-{{ $brand['id'] }}" brand_id="{{ $brand['id'] }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Active"></i></a>

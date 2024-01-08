@@ -49,6 +49,7 @@
                     <th>Title</th>
                     <th>URL</th>
                     <th>Created on</th>
+                    <th>Updated</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
@@ -59,6 +60,7 @@
                       <td>{{ $page['title'] }}</td>
                       <td>{{ $page['url'] }}</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($page['created_at'])); }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($page['updated_at'])); }}</td>
                       <td>
                         @if($pagesModule['edit_access']==1 || $pagesModule['full_access']==1)
                           @if($page['status']==1)

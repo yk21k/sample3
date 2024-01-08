@@ -52,6 +52,7 @@
                     <th>Category</th>
                     <th>Parent Category</th>
                     <th>Created on</th>
+                    <th>Updated</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
@@ -69,6 +70,7 @@
                         @endif  
                       </td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($product['created_at'])); }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($product['updated_at'])); }}</td>
                       <td>
                         @if($productsModule['edit_access']==1 || $productsModule['full_access']==1)
                           @if($product['status']==1)

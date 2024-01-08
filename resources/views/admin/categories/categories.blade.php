@@ -50,6 +50,7 @@
                     <th>Parent Category</th>
                     <th>URL</th>
                     <th>Created on</th>
+                    <th>Updated</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
@@ -65,6 +66,7 @@
                       </td>
                       <td>{{ $category['url'] }}</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($category['created_at'])); }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($category['updated_at'])); }}</td>
                       <td>
                         @if($categoriesModule['edit_access']==1 || $categoriesModule['full_access']==1)
                           @if($category['status']==1)

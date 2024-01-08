@@ -49,6 +49,7 @@
                     <th>Email</th>
                     <th>Type</th>
                     <th>Created on</th>
+                    <th>Updated</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
@@ -61,6 +62,7 @@
                       <td>{{ $subadmin->email }}</td>
                       <td>{{ $subadmin->type }}</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($subadmin->created_at)); }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($subadmin->updated_at)); }}</td>
                       <td>
                         @if($subadmin['status']==1)
                           <a class="updateSubadminStatus" id="subadmin-{{ $subadmin->id }}" subadmin_id="{{ $subadmin->id }}" href="javascript:void(0)"><i class="fas fa-toggle-on" style="color: #078aed;" status="Action"></i></a>
