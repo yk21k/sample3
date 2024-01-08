@@ -260,15 +260,17 @@ class AdminController extends Controller
                 }else{
                     $full = 0;
                 }
+
+            AdminsRole::where('subadmin_id', $id)->insert(['subadmin_id'=>$id, 'module'=>$key, 'view_access'=>$view, 'edit_access'=>$view, 'edit_access'=>$edit, 'full_access'=>$full]);
             }
                 
-            $role = new AdminsRole;
-            $role->subadmin_id = $id;
-            $role->module = $key;
-            $role->view_access = $view;
-            $role->edit_access = $edit;
-            $role->full_access = $full;
-            $role->save();
+            // $role = new AdminsRole;
+            // $role->subadmin_id = $id;
+            // $role->module = $key;
+            // $role->view_access = $view;
+            // $role->edit_access = $edit;
+            // $role->full_access = $full;
+            // $role->save();
 
             $message = "Subadmin (".$subadminDetails['name']."*) Roles updated Successfully!!";
             return redirect()->back()->with('success_message', $message); 
