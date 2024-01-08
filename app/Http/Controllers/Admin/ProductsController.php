@@ -9,6 +9,7 @@ use App\Models\ProductsImage;
 use App\Models\ProductsAttribute;
 use App\Models\Category;
 use App\Models\AdminsRole;
+use App\Models\Brand;
 use Session;
 use DB;
 use Image;
@@ -157,6 +158,7 @@ class ProductsController extends Controller
             }
 
             $product->category_id = $data['category_id'];
+            $product->brand_id = $data['brand_id'];
             $product->product_name = $data['product_name'];
             $product->product_code = $data['product_code'];
             $product->product_color = $data['product_color'];
@@ -276,11 +278,14 @@ class ProductsController extends Controller
             }
 
             // Edit Product Attributes
-            foreach ($data['attributeId'] as $akey => $attribute) {
-                if(!empty($attribute)){
-                    ProductsAttribute::where(['id'=>$data['attributeId'][$akey]])->update(['price'=>$data['price'][$akey], 'stock'=>$data['stock'][$akey]]);
+            if(isset($data['attributeId'])){
+                foreach ($data['attributeId'] as $akey => $attribute) {
+                    if(!empty($attribute)){
+                        ProductsAttribute::where(['id'=>$data['attributeId'][$akey]])->update(['price'=>$data['price'][$akey], 'stock'=>$data['stock'][$akey]]);
+                    }
                 }
             }
+
             return redirect('admin/products')->with('success_message', $message);
         
         }
@@ -288,10 +293,13 @@ class ProductsController extends Controller
         // Get Categories and their Sub Categories
         $getCategories = Category::getCategories();
 
+        // Get Brands
+        $getBrands = Brand::where('status', 1)->get()->toArray();
+
         // Product Filters
         $productsFilters = Product::productsFilters();
 
-        return view('admin.products.add_edit_product')->with(compact('title', 'getCategories', 'productsFilters', 'product'));
+        return view('admin.products.add_edit_product')->with(compact('title', 'getCategories', 'productsFilters', 'product', 'getBrands'));
     }
 
     public function deleteProductsVideo($id){

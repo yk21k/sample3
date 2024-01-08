@@ -82,6 +82,15 @@
                       </select>
                     </div>
                     <div class="form-group">
+                      <label for="brand_id">Select Brand*</label>
+                      <select name="brand_id" id="brand_id" class="form-control">
+                        <option value="">Select</option>
+                        @foreach($getBrands as $brand)
+                          <option value="{{ $brand['id'] }}" @if(!empty($product['brand_id']) && $product['brand_id']==$brand['id']) selected="" @endif >{{ $brand['brand_name'] }}</option>
+                        @endforeach 
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label for="product_name">Product Name*</label>
                       <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Enter Product Name" @if(!empty($product['product_name'])) value="{{ $product['product_name'] }}" @else value="{{ @old('product_name') }}" @endif>
                     </div>
