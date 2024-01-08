@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Models\AdminsRole;
 use Session;
 use Image;
-
+use Auth;
 
 
 class BrandController extends Controller
@@ -15,7 +16,22 @@ class BrandController extends Controller
     public function brands(){
         Session::put('page', 'brands');
         $brands = Brand::get();
-        return view('admin.brands.brands')->with(compact('brands'));
+
+        // Set Admin/Sub Admins Permissions for Brands
+        $brandsModuleCount = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'brands'])->count();
+        $brandsModule = array();
+        if(Auth::guard('admin')->user()->type=="admin"){
+            $brandsModule['view_access'] = 1;
+            $brandsModule['edit_access'] = 1;
+            $brandsModule['full_access'] = 1;
+        }else if($brandsModuleCount==0){
+            $message = "This feature is restricted for you !";
+            return redirect('admin/dashboard')->with('error_message', $message);
+        }else{
+            $brandsModule = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'brands'])->first()->toArray();
+        }
+
+        return view('admin.brands.brands')->with(compact('brands', 'brandsModule'));
     }
 
     public function updateBrandStatus(Request $request){
