@@ -69,6 +69,7 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/brands', [BrandController::class, 'brands']);
     Route::post('admin/update-brand-status', [BrandController::class, 'updateBrandStatus']);
     Route::get('admin/delete-brand/{id?}', [BrandController::class, 'deleteBrand']);
+    Route::match(['get', 'post'], 'admin/add-edit-brand/{id?}', [BrandController::class, 'addEditBrand']);
 
 });
 
