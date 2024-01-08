@@ -142,4 +142,40 @@ class BrandController extends Controller
         }
         return view('admin.brands.add_edit_brand')->with(compact('title', 'brand'));
     }
+
+    public function deleteBrandImage($id){
+        // Get Brand Image
+        $brandImage = Brand::select('brand_image')->where('id', $id)->first();
+
+        // Get Brand Image Path
+        $brand_image_path = 'front/images/brands/';
+
+        // Delete Brand Image from brands folder if exists
+        if(file_exists($brand_image_path.$brandImage->brand_image)){
+            unlink($brand_image_path.$brandImage->brand_image);
+        } 
+
+        // Delete Brand Image from brand table
+        Brand::where('id', $id)->update(['brand_image'=>'']);
+
+        return redirect()->back()->with('success_message', 'Brand Image Deleted Successfully!!');
+    }
+
+    public function deleteBrandLogo($id){
+        // Get Brand Logo
+        $brandLogo = Brand::select('brand_logo')->where('id', $id)->first();
+
+        // Get Brand Logo Path
+        $brand_logo_path = 'front/images/brands/';
+
+        // Delete Brand Logo from brands folder if exists
+        if(file_exists($brand_logo_path.$brandLogo->brand_logo)){
+            unlink($brand_logo_path.$brandLogo->brand_logo);
+        } 
+
+        // Delete Brand Logo from brand table
+        Brand::where('id', $id)->update(['brand_logo'=>'']);
+
+        return redirect()->back()->with('success_message', 'Brand Logo Deleted Successfully!!');
+    }
 }

@@ -70,6 +70,9 @@ Route::middleware('admin')->group(function(){
     Route::post('admin/update-brand-status', [BrandController::class, 'updateBrandStatus']);
     Route::get('admin/delete-brand/{id?}', [BrandController::class, 'deleteBrand']);
     Route::match(['get', 'post'], 'admin/add-edit-brand/{id?}', [BrandController::class, 'addEditBrand']);
+    Route::get('admin/delete-brand-image/{id?}', [BrandController::class, 'deleteBrandImage']);
+    Route::get('admin/delete-brand-logo/{id?}', [BrandController::class, 'deleteBrandLogo']);
+
 
 });
 

@@ -71,7 +71,7 @@
                       <input type="file" class="form-control" id="brand_logo" name="brand_logo">
                       @if(!empty($brand['brand_logo']))
                         <a target="_blank" href="{{ url('front/images/brands/'.$brand['brand_logo']) }}"><img style="width:100px; margin-top:10px;" src="{{ asset('front/images/brands/'.$brand['brand_logo']) }}"></a>
-                        <a style='color:#078aed;' class="confirmDelete" name="brand" title="Delete Brand Image" href="javascript:void(0)" record="brand-image" recordid="{{ $brand['id'] }}">&nbsp;<i style="color:#fff;" class="fas fa-trash"></i></a>
+                        <a style='color:#078aed;' class="confirmDelete" name="brand" title="Delete Brand Image" href="javascript:void(0)" record="brand-logo" recordid="{{ $brand['id'] }}">&nbsp;<i style="color:#fff;" class="fas fa-trash"></i></a>
                       @endif
                     </div>
                     <div class="form-group">
