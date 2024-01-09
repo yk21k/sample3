@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\BannersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,10 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/delete-brand-image/{id?}', [BrandController::class, 'deleteBrandImage']);
     Route::get('admin/delete-brand-logo/{id?}', [BrandController::class, 'deleteBrandLogo']);
 
+    // Banners
+    Route::get('admin/banners', [BannersController::class, 'banners']);
+    Route::post('admin/update-banner-status', [BannersController::class, 'updateBannerStatus']);
+    Route::get('admin/delete-banner/{id?}', [BannersController::class, 'deleteBanner']);
 
 });
 

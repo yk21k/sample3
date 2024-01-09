@@ -171,6 +171,31 @@ $(document).ready(function(){
 		})
 	});
 
+	// Update Banner Status
+	$(document).on("click", ".updateBannerStatus", function(){
+	// $("#updateBannerStatus").on("click", function){
+		var status = $(this).children("i").attr("status");
+		var banner_id = $(this).attr("banner_id");
+		// alert(banner);
+		$.ajax({
+			headers: {
+        	    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        	},
+        	type:'post',
+        	url:'/admin/update-banner-status',
+        	data:{status:status, banner_id:banner_id},
+        	success:function(resp){
+        		if(resp['status']==0){
+        			$("#banner-"+banner_id).html("<i class='fas fa-toggle-off' style='color:grey' status='Inactive'></i>");
+        		}else if(resp['status']==1){
+        			$("#banner-"+banner_id).html("<i class='fas fa-toggle-on' style='color: #078aed;' status='Active'></i>");
+        		}
+        	},error:function(){
+        		alert("Error");
+        	}     	
+		})
+	});
+
     // Confirm the delection of CMS Page
 	/* $(document).on("click", ".confirmDelete", function(){
 		var name = $(this).attr('name');
