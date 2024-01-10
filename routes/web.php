@@ -78,6 +78,7 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/banners', [BannersController::class, 'banners']);
     Route::post('admin/update-banner-status', [BannersController::class, 'updateBannerStatus']);
     Route::get('admin/delete-banner/{id?}', [BannersController::class, 'deleteBanner']);
+    Route::match(['get', 'post'], 'admin/add-edit-banner/{id?}', [BannersController::class, 'addEditBanner']);
 
 });
 

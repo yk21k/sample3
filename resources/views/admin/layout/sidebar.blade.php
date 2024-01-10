@@ -54,16 +54,16 @@
             </a>
           </li>
           @if(Auth::guard('admin')->user()->type=="admin")
-            @if(Session::get('page')=="update-password" || Session::get('page')=="update-details")
+            @if(Session::get('page')=="update-password" || Session::get('page')=="update-details" || Session::get('page')=="subadmins")
               @php $active="active" @endphp
             @else
               @php $active= "" @endphp
             @endif     
             <li class="nav-item menu-open">
               <a href="#" class="nav-link {{ $active }}">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>
-                  Settings&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">setting</span>&nbsp;
+                  Admin Management
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
@@ -76,7 +76,7 @@
                 <li class="nav-item">
                   <a href="{{ url('admin/update-password')}}" class="nav-link {{ $active }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Update Admin Password</p>
+                    <p>Update Admin Password<small>*Admin Only</small></p>
                   </a>
                 </li>
                 @if(Session::get('page')=="update-details")
@@ -87,45 +87,55 @@
                 <li class="nav-item">
                   <a href="{{ url('admin/update-details')}}" class="nav-link {{ $active }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Update Admin Details</p>
+                    <p>Update Admin Details<small>*Admin Only</small></p>
                   </a>
                 </li>
+                @if(Session::get('page')=="subadmins")
+                  @php $active="active" @endphp
+                @else
+                  @php $active= "" @endphp
+                @endif
                 <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
+                  <a href="{{ url('admin/subadmins') }}" class="nav-link {{ $active }}">
+                    <i class="nav-icon fas fa-circle"></i>
+                    <p>
+                      Sub Admins&nbsp;&nbsp;&nbsp;<span class="badge badge-success">sub admin</span>&nbsp;
+                    </p>
                   </a>
                 </li>
               </ul>
             </li>
-            @if(Session::get('page')=="subadmins")
+          @endif 
+          @if(Session::get('page')=="cms-pages")
               @php $active="active" @endphp
             @else
               @php $active= "" @endphp
             @endif
-            <li class="nav-item">
-              <a href="{{ url('admin/subadmins') }}" class="nav-link {{ $active }}">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                  Sub Admins&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">sub admin</span>&nbsp;
-                </p>
-              </a>
-            </li>
-          @endif
-          @if(Session::get('page')=="cms-pages")
-            @php $active="active" @endphp
-          @else
-            @php $active= "" @endphp
-          @endif
-          <li class="nav-item">
-            <a href="{{ url('admin/cms-pages') }}" class="nav-link {{ $active }}">
-              <i class="nav-icon fas fa-copy"></i>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link {{ $active }}">
+              <i class="nav-icon fas fa-file"></i>
               <p>
-                CMS Page
-                <span class="badge badge-info right">cms page</span>
+                Page Management
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
+            <ul class="nav nav-treeview">
+              @if(Session::get('page')=="cms-pages")
+                @php $active="active" @endphp
+              @else
+                @php $active= "" @endphp
+              @endif
+              <li class="nav-item">
+                <a href="{{ url('admin/cms-pages') }}" class="nav-link {{ $active }}">
+                  <i class="nav-icon fas fa-circle"></i>
+                  <p>
+                    CMS Page
+                    <span class="badge badge-info right">cms page</span>
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </li>     
           @if(Session::get('page')=="categories" || Session::get('page')=="products" || Session::get('page')=="brands")
             @php $active="active" @endphp
           @else
@@ -135,7 +145,7 @@
             <a href="#" class="nav-link {{ $active }}">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Catalogues&nbsp;&nbsp;<span class="badge badge-danger">catalogs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Catalogs Management
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -147,8 +157,8 @@
               @endif
               <li class="nav-item">
                 <a href="{{ url('admin/categories')}}" class="nav-link {{ $active }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categories</p>
+                  <i class="nav-icon fas fa-circle"></i>
+                  <p>Categories&nbsp;&nbsp;<span class="badge badge-info">categories</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                 </a>
               </li>
               @if(Session::get('page')=="products")
@@ -158,8 +168,8 @@
               @endif
               <li class="nav-item">
                 <a href="{{ url('admin/products')}}" class="nav-link {{ $active }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Products</p>
+                  <i class="nav-icon fas fa-circle"></i>
+                  <p>Products&nbsp;&nbsp;<span class="badge badge-success">categories</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                 </a>
               </li>
               @if(Session::get('page')=="brands")
@@ -169,14 +179,38 @@
               @endif
               <li class="nav-item">
                 <a href="{{ url('admin/brands')}}" class="nav-link {{ $active }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Brands</p>
+                  <i class="nav-icon fas fa-circle"></i>
+                  <p>Brands&nbsp;&nbsp;<span class="badge badge-warning">brands</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                 </a>
               </li>
+            </ul>
+          </li>
+          @if(Session::get('page')=="banners")
+            @php $active="active" @endphp
+          @else
+            @php $active= "" @endphp
+          @endif 
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link {{ $active }}">
+              <i class="nav-icon fas fa-image"></i>
+              <p>
+                Banner Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              @if(Session::get('page')=="banners")
+                @php $active="active" @endphp
+              @else
+                @php $active= "" @endphp
+              @endif
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                <a href="{{ url('admin/banners') }}" class="nav-link {{ $active }}">
+                  <i class="nav-icon fas fa-circle"></i>
+                  <p>
+                    Banners
+                    <span class="badge badge-info right">banner</span>
+                  </p>
                 </a>
               </li>
             </ul>

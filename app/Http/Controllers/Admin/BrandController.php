@@ -55,6 +55,7 @@ class BrandController extends Controller
     }
 
     public function addEditBrand(Request $request, $id=null){
+        Session::put('page', 'brands');
         if($id==""){
             // Add Brand
             $title = "Add Brand";
