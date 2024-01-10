@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\AdminsRole;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Brand;
+use App\Models\User;
 use Auth;
 use Validator;
 use Hash;
@@ -51,7 +55,12 @@ class AdminController extends Controller
     public function dashboard(){
         Session::put('page', 'dashboard');
         // echo "<pre>"; print_r(Auth::guard('admin')->user()); die;
-        return view('admin.dashboard');
+
+        $categoriesCount = Category::get()->count();
+        $productsCount = Product::get()->count();
+        $brandsCount = Brand::get()->count();
+        $usersCount = User::get()->count();
+        return view('admin.dashboard')->with(compact('categoriesCount', 'productsCount', 'brandsCount', 'usersCount'));
     }
 
     public function logout(){
