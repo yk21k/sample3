@@ -4,45 +4,19 @@
     <!--====== Primary Slider ======-->
     <div class="s-skeleton s-skeleton--h-600 s-skeleton--bg-grey">
         <div class="owl-carousel primary-style-1" id="sitemakers-slider">
-            <div class="sitemakers-slide sitemakers-slide--1" style="background-image: url('front/images/banners/sitemaker-slider-banner-1.png');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="slider-content slider-content--animation">
-
-                                <span class="content-span-2 u-c-secondary">10% Off on T-Shirts</span>
-
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
+            @foreach($homeSliderBanners as $sliderBanner)
+                <div class="sitemakers-slide sitemakers-slide--1" style="background-image: url('{{ asset('front/images/banners/'.$sliderBanner['image']) }}');" alt="{{ $sliderBanner['alt'] }}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="slider-content slider-content--animation">
+                                    <span class="content-span-2 u-c-secondary">{{ $sliderBanner['title'] }}</span>
+                                    <a class="shop-now-link btn--e-brand" href="{{ asset('front/images/banners/'.$sliderBanner['image']) }}">SHOP NOW</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="sitemakers-slide sitemakers-slide--2" style="background-image: url('front/images/banners/sitemaker-slider-banner-2.png');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="slider-content slider-content--animation">
-
-                                <span class="content-span-2 u-c-secondary">20% Off on T-Shirts</span>
-
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="sitemakers-slide sitemakers-slide--3" style="background-image: url('front/images/banners/sitemaker-slider-banner-3.png');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="slider-content slider-content--animation">
-
-                                <span class="content-span-2 u-c-secondary">15% Off on Jackets</span>
-
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!--====== End - Primary Slider ======-->
@@ -66,34 +40,17 @@
             <div class="section__content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-5 col-md-5 u-s-m-b-30">
-                            <a class="collection" href="shop-side-version-2.html">
-                                <div class="aspect aspect--bg-grey aspect--square">
-                                    <img class="aspect__img collection__img" src="{{ asset('front/images/collection/fix-banner-1.png') }}" alt="">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-7 col-md-7 u-s-m-b-30">
-                            <a class="collection" href="shop-side-version-2.html">
-                                <div class="aspect aspect--bg-grey aspect--1286-890">
-                                    <img class="aspect__img collection__img" src="{{ asset('front/images/collection/fix-banner-2.png') }}" alt="">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-7 col-md-7 u-s-m-b-30">
-                            <a class="collection" href="shop-side-version-2.html">
-                                <div class="aspect aspect--bg-grey aspect--1286-890">
-                                    <img class="aspect__img collection__img" src="{{ asset('front/images/collection/fix-banner-3.png') }}" alt="">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-5 col-md-5 u-s-m-b-30">
-                            <a class="collection" href="shop-side-version-2.html">
-                                <div class="aspect aspect--bg-grey aspect--square">
-                                    <img class="aspect__img collection__img" src="{{ asset('front/images/collection/fix-banner-4.png') }}" alt="">
-                                </div>
-                            </a>
-                        </div>
+                        @foreach($homeFixBanners as $slideBanner)
+                            @if(isset($slideBanner['image']))
+                            <div class="col-lg-5 col-md-5 u-s-m-b-30">
+                                <a class="collection" href="{{ asset('front/images/banners/'.$slideBanner['image']) }}" title="{{ $slideBanner['title'] }}">
+                                    <div class="aspect aspect--bg-grey aspect--square">
+                                        <img class="aspect__img collection__img" src="{{ asset('front/images/banners/'.$slideBanner['image']) }}" alt="{{ $slideBanner['alt'] }}">
+                                    </div>
+                                </a>
+                            </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>

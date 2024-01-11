@@ -59,11 +59,8 @@
                       <select class="form-control" id="type" name="type">
                         <option value="">Select</option>
                         <option @if(!empty($banner['type'])&&$banner['type']=="Slider") selected @endif value="Slider">Slider</option>  
-                        <option @if(!empty($banner['type'])&&$banner['type']=="Fix 1") selected @endif value="Fix 1">Fix 1</option>  
-                        <option @if(!empty($banner['type'])&&$banner['type']=="Fix 2") selected @endif value="Fix 2">Fix 2</option>  
-                        <option @if(!empty($banner['type'])&&$banner['type']=="Fix 3") selected @endif value="Fix 3">Fix 3</option>  
-                        <option @if(!empty($banner['type'])&&$banner['type']=="Fix 4") selected @endif value="Fix 4">Fix 4</option>  
-                        <option @if(!empty($banner['type'])&&$banner['type']=="Fix 5") selected @endif value="Fix 5">Fix 5</option> 
+                        <option @if(!empty($banner['type'])&&$banner['type']=="Fix 1") selected @endif value="Fix">Fix</option>  
+                         
                       </select> 
                     </div>
                     <div class="form-group">
