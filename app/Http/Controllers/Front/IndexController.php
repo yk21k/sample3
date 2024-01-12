@@ -20,6 +20,9 @@ class IndexController extends Controller
         $newProducts = Product::with(['brand', 'images'])->where('status', 1)->orderBy('id', 'Desc')->limit(4)->get()->toArray();
         // dd($newProducts);
 
-        return view('front.index')->with(compact('homeSliderBanners', 'homeFixBanners', 'newProducts'));
+        //  Get Best Seller Products
+        $bestSellers = Product::with(['brand', 'images'])->where(['is_bestseller'=>'Yes', 'status'=>1])->inRandomOrder()->limit(4)->get()->toArray();
+
+        return view('front.index')->with(compact('homeSliderBanners', 'homeFixBanners', 'newProducts', 'bestSellers'));
     }
 }
