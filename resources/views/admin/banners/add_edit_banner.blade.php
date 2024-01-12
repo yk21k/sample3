@@ -68,7 +68,7 @@
                       <input type="file" class="form-control" id="banner_image" name="banner_image">
                       @if(!empty($banner['image']))
                         <a target="_blank" href="{{ url('front/images/banners/'.$banner['image']) }}"><img style="width:100px; margin-top:10px;" src="{{ asset('front/images/banners/'.$banner['image']) }}"></a>
-                        <a style='color:#078aed;' class="confirmDelete" name="banner" title="Delete Banner Image" href="javascript:void(0)" record="banner-image" recordid="{{ $banner['id'] }}">&nbsp;<i style="color:#fff;" class="fas fa-trash"></i></a>
+                        <a style='color:#078aed;' class="confirmDelete" name="banner" title="Delete Banner Image" href="javascript:void(0)" record="banner" recordid="{{ $banner['id'] }}">&nbsp;<i style="color:#fff;" class="fas fa-trash"></i></a>
                       @endif
                     </div>
                     <div class="form-group">
