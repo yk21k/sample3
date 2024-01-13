@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Front\IndexController;
+use App\Http\Controllers\Front\ProductController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,13 @@ Route::get('/', function () {
 
 
 Route::get('/', [IndexController::class, 'index']);
+
+// Listing/Categories Routes
+$catUrls = Category::select('url')->where('status', 1)->get()->pluck('url');
+// dd($catUrls);
+foreach($catUrls as $key => $url){
+    Route::get($url, [ProductController::class, 'listing']);
+}
 
 
 Route::middleware('admin')->group(function(){
