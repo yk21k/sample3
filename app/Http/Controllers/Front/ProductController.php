@@ -21,7 +21,7 @@ class ProductController extends Controller
             // dd($categoryDetails);
 
             // Get Category and their Sub Category Products
-            $categoryProducts = Product::with(['brand', 'images'])->whereIn('category_id', $categoryDetails['catIds'])->where('status', 1)->orderBy('id', 'Desc')->limit(9)->get()->toArray();
+            $categoryProducts = Product::with(['brand', 'images'])->whereIn('category_id', $categoryDetails['catIds'])->where('status', 1)->orderBy('id', 'Desc')->cursorPaginate(3);
             // dd($categoryProducts);
 
             return view('front.products.listing')->with(compact('categoryDetails', 'categoryProducts'));
