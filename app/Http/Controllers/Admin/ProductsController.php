@@ -120,6 +120,9 @@ class ProductsController extends Controller
                     $product->product_video = $videoName; 
                 }
             }
+            if(!isset($data['product_id'])){
+                $data['product_id'] = $id;
+            }
 
             if(!isset($data['product_discount'])){
                 $data['product_discount'] = 0;
