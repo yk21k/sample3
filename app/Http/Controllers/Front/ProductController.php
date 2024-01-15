@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductsFilter;
 
 class ProductController extends Controller
 {
@@ -44,7 +45,13 @@ class ProductController extends Controller
 
                 }
             }
-            $categoryProducts = $categoryProducts->simplePaginate(3);
+
+            // Update Query for Colors Filer
+            if(isset($request['color'])&&!empty($request['color'])){
+                $colors = explode('~', $request['color']);
+                $categoryProducts->whereIn('products.family_color', $colors);
+            }    
+            $categoryProducts = $categoryProducts->paginate(3);
 
             if($request->ajax()){
                 return response()->json([
