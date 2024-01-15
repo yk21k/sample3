@@ -44,7 +44,7 @@ class ProductController extends Controller
 
                 }
             }
-            $categoryProducts = $categoryProducts->cursorPaginate(3);
+            $categoryProducts = $categoryProducts->simplePaginate(3);
 
             if($request->ajax()){
                 return response()->json([
