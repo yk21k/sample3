@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="{{ url('front/css/utility.css') }}">
         <!--====== App ======-->
         <link rel="stylesheet" href="{{ url('front/css/app.css') }}">
+
     </head>
     <body class="config">
         <div class="preloader is-active">
@@ -69,6 +70,12 @@
         <script src="{{ url('front/js/jquery.shopnav.js') }}"></script>
         <!--====== App ======-->
         <script src="{{ url('front/js/app.js') }}"></script>
+        <!--====== Custom Js ======-->
+        <script src="{{ url('front/js/custom.js') }}"></script>
+        <!--====== Filters ======-->
+        <script src="{{ url('front/js/filters.js') }}"></script>
+
+
         <!--====== Noscript ======-->
         <noscript>
             <div class="app-setting">
