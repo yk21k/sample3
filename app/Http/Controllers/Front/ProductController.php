@@ -23,8 +23,9 @@ class ProductController extends Controller
             // dd($categoryDetails);
 
             // Get Category and their Sub Category Products
-            $categoryProducts = Product::with(['brand', 'images'])->whereIn('category_id', $categoryDetails['catIds'])->where('status', 1);
+            $categoryProducts = Product::with(['brand', 'images'])->whereIn('category_id', $categoryDetails['catIds'])->where('products.status', 1);
             // dd($categoryProducts);
+            // echo "<pre>"; print_r($categoryProducts);die;
 
             // Update Query for Products Sorting
             if(isset($request['sort'])&&!empty($request['sort'])){
@@ -41,17 +42,38 @@ class ProductController extends Controller
                 }else if($request['sort']=="discounted_items"){
                     $categoryProducts->where('product_discount', '>', 0);
                 }else{
-                    $categoryProducts->orderBy('id', 'Desc'); 
+                    $categoryProducts->orderBy('products.id', 'Desc'); 
 
                 }
             }
 
-            // Update Query for Colors Filer
+            // Update Query for Colors Filter
             if(isset($request['color'])&&!empty($request['color'])){
                 $colors = explode('~', $request['color']);
                 $categoryProducts->whereIn('products.family_color', $colors);
-            }    
-            $categoryProducts = $categoryProducts->paginate(3);
+            }   
+
+            // Update Query for Sizes Filter
+            if(isset($request['size'])&&!empty($request['size'])){
+                $sizes = explode('~', $request['size']);
+                $categoryProducts->join('products_attributes', 'products_attributes.product_id','=', 'products.id')->whereIn('products_attributes.size', $sizes)->groupBy('products_attributes.product_id');
+            }
+
+            // Update Query for Brands Filter
+            if(isset($request['brand'])&&!empty($request['brand'])){
+                $brands = explode('~', $request['brand']);
+                $categoryProducts->whereIn('products.brand_id', $brands);
+            }
+
+            // Update Query for Prices Filter
+            if(isset($request['price'])&&!empty($request['price'])){
+                $request['price'] = str_replace("~", "-", $request['price']);
+                $prices = explode('-', $request['price']);
+                $count = count($prices);
+                $categoryProducts->whereBetween('products.final_price', [$prices[0], $prices[$count-1]]);
+            }
+
+            $categoryProducts = $categoryProducts->paginate(9);
 
             if($request->ajax()){
                 return response()->json([

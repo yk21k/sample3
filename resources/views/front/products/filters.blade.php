@@ -191,37 +191,32 @@
                 <span class="fas fa-minus shop-w__toggle" data-target="#s-size" data-toggle="collapse"></span>
             </div>
             <div class="shop-w__wrap collapse show" id="s-size">
+                <?php $getSizes = ProductsFilter::getSizes($categoryDetails['catIds']); ?>
                 <ul class="shop-w__list gl-scroll">
+                    @foreach($getSizes as $key => $size)
+                    <?php 
+                        if(isset($_GET['size'])&&!empty($_GET['size'])){
+                            $sizes = explode('~', $_GET['size']);
+                            if(!empty($sizes)&&in_array($size, $sizes)){
+                                $sizechecked = "checked";
+                            }else{
+                                $sizechecked = "";
+                            }
+                        }else{
+                            $sizechecked = "";
+                        }       
+                    ?>
                     <li>
                         <!--====== Check Box ======-->
                         <div class="check-box">
-                            <input type="checkbox" id="small">
+                            <input type="checkbox" id="size{{ $key }}" name="size" value="{{ $size }}" class="filterAjax" {{ $sizechecked }}>
                             <div class="check-box__state check-box__state--primary">
-                                <label class="check-box__label" for="small">Small</label>
+                                <label class="check-box__label" for="size{{ $key }}">{{ $size }}</label>
                             </div>
                         </div>
                         <!--====== End - Check Box ======-->
                     </li>
-                    <li>
-                        <!--====== Check Box ======-->
-                        <div class="check-box">
-                            <input type="checkbox" id="medium">
-                            <div class="check-box__state check-box__state--primary">
-                                <label class="check-box__label" for="medium">Medium</label>
-                            </div>
-                        </div>
-                        <!--====== End - Check Box ======-->
-                    </li>
-                    <li>
-                        <!--====== Check Box ======-->
-                        <div class="check-box">
-                            <input type="checkbox" id="large">
-                            <div class="check-box__state check-box__state--primary">
-                                <label class="check-box__label" for="large">Large</label>
-                            </div>
-                        </div>
-                        <!--====== End - Check Box ======-->
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -234,57 +229,32 @@
                 <span class="fas fa-minus shop-w__toggle" data-target="#s-brand" data-toggle="collapse"></span>
             </div>
             <div class="shop-w__wrap collapse show" id="s-brand">
+                <?php $getBrands = ProductsFilter::getBrands($categoryDetails['catIds']); ?>
                 <ul class="shop-w__list gl-scroll">
+                    @foreach($getBrands as $key => $brand)
+                    <?php 
+                        if(isset($_GET['brand'])&&!empty($_GET['brand'])){
+                            $brands = explode('~', $_GET['brand']);
+                            if(!empty($brands)&&in_array($brand['id'], $brands)){
+                                $brandchecked = "checked";
+                            }else{
+                                $brandchecked = "";
+                            }
+                        }else{
+                            $brandchecked = "";
+                        }  
+                    ?>
                     <li>
                         <!--====== Check Box ======-->
                         <div class="check-box">
-                            <input type="checkbox" id="arrow">
+                            <input type="checkbox" id="brand{{ $key }}" name="brand" value="{{ $brand['id'] }}" class="filterAjax" {{ $brandchecked }}>
                             <div class="check-box__state check-box__state--primary">
-                                <label class="check-box__label" for="arrow">Arrow</label>
+                                <label class="check-box__label" for="brand{{ $key }}">{{ $brand['brand_name'] }}</label>
                             </div>
                         </div>
                         <!--====== End - Check Box ======-->
                     </li>
-                    <li>
-                        <!--====== Check Box ======-->
-                        <div class="check-box">
-                            <input type="checkbox" id="gap">
-                            <div class="check-box__state check-box__state--primary">
-                                <label class="check-box__label" for="gap">Gap</label>
-                            </div>
-                        </div>
-                        <!--====== End - Check Box ======-->
-                    </li>
-                    <li>
-                        <!--====== Check Box ======-->
-                        <div class="check-box">
-                            <input type="checkbox" id="nike">
-                            <div class="check-box__state check-box__state--primary">
-                                <label class="check-box__label" for="nike">Nike</label>
-                            </div>
-                        </div>
-                        <!--====== End - Check Box ======-->
-                    </li>
-                    <li>
-                        <!--====== Check Box ======-->
-                        <div class="check-box">
-                            <input type="checkbox" id="puma">
-                            <div class="check-box__state check-box__state--primary">
-                                <label class="check-box__label" for="puma">Puma</label>
-                            </div>
-                        </div>
-                        <!--====== End - Check Box ======-->
-                    </li>
-                    <li>
-                        <!--====== Check Box ======-->
-                        <div class="check-box">
-                            <input type="checkbox" id="fila">
-                            <div class="check-box__state check-box__state--primary">
-                                <label class="check-box__label" for="fila">Fila</label>
-                            </div>
-                        </div>
-                        <!--====== End - Check Box ======-->
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -297,23 +267,33 @@
                 <span class="fas fa-minus shop-w__toggle" data-target="#s-price" data-toggle="collapse"></span>
             </div>
             <div class="shop-w__wrap collapse show" id="s-price">
-                <form class="shop-w__form-p">
-                    <div class="shop-w__form-p-wrap">
-                        <div>
-
-                            <label for="price-min"></label>
-
-                            <input class="input-text input-text--primary-style" type="text" id="price-min" placeholder="Min"></div>
-                        <div>
-
-                            <label for="price-max"></label>
-
-                            <input class="input-text input-text--primary-style" type="text" id="price-max" placeholder="Max"></div>
-                        <div>
-
-                            <button class="btn btn--icon fas fa-angle-right btn--e-transparent-platinum-b-2" type="submit"></button></div>
-                    </div>
-                </form>
+                <?php $getPrices = array('0-1000', '1001-2000', '2001-5000', '5001-10000', '10001-100000') ?>
+                <ul class="shop-w__list gl-scroll">
+                    @foreach($getPrices as $key => $price)
+                    <?php 
+                        if(isset($_GET['price'])&&!empty($_GET['price'])){
+                            $prices = explode('~', $_GET['price']);
+                            if(!empty($prices)&&in_array($price, $prices)){
+                                $pricechecked = "checked";
+                            }else{
+                                $pricechecked = "";
+                            }
+                        }else{
+                            $pricechecked = "";
+                        }  
+                    ?>
+                    <li>
+                        <!--====== Check Box ======-->
+                        <div class="check-box">
+                            <input type="checkbox" id="price{{ $key }}" name="price" value="{{ $price }}" class="filterAjax" {{ $pricechecked }}>
+                            <div class="check-box__state check-box__state--primary">
+                                <label class="check-box__label" for="price{{ $key }}">{{ $price }}</label>
+                            </div>
+                        </div>
+                        <!--====== End - Check Box ======-->
+                    </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>
