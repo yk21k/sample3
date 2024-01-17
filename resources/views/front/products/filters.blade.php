@@ -347,15 +347,22 @@
                         // dd($filterValues);
                     ?>
                     @foreach($filterValues as $fkey => $filterValue)
+                        @php $checkFilter = "" @endphp
+                        @if(isset($_GET[$filter]))
+                            @php $explodeFilters = explode('~', $_GET[$filter]) @endphp
+                            @if(in_array($filterValue, $explodeFilters))
+                                @php $checkFilter = "checked" @endphp
+                            @endif
+                        @endif
                     <li>
 
                         <!--====== Check Box ======-->
                         <div class="check-box">
 
-                            <input type="checkbox" id="xs">
+                            <input type="checkbox" id="filter{{ $fkey }}" name="{{ $filter }}" value="{{ $filterValue }}" class="filterAjax" {{ $checkFilter }}>
                             <div class="check-box__state check-box__state--primary">
 
-                                <label class="check-box__label" for="xs">{{ $filterValue }}</label></div>
+                                <label class="check-box__label" for="filter{{ $fkey }}">{{ $filterValue }}</label></div>
                         </div>
                         <!--====== End - Check Box ======-->
                     </li>

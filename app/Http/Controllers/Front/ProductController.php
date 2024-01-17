@@ -47,30 +47,39 @@ class ProductController extends Controller
                 }
             }
 
-            // Update Query for Colors Filter
+            // Update Query for Colors Filters
             if(isset($request['color'])&&!empty($request['color'])){
                 $colors = explode('~', $request['color']);
                 $categoryProducts->whereIn('products.family_color', $colors);
             }   
 
-            // Update Query for Sizes Filter
+            // Update Query for Sizes Filters
             if(isset($request['size'])&&!empty($request['size'])){
                 $sizes = explode('~', $request['size']);
                 $categoryProducts->join('products_attributes', 'products_attributes.product_id','=', 'products.id')->whereIn('products_attributes.size', $sizes)->groupBy('products_attributes.product_id');
             }
 
-            // Update Query for Brands Filter
+            // Update Query for Brands Filters
             if(isset($request['brand'])&&!empty($request['brand'])){
                 $brands = explode('~', $request['brand']);
                 $categoryProducts->whereIn('products.brand_id', $brands);
             }
 
-            // Update Query for Prices Filter
+            // Update Query for Prices Filters
             if(isset($request['price'])&&!empty($request['price'])){
                 $request['price'] = str_replace("~", "-", $request['price']);
                 $prices = explode('-', $request['price']);
                 $count = count($prices);
                 $categoryProducts->whereBetween('products.final_price', [$prices[0], $prices[$count-1]]);
+            }
+
+            // Update Query for Dynamic Filters
+            $filterTypes = ProductsFilter::filterTypes();
+            foreach($filterTypes as $key => $filter){
+                if($request->$filter){
+                    $explodeFilterVals = explode('~', $request->$filter);
+                    $categoryProducts->whereIn($filter, $explodeFilterVals);
+                }
             }
 
             $categoryProducts = $categoryProducts->paginate(9);

@@ -57,6 +57,12 @@ class ProductsFilter extends Model
         return $productFilters;
     }
 
+    public static function filterTypes(){
+        $filterTypes = ProductsFilter::select('filter_name')->groupBy('filter_name')->where('status', 1)->get()->toArray();
+        $filterTypes = Arr::flatten($filterTypes);
+        return $filterTypes;
+    }
+
 
 
 
