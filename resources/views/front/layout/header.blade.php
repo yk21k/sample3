@@ -1,4 +1,5 @@
-<?php 
+<?php
+use App\Models\ProductsFilter; 
 use App\Models\Category;
 // Get Categories and their Sub Categories
 $categories = Category::getCategories();

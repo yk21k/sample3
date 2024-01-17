@@ -32,8 +32,9 @@ class FiltersTableSeeder extends Seeder
             ['id'=>13, 'filter_name'=>'Fit', 'filter_value'=>'Regular', 'sort'=>1, 'status'=>1],
             ['id'=>14, 'filter_name'=>'Fit', 'filter_value'=>'Slim', 'sort'=>2, 'status'=>1],
 
-            ['id'=>15, 'filter_name'=>'Occasion', 'filter_value'=>'Casual ', 'sort'=>1, 'status'=>1],
-            ['id'=>16, 'filter_name'=>'Occasion', 'filter_value'=>'Formal ', 'sort'=>2, 'status'=>1],
+            ['id'=>15, 'filter_name'=>'Occasion', 'filter_value'=>'Casual', 'sort'=>1, 'status'=>1],
+            ['id'=>16, 'filter_name'=>'Occasion', 'filter_value'=>'Formal', 'sort'=>2, 'status'=>1],
+            ['id'=>17, 'filter_name'=>'Occasion', 'filter_value'=>'Party' , 'sort'=>3, 'status'=>1],
         ];
         ProductsFilter::insert($filteRecords);
     }
