@@ -13,6 +13,7 @@
                     <!--====== Product Breadcrumb ======-->
                     <div class="pd-breadcrumb u-s-m-b-30">
                         <ul class="pd-breadcrumb__list">
+                            <?php echo $categoryDetails['breadcrumbs']; ?>
                             <li class="has-separator">
 
                                 <a href="index.hml">Home</a></li>
@@ -34,21 +35,11 @@
                     <div class="pd u-s-m-b-30">
                         <div class="slider-fouc pd-wrap">
                             <div id="pd-o-initiate">
-                                <div class="pd-o-img-wrap" data-src="{{ asset('front/images/product/sitemakers-tshirt-large-1.png') }}">
-                                    <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-1.png') }}" data-zoom-image="{{ asset('front/images/product/sitemakers-tshirt-large-1.png') }}" alt="">
+                                @foreach($productDetails['images'] as $image)
+                                <div class="pd-o-img-wrap" data-src="{{ asset('front/images/products/large/'.$image['image']) }}">
+                                    <img class="u-img-fluid" src="{{ asset('front/images/products/large/'.$image['image']) }}" data-zoom-image="{{ asset('front/images/products/large/'.$image['image']) }}" alt="">
                                 </div>
-                                <div class="pd-o-img-wrap" data-src="{{ asset('front/images/product/sitemakers-tshirt-large-2.png') }}">
-                                    <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-2.png') }}" data-zoom-image="{{ asset('front/images/product/sitemakers-tshirt-large-2.png') }}" alt="">
-                                </div>
-                                <div class="pd-o-img-wrap" data-src="{{ asset('front/images/product/sitemakers-tshirt-large-3.png') }}">
-                                    <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-3.png') }}" data-zoom-image="{{ asset('front/images/product/sitemakers-tshirt-large-3.png') }}" alt="">
-                                </div>
-                                <div class="pd-o-img-wrap" data-src="{{ asset('front/images/product/sitemakers-tshirt-large-4.png') }}">
-                                    <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-4.png') }}" data-zoom-image="{{ asset('front/images/product/sitemakers-tshirt-large-4.png') }}" alt="">
-                                </div>
-                                <div class="pd-o-img-wrap" data-src="{{ asset('front/images/product/sitemakers-tshirt-large-5.png') }}">
-                                    <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-5.png') }}" data-zoom-image="{{ asset('front/images/product/sitemakers-tshirt-large-5.png') }}" alt="">
-                                </div>
+                                @endforeach
                             </div>
 
                             <span class="pd-text">Click for larger zoom</span>
@@ -56,21 +47,11 @@
                         <div class="u-s-m-t-15">
                             <div class="slider-fouc">
                                 <div id="pd-o-thumbnail">
-                                    <div>
-                                        <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-1.png') }}" alt="">
-                                    </div>
-                                    <div>
-                                        <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-2.png') }}" alt="">
-                                    </div>
-                                    <div>
-                                        <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-3.png') }}" alt="">
-                                    </div>
-                                    <div>
-                                        <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-4.png') }}" alt="">
-                                    </div>
-                                    <div>
-                                        <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt-large-5.png') }}" alt="">
-                                    </div>
+                                    @foreach($productDetails['images'] as $image)
+                                        <div>
+                                            <img class="u-img-fluid" src="{{ asset('front/images/products/small/'.$image['image']) }}" alt="">
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -83,13 +64,14 @@
                     <div class="pd-detail">
                         <div>
 
-                            <span class="pd-detail__name">Double Shade Black Grey Casual T-Shirt</span></div>
+                            <span class="pd-detail__name">{{ $productDetails['product_name'] }}</span></div>
                         <div>
                             <div class="pd-detail__inline">
 
-                                <span class="pd-detail__price">₹900.00</span>
-
-                                <span class="pd-detail__discount">(10% OFF)</span><del class="pd-detail__del">₹1000.00</del></div>
+                                <span class="pd-detail__price">₹{{ $productDetails['final_price'] }}</span>
+                                @if($productDetails['product_discount']!="")
+                                    <span class="pd-detail__discount">({{ $productDetails['product_discount'] }}% OFF)</span><del class="pd-detail__del">₹{{ $productDetails['product_price'] }}</del></div>
+                                @endif
                         </div>
                         <div class="u-s-m-b-15">
                             <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
@@ -107,7 +89,7 @@
                         </div>
                         <div class="u-s-m-b-15">
 
-                            <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>
+                            <span class="pd-detail__preview-desc">{{ $productDetails['description']  }}</span></div>
                         <div class="u-s-m-b-15">
                             <div class="pd-detail__inline">
                                 <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
@@ -144,16 +126,16 @@
                                         <div class="color__radio">
                                             <input type="radio" id="jet" name="color" checked>
                                             <label class="color__radio-label" for="jet" style="background-color: #000000"></label></div>
-                                        <a href="product-detail2.html"><div class="color__radio">
+                                        <a href="#"><div class="color__radio">
                                             <label class="color__radio-label" for="folly" style="background-color: #735240"></label>
                                         </div></a>
-                                        <a href="product-detail2.html"><div class="color__radio">
+                                        <a href="#"><div class="color__radio">
                                             <label class="color__radio-label" for="yellow" style="background-color: #158F8B"></label>
                                         </div></a>
-                                        <a href="product-detail2.html"><div class="color__radio">
+                                        <a href="#"><div class="color__radio">
                                             <label class="color__radio-label" for="granite-gray" style="background-color: #FC2767"></label>
                                         </div></a>
-                                        <a href="product-detail2.html"><div class="color__radio">
+                                        <a href="#"><div class="color__radio">
                                             <label class="color__radio-label" for="space-cadet" style="background-color: #5370FE"></label>
                                         </div></a>
                                     </div>
@@ -263,7 +245,7 @@
                             <div class="tab-pane" id="pd-desc">
                                 <div class="pd-tab__desc">
                                     <div class="u-s-m-b-15">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                        <p>{{ $productDetails['description'] }}</p>
                                     </div>
                                     <div class="u-s-m-b-30"><iframe src="https://www.youtube.com/embed/qKqSBm07KZk" allowfullscreen></iframe></div>
                                     <!-- <div class="u-s-m-b-30">
@@ -287,37 +269,54 @@
                                             <table>
                                                 <tbody>
                                                     <tr>
+                                                        <td>Brand</td>
+                                                        <td>{{ $productDetails['brand']['brand_name'] }}</td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Product Code</td>
-                                                        <td>RC001</td>
+                                                        <td>{{ $productDetails['product_code'] }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Product Color</td>
-                                                        <td>Red</td>
+                                                        <td>{{ $productDetails['product_color'] }}</td>
                                                     </tr>
+                                                    @if(!empty($productDetails['fabric']))
                                                     <tr>
                                                         <td>Fabric</td>
-                                                        <td>Cotton</td>
+                                                        <td>{{ $productDetails['fabric'] }}</td>
                                                     </tr>
+                                                    @endif
+                                                    @if(!empty($productDetails['sleeve']))
                                                     <tr>
                                                         <td>Sleeve</td>
-                                                        <td>Long Sleeve</td>
+                                                        <td>{{ $productDetails['sleeve'] }}</td>
                                                     </tr>
+                                                    @endif
+                                                    @if(!empty($productDetails['fit']))
                                                     <tr>
                                                         <td>Fit</td>
-                                                        <td>Regular</td>
+                                                        <td>{{ $productDetails['fit'] }}</td>
                                                     </tr>
+                                                    @endif
+                                                    @if(!empty($productDetails['wash_care']))
                                                     <tr>
-                                                        <td>Neck</td>
-                                                        <td>Round Neck</td>
+                                                        <td>Wash Care</td>
+                                                        <td>{{ $productDetails['wash_care'] }}</td>
                                                     </tr>
+                                                    @endif
+                                                    @if(!empty($productDetails['occasion']))
                                                     <tr>
                                                         <td>Occasion</td>
-                                                        <td>Casual</td>
+                                                        <td>{{ $productDetails['occasion'] }}</td>
                                                     </tr>
+                                                    @endif
+                                                    @if(!empty($productDetails['product_weight']))
                                                     <tr>
                                                         <td>Shipping Weight (Grams)</td>
-                                                        <td>500</td>
+                                                        <td>{{ $productDetails['product_weight'] }}</td>
                                                     </tr>
+                                                    @endif
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -648,7 +647,7 @@
                         <div class="u-s-m-b-30">
                             <div class="product-o product-o--hover-on">
                                 <div class="product-o__wrap">
-                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="#">
                                         <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
                                     </a>
                                 </div>
@@ -656,7 +655,7 @@
                                     <a href="shop-side-version-2.html">Brand Name</a></span>
                                 <span class="product-o__name">
 
-                                    <a href="product-detail.html">Product Name</a></span>
+                                    <a href="#">Product Name</a></span>
                                 <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 
                                     <span class="product-o__review">(20)</span></div>
@@ -669,7 +668,7 @@
                         <div class="u-s-m-b-30">
                             <div class="product-o product-o--hover-on">
                                 <div class="product-o__wrap">
-                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="#">
                                         <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
                                     </a>
                                 </div>
@@ -677,7 +676,7 @@
                                     <a href="shop-side-version-2.html">Brand Name</a></span>
                                 <span class="product-o__name">
 
-                                    <a href="product-detail.html">Product Name</a></span>
+                                    <a href="#">Product Name</a></span>
                                 <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 
                                     <span class="product-o__review">(20)</span></div>
@@ -690,7 +689,7 @@
                         <div class="u-s-m-b-30">
                             <div class="product-o product-o--hover-on">
                                 <div class="product-o__wrap">
-                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="#">
                                         <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
                                     </a>
                                 </div>
@@ -698,7 +697,7 @@
                                     <a href="shop-side-version-2.html">Brand Name</a></span>
                                 <span class="product-o__name">
 
-                                    <a href="product-detail.html">Product Name</a></span>
+                                    <a href="#">Product Name</a></span>
                                 <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 
                                     <span class="product-o__review">(20)</span></div>
@@ -711,7 +710,7 @@
                         <div class="u-s-m-b-30">
                             <div class="product-o product-o--hover-on">
                                 <div class="product-o__wrap">
-                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="#">
                                         <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
                                     </a>
                                 </div>
@@ -719,7 +718,7 @@
                                     <a href="shop-side-version-2.html">Brand Name</a></span>
                                 <span class="product-o__name">
 
-                                    <a href="product-detail.html">Product Name</a></span>
+                                    <a href="#">Product Name</a></span>
                                 <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 
                                     <span class="product-o__review">(20)</span></div>
@@ -732,7 +731,7 @@
                         <div class="u-s-m-b-30">
                             <div class="product-o product-o--hover-on">
                                 <div class="product-o__wrap">
-                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="#">
                                         <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
                                     </a>
                                 </div>
@@ -740,7 +739,7 @@
                                     <a href="shop-side-version-2.html">Brand Name</a></span>
                                 <span class="product-o__name">
 
-                                    <a href="product-detail.html">Product Name</a></span>
+                                    <a href="#">Product Name</a></span>
                                 <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 
                                     <span class="product-o__review">(20)</span></div>
@@ -753,7 +752,7 @@
                         <div class="u-s-m-b-30">
                             <div class="product-o product-o--hover-on">
                                 <div class="product-o__wrap">
-                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="#">
                                         <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
                                     </a>
                                 </div>
@@ -761,7 +760,7 @@
                                     <a href="shop-side-version-2.html">Brand Name</a></span>
                                 <span class="product-o__name">
 
-                                    <a href="product-detail.html">Product Name</a></span>
+                                    <a href="#">Product Name</a></span>
                                 <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 
                                     <span class="product-o__review">(20)</span></div>

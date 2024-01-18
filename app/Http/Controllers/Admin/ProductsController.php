@@ -137,7 +137,8 @@ class ProductsController extends Controller
             }
 
             if(!isset($data['wash_care'])){
-                $data['wash_care'] = "Coming Soon";
+                $data['wash_care'] = "If you are unsure of the details or are concerned about color transfer, such as because it is not written on the tag, please wash it separately. It is unknown whether the color will fade or not.
+";
             }
 
             if(!isset($data['search_keywords'])){
