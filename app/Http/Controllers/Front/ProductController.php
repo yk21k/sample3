@@ -96,4 +96,8 @@ class ProductController extends Controller
             abort(404);
         }
     }
+
+    public function detail(){
+        return view('front.products.detail');
+    }
 }

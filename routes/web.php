@@ -26,15 +26,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::namespace('App\Http\Controllers\Front')->group(function(){
+    Route::get('/', [IndexController::class, 'index']);
 
-Route::get('/', [IndexController::class, 'index']);
+    // Listing/Categories Routes
+    $catUrls = Category::select('url')->where('status', 1)->get()->pluck('url');
+    // dd($catUrls);
+    foreach($catUrls as $key => $url){
+        Route::get($url, [ProductController::class, 'listing']);
+    }
 
-// Listing/Categories Routes
-$catUrls = Category::select('url')->where('status', 1)->get()->pluck('url');
-// dd($catUrls);
-foreach($catUrls as $key => $url){
-    Route::get($url, [ProductController::class, 'listing']);
-}
+    // Product Detail Page
+    Route::get('product/{id}', [ProductController::class, 'detail']);
+});
+
 
 
 Route::middleware('admin')->group(function(){
