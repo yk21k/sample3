@@ -110,7 +110,7 @@ class ProductController extends Controller
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
             $getAttributePrice = Product::getAttributePrice($data['product_id'], $data['size']);
-            // echo "<pre>"; print_r($getAttributePrice); die;
+            echo "<pre>"; print_r($getAttributePrice); die;
             return $getAttributePrice;
         }
     }
