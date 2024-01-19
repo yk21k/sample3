@@ -38,6 +38,10 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 
     // Product Detail Page
     Route::get('product/{id}', [ProductController::class, 'detail']);
+
+    // Get Product Attribute Price
+    Route::post('get-attribute-price', [ProductController::class, 'getAttributePrice']);
+
 });
 
 
