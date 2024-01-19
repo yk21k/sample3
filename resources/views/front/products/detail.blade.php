@@ -313,7 +313,7 @@
                                     <h2 class="u-s-m-b-15">PRODUCT VIDEO</h2>
                                     <div class="u-s-m-b-15">
                                         <video width="400" controls>
-                                          <source src="video/sample.mp4" type="video/mp4">
+                                          <source src="#" type="video/mp4">
                                         
                                           Your browser does not support HTML video.
                                         </video>
