@@ -126,25 +126,18 @@
                         <div class="u-s-m-b-15">
                             <form class="pd-detail__form">
                                 <div class="u-s-m-b-15">
-
-                                    <span class="pd-detail__label u-s-m-b-8">Color:</span>
-                                    <div class="pd-detail__color">
-                                        <div class="color__radio">
-                                            <input type="radio" id="jet" name="color" checked>
-                                            <label class="color__radio-label" for="jet" style="background-color: #000000"></label></div>
-                                        <a href="#"><div class="color__radio">
-                                            <label class="color__radio-label" for="folly" style="background-color: #735240"></label>
-                                        </div></a>
-                                        <a href="#"><div class="color__radio">
-                                            <label class="color__radio-label" for="yellow" style="background-color: #158F8B"></label>
-                                        </div></a>
-                                        <a href="#"><div class="color__radio">
-                                            <label class="color__radio-label" for="granite-gray" style="background-color: #FC2767"></label>
-                                        </div></a>
-                                        <a href="#"><div class="color__radio">
-                                            <label class="color__radio-label" for="space-cadet" style="background-color: #5370FE"></label>
-                                        </div></a>
-                                    </div>
+                                    @if(count($groupProducts)>0)
+                                        <span class="pd-detail__label u-s-m-b-8">Color:</span>
+                                        <div class="pd-detail__color">
+                                            @foreach($groupProducts as $product)
+                                                <a href="{{ url('product/'.$product['id']) }}">
+                                                    <div class="color__radio">
+                                                    <label class="color__radio-label" for="folly" style="background-color: {{ $product['product_color'] }}"></label>
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <span class="pd-detail__label u-s-m-b-8">Size:</span>
@@ -312,12 +305,14 @@
                                 <div class="pd-tab__tag">
                                     <h2 class="u-s-m-b-15">PRODUCT VIDEO</h2>
                                     <div class="u-s-m-b-15">
-                                        <video width="400" controls>
-                                          <source src="#" type="video/mp4">
-                                        
-                                          Your browser does not support HTML video.
-                                        </video>
-
+                                        @if($productDetails['product_video'])
+                                            <video width="400" controls>
+                                              <source src="{{ url('front/videos/products/'.$productDetails['product_video']) }}" type="video/mp4">
+                                              Your browser does not support HTML video.
+                                            </video>
+                                        @else
+                                            Product Video does not exists
+                                        @endif    
                                     </div>
 
                                     <span class="gl-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
