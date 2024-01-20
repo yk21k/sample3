@@ -18,7 +18,7 @@
             <div class="product-m__category">
                 <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></div>
             <div class="product-m__name">
-                <a href="product-detail.html">{{ $product['product_name'] }}</a></div>
+                <a href="{{ url('product/'.$product['id']) }}">{{ $product['product_name'] }}</a></div>
             <div class="product-m__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
                 <span class="product-m__review">(25)</span></div>
             <div class="product-m__price">

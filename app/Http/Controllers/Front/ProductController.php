@@ -115,7 +115,11 @@ class ProductController extends Controller
             $groupProducts = Product::select('id', 'product_color')->where('id', '!=', $id)->where(['group_code'=>$productDetails['group_code'], 'status'=>1])->get()->toArray();
             // dd($groupProducts);
         }
-        return view('front.products.detail')->with(compact('productDetails', 'categoryDetails', 'groupProducts'));
+
+        // Get Related Products
+        $relatedProducts = Product::with('brand', 'images')->where('category_id', $productDetails['category']['id'])->where('id', '!=', $id)->limit(4)->inRandomOrder()->get()->toArray();
+        // dd($relatedProducts);
+        return view('front.products.detail')->with(compact('productDetails', 'categoryDetails', 'groupProducts', 'relatedProducts'));
     }
 
     public function getAttributePrice(Request $request){
