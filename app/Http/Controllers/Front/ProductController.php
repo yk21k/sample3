@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductsFilter;
+use DB;
+use Session;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -119,7 +122,30 @@ class ProductController extends Controller
         // Get Related Products
         $relatedProducts = Product::with('brand', 'images')->where('category_id', $productDetails['category']['id'])->where('id', '!=', $id)->limit(4)->inRandomOrder()->get()->toArray();
         // dd($relatedProducts);
-        return view('front.products.detail')->with(compact('productDetails', 'categoryDetails', 'groupProducts', 'relatedProducts'));
+
+        // Set Session for Recently Viewed Items
+        if(empty(Session::get('session_id'))){
+            $session_id = md5(uniqid(rand(), true));
+        }else{
+            $session_id = Session::get('session_id');
+        }
+        Session::put('session_id', $session_id);
+
+        // Insert Product in recently_viewed_items table if not already exists
+        $countRecentlyViewedItems = DB::table('recently_viewed_items')->where(['product_id'=>$id, 'session_id'=>$session_id])->count();
+        if($countRecentlyViewedItems==0){
+            DB::table('recently_viewed_items')->insert(['product_id'=>$id, 'session_id'=>$session_id, 'created_at'=>Carbon::now(), 'updated_at'=>Carbon::now()]);
+        }
+
+        // Get Recently Viewed Products Ids
+        $recentProductIds = DB::table('recently_viewed_items')->select('product_id')->where('product_id', '!=', $id)->where('session_id', $session_id)->inRandomOrder()->get()->take(4)->pluck('product_id');
+        // dd($recentProductIds);
+
+        // Get Recently Viewed Products
+        $recentlyViewedProducts = Product::with('brand', 'images')->whereIn('id', $recentProductIds)->get()->toArray();
+        // dd($recentlyViewedProducts);        
+
+        return view('front.products.detail')->with(compact('productDetails', 'categoryDetails', 'groupProducts', 'relatedProducts', 'recentlyViewedProducts'));
     }
 
     public function getAttributePrice(Request $request){
