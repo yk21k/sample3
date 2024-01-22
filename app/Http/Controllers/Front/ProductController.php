@@ -176,7 +176,7 @@ class ProductController extends Controller
             // Check Product Status
             $productStatus = Product::productStatus($data['product_id']);
             if($productStatus==0){
-                $message = "This Size Product is not Available!!";
+                $message = "This Product is not Available!!";
                 return response()->json(['status'=>false, 'message'=>$message]);
             }
 
