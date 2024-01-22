@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
+
 use App\Models\Category;
 
 /*
@@ -42,6 +43,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // Get Product Attribute Price
     Route::post('get-attribute-price', [ProductController::class, 'getAttributePrice']);
 
+    // Add to Cart
+    Route::post('/add-to-cart', [ProductController::class, 'addToCart']);
 });
 
 

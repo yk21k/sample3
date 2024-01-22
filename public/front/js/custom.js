@@ -23,4 +23,35 @@ $(document).ready(function(){
 			}		
 		});
 	});
+
+	// Add to Cart
+	$("#addToCart").submit(function(){
+		var formData = $(this).serialize();
+		// alert(formData);
+		$.ajax({
+			headers: { 
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			url:'/add-to-cart',
+			type:'post',
+			data:formData,
+			success:function(resp){
+				// alert(resp['status']);
+				if(resp['status']==true){
+					$('.print-success-msg').show();
+					$('.print-success-msg').delay(3000).fadeOut('slow');
+					$('.print-success-msg').html("<div class='success'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>"+resp['message']+"</div>");
+				}else{
+					// alert(resp['message']);
+					$('.print-error-msg').show();
+					$('.print-error-msg').delay(9000).fadeOut('slow');
+					$('.print-error-msg').html("<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>"+resp['message']+"</div>");
+				}
+				
+			},error:function(){
+				alert("Error");
+			}
+		})
+	});
+
 });		

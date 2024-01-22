@@ -14,18 +14,6 @@
                     <div class="pd-breadcrumb u-s-m-b-30">
                         <ul class="pd-breadcrumb__list">
                             <?php echo $categoryDetails['breadcrumbs']; ?>
-                            <li class="has-separator">
-
-                                <a href="index.hml">Home</a></li>
-                            <li class="has-separator">
-
-                                <a href="shop-side-version-2.html">Clothing</a></li>
-                            <li class="has-separator">
-
-                                <a href="shop-side-version-2.html">Men</a></li>
-                            <li class="is-marked">
-
-                                <a href="shop-side-version-2.html">T-Shirts</a></li>
                         </ul>
                     </div>
                     <!--====== End - Product Breadcrumb ======-->
@@ -63,6 +51,8 @@
                     <!--====== Product Right Side Details ======-->
                     <div class="pd-detail">
                         <div>
+                            <div class="print-error-msg" ></div>
+                            <div class="print-success-msg"></div>
                             <span class="pd-detail__name">{{ $productDetails['product_name'] }}</span>
                         </div>
                         <div>
@@ -124,7 +114,8 @@
                             </ul>
                         </div>
                         <div class="u-s-m-b-15">
-                            <form class="pd-detail__form">
+                            <form name="addToCart" id="addToCart" class="pd-detail__form" action="javascript:;">
+                                <input type="hidden" name="product_id" value="{{ $productDetails['id'] }}">
                                 <div class="u-s-m-b-15">
                                     @if(count($groupProducts)>0)
                                         <span class="pd-detail__label u-s-m-b-8">Color:</span>
@@ -144,7 +135,7 @@
                                     <div class="pd-detail__size">
                                         @foreach($productDetails['attributes'] as $attribute)
                                             <div class="size__radio">
-                                                <input type="radio" id="{{ $attribute['size'] }}" name="size" value="{{ $attribute['size'] }}" product-id="{{ $productDetails['id'] }}" class="getPrice" checked >
+                                                <input type="radio" id="{{ $attribute['size'] }}" name="size" value="{{ $attribute['size'] }}" product-id="{{ $productDetails['id'] }}" class="getPrice" required>
                                                 <label class="size__radio-label" for="{{ $attribute['size'] }}">{{ $attribute['size'] }}</label>
                                             </div>
                                         @endforeach
@@ -158,7 +149,7 @@
 
                                             <span class="input-counter__minus fas fa-minus"></span>
 
-                                            <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+                                            <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000" name="qty">
 
                                             <span class="input-counter__plus fas fa-plus"></span></div>
                                         <!--====== End - Input Counter ======-->
