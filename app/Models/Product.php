@@ -35,7 +35,7 @@ class Product extends Model
         return $this->hasMany('App\Models\ProductsAttribute');
     }
 
-    public static function getAttributePrice($product_id, $size){
+    public static function getAttributePrice($product_id,$size){
         $attributePrice = ProductsAttribute::where(['product_id'=>$product_id, 'size'=>$size])->first()->toArray();
         // For Getting Product Discount
         $productDetails = Product::select(['product_discount', 'category_id', 'brand_id'])->where('id', $product_id)->first()->toArray();

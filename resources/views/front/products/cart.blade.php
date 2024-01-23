@@ -1,3 +1,7 @@
+<?php 
+    use App\Models\Product;
+?>
+
 @extends('front.layout.layout')
 @section('content')
 
@@ -54,7 +58,12 @@
                         <div class="table-responsive">
                             <table class="table-p">
                                 <tbody>
+                                    @php $total_price = 0 @endphp
                                 	@foreach($getCartItems as $item)
+                                    <?php 
+                                        $getAttributePrice = Product::getAttributePrice($item['product_id'], $item['product_size']);
+                                        // dd($getAttributePrice);
+                                    ?>
                                     <!--====== Row ======-->
                                     <tr>
                                         <td>
@@ -83,7 +92,21 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="table-p__price">₹{{ $item['product']['final_price']*$item['product_qty'] }}</span></td>
+                                            <!-- <span class="table-p__price">₹{{ $item['product']['final_price']*$item['product_qty'] }}
+                                            </span> -->
+                                            <div class="pd-detail__inline getAttributePrice">
+                                                <span class="pd-detail__price" style="font-size: 16px;">
+                                                ₹{{ $getAttributePrice['final_price']*$item['product_qty'] }}</span>
+                                                @if($getAttributePrice['discount']>0)
+                                                    <span class="pd-detail__discount">
+                                                        ({{ $getAttributePrice['discount_percent'] }}% OFF)
+                                                    </span>
+                                                    <del class="pd-detail__del">
+                                                        ₹{{ $getAttributePrice['product_price']*$item['product_qty'] }}
+                                                    </del>
+                                                @endif    
+                                            </div>
+                                        </td>
                                         <td>
                                             <div class="table-p__input-counter-wrap">
                                                 <!--====== Input Counter ======-->
@@ -101,6 +124,7 @@
                                         </td>
                                     </tr>
                                     <!--====== End - Row ======-->
+                                    @php $total_price = $total_price + ($getAttributePrice['final_price']*$item['product_qty'])@endphp
                                     @endforeach
                                 </tbody>
                             </table>
@@ -171,7 +195,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>SUBTOTAL</td>
-                                                        <td>₹2700</td>
+                                                        <td>₹{{ $total_price }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>COUPON DISCOUNT</td>
@@ -179,7 +203,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>GRAND TOTAL</td>
-                                                        <td>₹2700</td>
+                                                        <td>₹{{ $total_price }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
