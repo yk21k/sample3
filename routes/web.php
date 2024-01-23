@@ -45,6 +45,9 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 
     // Add to Cart
     Route::post('/add-to-cart', [ProductController::class, 'addToCart']);
+
+    // Shopping Cart
+    Route::get('cart', [ProductController::class, 'cart']);
 });
 
 

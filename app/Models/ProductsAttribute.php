@@ -13,5 +13,10 @@ class ProductsAttribute extends Model
         return $productStock->stock;
     }
 
+    // public static function productAttribute($product_id){
+    //     $productAttribute = ProductsAttribute::get()?->where('id', $product_id)?->first();
+    //     return $productAttribute;
+    // }
+
     
 }

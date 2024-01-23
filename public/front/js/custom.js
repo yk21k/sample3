@@ -39,7 +39,7 @@ $(document).ready(function(){
 				// alert(resp['status']);
 				if(resp['status']==true){
 					$('.print-success-msg').show();
-					$('.print-success-msg').delay(3000).fadeOut('slow');
+					$('.print-success-msg').delay(9000).fadeOut('slow');
 					$('.print-success-msg').html("<div class='success'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>"+resp['message']+"</div>");
 				}else{
 					// alert(resp['message']);

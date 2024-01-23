@@ -180,6 +180,21 @@ class ProductController extends Controller
                 return response()->json(['status'=>false, 'message'=>$message]);
             }
 
+            // Check Product Attribute Status
+            // $productAttribute = ProductsAttribute::productAttribute($data['product_id']);
+            // dd($productAttribute);
+            // if($productAttribute?->status==null){
+            //     $message = "This Size Product is not Available!!";
+            //     return response()->json(['status'=>false, 'message'=>$message]);
+            // }
+
+            // $productAttribute = Product::with('attributes')->get()->first();
+            // // dd($productAttribute);
+            // if($productAttribute?->attributes->status==0){
+            //     $message = "This Size Product is not Available!!";
+            //     return response()->json(['status'=>false, 'message'=>$message]);
+            // }
+
             // Generate Session Id if not exists
             if(empty($session_id)){
                 $session_id = Session::getId();
@@ -192,6 +207,8 @@ class ProductController extends Controller
             // Check Product if already exists in the User Cart
             if(Auth::check()){
                 // User is logged in
+                $user_id = Auth::user()->id;
+                $countProducts = Cart::where(['product_id'=>$data['product_id'], 'product_size'=>$data['size'], 'user_id'=>$user_id])->count();
             }else{
                 // User is not logged in
                 $user_id = 0;
@@ -213,8 +230,14 @@ class ProductController extends Controller
             $item->product_size = $data['size'];
             $item->product_qty = $data['qty'];
             $item->save();
-            $message = "Product added successfully in Cart!!";
+            $message = "Product added successfully in Cart!! <a style='color:#ffffff; text-decoration:wavy underline;' href='/cart'>View Cart</a>";
             return response()->json(['status'=>true, 'message'=>$message]);
         }
+    }
+
+    public function cart(){
+        $getCartItems = Cart::getCartItems();
+        // dd($getCartItems);
+        return view('front.products.cart')->with(compact('getCartItems'));
     }
 }
