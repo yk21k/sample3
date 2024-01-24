@@ -54,4 +54,42 @@ $(document).ready(function(){
 		})
 	});
 
+	// Update Cart Items Quantity
+	$(document).on('click', '.updateCartItem', function(){
+		// alert('test');
+		if($(this).hasClass('fa-plus')){
+			// Get Qty
+			var quantity = $(this).data('qty');
+			// Increase  the Qty by 1
+			new_qty = parseInt(quantity)+1;
+			// alert(new_qty);
+		}
+		if($(this).hasClass('fa-minus')){
+			// Get Qty
+			var quantity = $(this).data('qty');
+			// Check Qty is atleast 1
+			if(quantity<=1){
+				alert("Item Quantity must be 1 or greater!");
+				return false;
+			}
+			// Increase  the Qty by 1
+			new_qty = parseInt(quantity)-1;
+		}
+		var cartid = $(this).data('cartid');
+		$.ajax({
+			headers: { 
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			data:{cartid:cartid, qty:new_qty},
+			url:'/update-cart-item-qty',
+			type:'post',
+			success:function(resp){
+				// alert(resp);
+				$("#appendCartItems").html(resp.view);
+			},error:function(){
+				alert("Error");
+			}
+		});
+	});
+
 });		

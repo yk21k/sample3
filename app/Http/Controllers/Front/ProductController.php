@@ -240,4 +240,24 @@ class ProductController extends Controller
         // dd($getCartItems);
         return view('front.products.cart')->with(compact('getCartItems'));
     }
+
+    public function updateCartItemQty(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data);die;
+
+            // Update the Cart Item Qty
+            Cart::where('id', $data['cartid'])->update(['product_qty'=>$data['qty']]);
+
+            // Get Updated Cart Items
+            $getCartItems = Cart::getCartItems();
+            // dd($getCartItems);
+
+            // Return the Updated Cart Item via Ajax
+            return response()->json([
+                'status'=>true,
+                'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+            ]);
+        }
+    }
 }
