@@ -264,7 +264,7 @@ class ProductController extends Controller
             }
 
             // Check if product size is available
-            $availableSize = ProductsAttribute::select('stock')->where(['product_id'=>$cartDetails['product_id'], 'size'=>$cartDetails['product_size'], 'status'=>1])->count(); 
+            $availableSize = ProductsAttribute::where(['product_id'=>$cartDetails['product_id'], 'size'=>$cartDetails['product_size'], 'status'=>1])->count(); 
 
             if($availableSize==0){
                 $getCartItems = Cart::getCartItems();
