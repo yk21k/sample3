@@ -95,4 +95,27 @@ $(document).ready(function(){
 		});
 	});
 
+	// Delete Cart Item
+	$(document).on('click', '.deleteCartItem',function(){
+		var cartid = $(this).data('cartid');
+		var result = confirm("Are You Sure you want to Delete this Cart Items?");
+
+		if(result){
+			$.ajax({
+				headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+				},
+				data:{cartid:cartid},
+				url:'/delete-cart-item',
+				type:'post',
+				success:function(resp){
+					$("#appendCartItems").html(resp.view);
+				},
+				error:function(){
+					alert("Error");
+				}
+			});
+		} 
+	});
+
 });		

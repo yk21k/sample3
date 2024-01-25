@@ -250,7 +250,7 @@ class ProductController extends Controller
             $cartDetails = Cart::find($data['cartid']);
 
             // Get Available Product Stock
-            $availableStock = ProductsAttribute::select('stock')->where(['product_id'=>$cartDetails['product_id'], 'size'=>$cartDetails['product_size']])->first()->toArray();
+            $availableStock = ProductsAttribute::select('stock')->where(['product_id'=>$cartDetails['product_id'], 'size'=>$cartDetails['product_size']])->first()->toArray();  
             // echo "<pre>"; print_r($availableStock);die;
 
             // Check if desired Stock from user is available
@@ -281,6 +281,22 @@ class ProductController extends Controller
             // Get Updated Cart Items
             $getCartItems = Cart::getCartItems();
             // dd($getCartItems);
+
+            // Return the Updated Cart Item via Ajax
+            return response()->json([
+                'status'=>true,
+                'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+            ]);
+        }
+    }
+
+    public function deleteCartItem(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            Cart::where('id', $data['cartid'])->delete();
+
+            /// Get Updated Cart Items
+            $getCartItems = Cart::getCartItems();
 
             // Return the Updated Cart Item via Ajax
             return response()->json([
