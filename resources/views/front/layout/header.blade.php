@@ -13,7 +13,7 @@ $categories = Category::getCategories();
             <!--====== Primary Nav ======-->
             <div class="primary-nav">
                 <!--====== Main Logo ======-->
-                <a class="main-logo" href="index.html">
+                <a class="main-logo" href="{{ url('/') }}">
                 <img src="{{ asset('front/images/logo/logo-1.png') }}" alt=""></a>
                 <!--====== End - Main Logo ======-->
                 <!--====== Search Form ======-->
@@ -110,22 +110,22 @@ $categories = Category::getCategories();
                                                     <span class="js-menu-toggle"></span>
                                                 </li>
                                                 <li>
-                                                    <a href="index.html"><i class="fas fa-utensils u-s-m-r-6"></i>
+                                                    <a href="{{ url('/') }}"><i class="fas fa-utensils u-s-m-r-6"></i>
                                                     <span>Food & Supplies</span></a>
                                                     <span class="js-menu-toggle"></span>
                                                 </li>
                                                 <li>
-                                                    <a href="index.html"><i class="fas fa-couch u-s-m-r-6"></i>
+                                                    <a href="{{ url('/') }}"><i class="fas fa-couch u-s-m-r-6"></i>
                                                     <span>Furniture & Decor</span></a>
                                                     <span class="js-menu-toggle"></span>
                                                 </li>
                                                 <li>
-                                                    <a href="index.html"><i class="fas fa-football-ball u-s-m-r-6"></i>
+                                                    <a href="{{ url('/') }}"><i class="fas fa-football-ball u-s-m-r-6"></i>
                                                     <span>Sports & Game</span></a>
                                                     <span class="js-menu-toggle"></span>
                                                 </li>
                                                 <li>
-                                                    <a href="index.html"><i class="fas fa-heartbeat u-s-m-r-6"></i>
+                                                    <a href="{{ url('/') }}"><i class="fas fa-heartbeat u-s-m-r-6"></i>
                                                     <span>Beauty & Health</span></a>
                                                     <span class="js-menu-toggle"></span>
                                                 </li>
@@ -816,7 +816,7 @@ $categories = Category::getCategories();
                         <!--====== List ======-->
                         <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
                             <li>
-                                <a href="index.html"><i class="fas fa-home u-c-brand"></i></a>
+                                <a href="{{ url('/') }}"><i class="fas fa-home u-c-brand"></i></a>
                             </li>
                             <li>
                                 <a href="wishlist.html"><i class="far fa-heart"></i></a>
