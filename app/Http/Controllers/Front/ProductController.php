@@ -216,7 +216,7 @@ class ProductController extends Controller
             }
 
             if($countProducts>0){
-                $message = "Product already exists in Cart";
+                $message = "Product already exists in Cart !! <a style='color:#ffffff; text-decoration:wavy underline;' href='/cart'>View Cart</a>";
                 return response()->json(['status'=>false, 'message'=>$message]);
             }
 
