@@ -1,9 +1,12 @@
 <?php
 use App\Models\ProductsFilter; 
 use App\Models\Category;
-// Get Categories and their Sub Categories
-$categories = Category::getCategories();
-// echo "<pre>"; print_r($categories);die;
+    // Get Categories and their Sub Categories
+    $categories = Category::getCategories();
+    // echo "<pre>"; print_r($categories);die;
+
+    $totalCartItems = totalCartItems();
+
 ?>
 
 <header class="header--style-1">
@@ -809,7 +812,7 @@ $categories = Category::getCategories();
                 <!--====== Dropdown Main plugin ======-->
                 <div class="menu-init" id="navigation3">
                     <button class="btn btn--icon toggle-button toggle-button--secondary fas fa-shopping-bag toggle-button-shop" type="button"></button>
-                    <span class="total-item-round">2</span>
+                    <span class="total-item-round totalCartItems">{{ $totalCartItems }}</span>
                     <!--====== Menu ======-->
                     <div class="ah-lg-mode">
                         <span class="ah-close">✕ Close</span>
@@ -823,7 +826,7 @@ $categories = Category::getCategories();
                             </li>
                             <li class="has-dropdown">
                                 <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
-                                <span class="total-item-round">3</span></a>
+                                <span class="total-item-round totalCartItems">{{ $totalCartItems }}</span></a>
                                 <!--====== Dropdown ======-->
                                 <span class="js-menu-toggle"></span>
                                 <div class="mini-cart">

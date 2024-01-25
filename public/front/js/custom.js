@@ -37,6 +37,7 @@ $(document).ready(function(){
 			data:formData,
 			success:function(resp){
 				// alert(resp['status']);
+				$(".totalCartItems").html(resp['totalCartItems']);
 				if(resp['status']==true){
 					$('.print-success-msg').show();
 					$('.print-success-msg').delay(9000).fadeOut('slow');
@@ -85,6 +86,7 @@ $(document).ready(function(){
 			type:'post',
 			success:function(resp){
 				// alert(resp);
+				$(".totalCartItems").html(resp.totalCartItems);
 				if(resp.status==false){
 					alert(resp.message);
 				}
@@ -109,6 +111,7 @@ $(document).ready(function(){
 				url:'/delete-cart-item',
 				type:'post',
 				success:function(resp){
+					$(".totalCartItems").html(resp.totalCartItems);
 					$("#appendCartItems").html(resp.view);
 				},
 				error:function(){
