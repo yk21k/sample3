@@ -11,4 +11,17 @@
 		}
 		return $totalCartItems;
 	}
+
+	function getCartItems(){
+        if(Auth::check()){
+            // If the User logged in ,check from Auth(user_id)
+            $user_id = Auth::user()->id;
+            $getCartItems = Cart::with('product')->wehre('user_id', $user_id)->get()->toArray();
+        }else{
+            // If the User not logged in, check from Session (session_id)
+            $session_id = Session::get('session_id');
+            $getCartItems = Cart::with('product')->where('session_id', $session_id)->get()->toArray();
+        }
+        return $getCartItems;
+    }
 ?>

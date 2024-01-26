@@ -38,6 +38,8 @@ $(document).ready(function(){
 			success:function(resp){
 				// alert(resp['status']);
 				$(".totalCartItems").html(resp['totalCartItems']);
+				$("#appendCartItems").html(resp.view);
+				$("#appendMiniCartItems").html(resp.minicartview);
 				if(resp['status']==true){
 					$('.print-success-msg').show();
 					$('.print-success-msg').delay(9000).fadeOut('slow');
@@ -91,6 +93,7 @@ $(document).ready(function(){
 					alert(resp.message);
 				}
 				$("#appendCartItems").html(resp.view);
+				$("#appendMiniCartItems").html(resp.minicartview);
 			},error:function(){
 				alert("Error");
 			}
@@ -113,6 +116,7 @@ $(document).ready(function(){
 				success:function(resp){
 					$(".totalCartItems").html(resp.totalCartItems);
 					$("#appendCartItems").html(resp.view);
+					$("#appendMiniCartItems").html(resp.minicartview);
 				},
 				error:function(){
 					alert("Error");

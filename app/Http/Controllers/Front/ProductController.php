@@ -234,13 +234,16 @@ class ProductController extends Controller
             // Get Total Cart Items
             $totalCartItems = totalCartItems();
 
+            $getCartItems = getCartItems();
+
+
             $message = "Product added successfully in Cart!! <a style='color:#ffffff; text-decoration:wavy underline;' href='/cart'>View Cart</a>";
             return response()->json(['status'=>true, 'message'=>$message, 'totalCartItems'=>$totalCartItems]);
         }
     }
 
     public function cart(){
-        $getCartItems = Cart::getCartItems();
+        $getCartItems = getCartItems();
         // dd($getCartItems);
         return view('front.products.cart')->with(compact('getCartItems'));
     }
@@ -259,11 +262,13 @@ class ProductController extends Controller
 
             // Check if desired Stock from user is available
             if($data['qty']>$availableStock['stock']){
-                $getCartItems = Cart::getCartItems();
+                $getCartItems = getCartItems();
                 return response()->json([
                     'status'=>false,
                     'message'=>'Product Stock is Not Available!!',
-                    'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                    'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                    'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+
                 ]);
             }
 
@@ -271,11 +276,13 @@ class ProductController extends Controller
             $availableSize = ProductsAttribute::where(['product_id'=>$cartDetails['product_id'], 'size'=>$cartDetails['product_size'], 'status'=>1])->count(); 
 
             if($availableSize==0){
-                $getCartItems = Cart::getCartItems();
+                $getCartItems = getCartItems();
                 return response()->json([
                     'status'=>false,
                     'message'=>'Product Size is Not Available!! Please Remove and Choose Another one!!',
-                    'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                    'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                    'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+
                 ]);
             }
 
@@ -283,7 +290,7 @@ class ProductController extends Controller
             Cart::where('id', $data['cartid'])->update(['product_qty'=>$data['qty']]);
 
             // Get Updated Cart Items
-            $getCartItems = Cart::getCartItems();
+            $getCartItems = getCartItems();
             // dd($getCartItems);
 
             // Get Total Cart Items
@@ -293,7 +300,8 @@ class ProductController extends Controller
             return response()->json([
                 'status'=>true,
                 'totalCartItems'=>$totalCartItems,
-                'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
             ]);
         }
     }
@@ -304,7 +312,7 @@ class ProductController extends Controller
             Cart::where('id', $data['cartid'])->delete();
 
             /// Get Updated Cart Items
-            $getCartItems = Cart::getCartItems();
+            $getCartItems = getCartItems();
 
             // Get Total Cart Items
             $totalCartItems = totalCartItems();
@@ -313,7 +321,9 @@ class ProductController extends Controller
             return response()->json([
                 'status'=>true,
                 'totalCartItems'=>$totalCartItems,
-                'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+
             ]);
         }
     }
