@@ -148,4 +148,24 @@ $(document).ready(function(){
 		} 
 	});
 
+	// Regitser Form Validation
+	$("#registerForm").submit(function(){
+		var formData = $("#registerForm").serialize();
+		// alert(formData); return false;
+		$.ajax({
+			headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			url:'/user/register',
+			type:'post',
+			data:formData,
+			success:function(resp){
+				alert(resp);
+				window.location.href=resp.redirectUrl;
+			},error:function(){
+				alert("Error");
+			}
+		});
+	});
+
 });		

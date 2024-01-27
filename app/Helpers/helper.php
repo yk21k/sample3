@@ -16,7 +16,7 @@
         if(Auth::check()){
             // If the User logged in ,check from Auth(user_id)
             $user_id = Auth::user()->id;
-            $getCartItems = Cart::with('product')->wehre('user_id', $user_id)->get()->toArray();
+            $getCartItems = Cart::with('product')->where('user_id', $user_id)->get()->toArray();
         }else{
             // If the User not logged in, check from Session (session_id)
             $session_id = Session::get('session_id');
