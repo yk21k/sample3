@@ -160,7 +160,7 @@ $(document).ready(function(){
 			type:'post',
 			data:formData,
 			success:function(resp){
-				alert(resp);
+				// alert(resp);
 				window.location.href=resp.redirectUrl;
 			},error:function(){
 				alert("Error");
