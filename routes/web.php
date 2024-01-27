@@ -65,6 +65,10 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // User Register
     Route::match(['get', 'post'], 'user/register', [UserController::class, 'registerUser']);
 
+    // User Logout
+    Route::get('user/logout', [UserController::class, 'logoutUser']);
+
+
 });
 
 

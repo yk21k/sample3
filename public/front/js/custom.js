@@ -159,9 +159,21 @@ $(document).ready(function(){
 			url:'/user/register',
 			type:'post',
 			data:formData,
-			success:function(resp){
+			success:function(data){
+				if(data.type=="validation"){
+					$.each(data.errors, function(i,error){
+						$('#register-'+i).attr('style', 'color:red');
+						$('#register-'+i).html(error);
+						setTimeout(function(){
+							$('#register-'+i).css({
+								'display':'none'
+							})
+						}, 4000);
+					});
+				}else if(data.type=="success"){
+					window.location.href=data.redirectUrl;
+				}
 				// alert(resp);
-				window.location.href=resp.redirectUrl;
 			},error:function(){
 				alert("Error");
 			}

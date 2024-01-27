@@ -58,25 +58,35 @@
 
 	                                        <label class="gl-label" for="reg-fname">NAME *</label>
 
-	                                        <input class="input-text input-text--primary-style" type="text" id="reg-name" name="name" placeholder="Name"></div>
+	                                        <input class="input-text input-text--primary-style" type="text" id="reg-name" name="name" placeholder="Name">
+	                                        <p id="register-name"></p>
+	                                    </div>
 	                                    <div class="u-s-m-b-30">
 
 	                                        <label class="gl-label" for="reg-mobile">MOBILE *</label>
 
-	                                        <input class="input-text input-text--primary-style" type="text" id="reg-mobile" name="mobile" placeholder="MOBILE"></div>
+	                                        <input class="input-text input-text--primary-style" type="text" id="reg-mobile" name="mobile" placeholder="MOBILE">
+	                                        <p id="register-mobile"></p>
+	                                    </div>
 	                                    <div class="u-s-m-b-30">
 
 	                                        <label class="gl-label" for="reg-email">E-MAIL *</label>
 
-	                                        <input class="input-text input-text--primary-style" type="email" id="reg-email" name="email" placeholder="Enter E-mail"></div>
+	                                        <input class="input-text input-text--primary-style" type="email" id="reg-email" name="email" placeholder="Enter E-mail">
+	                                        <p id="register-email"></p>
+	                                    </div>
 	                                    <div class="u-s-m-b-30">
 
 	                                        <label class="gl-label" for="reg-password">PASSWORD *</label>
 
-	                                        <input class="input-text input-text--primary-style" type="password" id="reg-password" name="password" placeholder="Enter Password"></div>
+	                                        <input class="input-text input-text--primary-style" type="password" id="reg-password" name="password" placeholder="Enter Password">
+	                                        <p id="register-password"></p>
+
+	                                    </div>
 	                                    <div class="u-s-m-b-15">
 
-	                                        <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button></div>
+	                                        <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button>
+	                                    </div>
 
 	                                    <a class="gl-link" href="signin.html">Already have an Account? Login Now</a>
 	                                </form>
