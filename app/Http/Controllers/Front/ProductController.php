@@ -327,4 +327,26 @@ class ProductController extends Controller
             ]);
         }
     }
+
+    public function emptyCart(Request $request){
+        if($request->ajax()){
+            // Empty Cart
+            emptyCart();
+
+            /// Get Updated Cart Items
+            $getCartItems = getCartItems();
+
+            // Get Total Cart Items
+            $totalCartItems = totalCartItems();
+
+            // Return the Updated Cart Item via Ajax
+            return response()->json([
+                'status'=>true,
+                'totalCartItems'=>$totalCartItems,
+                'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+
+            ]);
+        }
+    }
 }

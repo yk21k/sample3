@@ -24,4 +24,15 @@
         }
         return $getCartItems;
     }
-?>
+
+    function emptyCart(){
+        if(Auth::check()){
+            // If the User logged in ,check from Auth(user_id)
+            $user_id = Auth::user()->id;
+            Cart::with('product')->wehre('user_id', $user_id)->delete();
+        }else{
+            // If the User not logged in, check from Session (session_id)
+            $session_id = Session::get('session_id');
+            Cart::with('product')->where('session_id', $session_id)->delete();
+        }
+    }

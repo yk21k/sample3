@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
+use App\Http\Controllers\Front\UserController;
 
 use App\Models\Category;
 
@@ -54,6 +55,16 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 
     // Delete Cart Item
     Route::post('delete-cart-item', [ProductController::class, 'deleteCartItem']);
+
+    // Empty Cart
+    Route::post('empty-cart', [ProductController::class, 'emptyCart']);
+
+    // User Login
+    Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser']);
+
+    // User Register
+    Route::match(['get', 'post'], 'user/register', [UserController::class, 'registerUser']);
+
 });
 
 

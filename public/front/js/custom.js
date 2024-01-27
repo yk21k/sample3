@@ -125,4 +125,27 @@ $(document).ready(function(){
 		} 
 	});
 
+	// Empty Cart Item
+	$(document).on('click', '.emptyCart',function(){
+		var result = confirm("Are You Sure you want to empty your Cart?");
+
+		if(result){
+			$.ajax({
+				headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+				},
+				url:'/empty-cart',
+				type:'post',
+				success:function(resp){
+					$(".totalCartItems").html(resp.totalCartItems);
+					$("#appendCartItems").html(resp.view);
+					$("#appendMiniCartItems").html(resp.minicartview);
+				},
+				error:function(){
+					alert("Error");
+				}
+			});
+		} 
+	});
+
 });		
