@@ -60,7 +60,14 @@
 	                                    <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
 	                                    
 	                                <h1 class="gl-h1">SIGNIN</h1>
-
+	                                @if(Session::has('success_message'))
+						                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+						                  <strong>Success:</strong> {{ Session::get('success_message') }}
+						                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						                    <span aria-hidden="true">&times;</span>
+						                  </button>
+						                </div>
+					                @endif
 	                                <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
 	                                <form class="l-f-o__form">
 	                                    <div class="u-s-m-b-30">
