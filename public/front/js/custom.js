@@ -207,6 +207,10 @@ $(document).ready(function(){
 					alert(resp.message);
 					$("#login-error").attr('style', 'color:red');
 					$("#login-error").html(resp.message);
+				}else if(resp.type=="incorrect"){
+					alert(resp.message);
+					$("#login-error").attr('style', 'color:red');
+					$("#login-error").html(resp.message);
 				}else if(resp.type=="success"){
 					window.location.href=resp.redirectUrl;
 				}
