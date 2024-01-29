@@ -36,7 +36,7 @@ class UserController extends Controller
                     $redirectUrl = url('cart');
                     return response()->json(['status'=>true, 'type'=>'success', 'redirectUrl'=>$redirectUrl]);
                 }else{
-                    return response()->json(['status'=>false, 'type'=>'incorrect', 'message'=>'You have entered wrong email or password!']);
+                    return response()->json(['status'=>false, 'type'=>'incorrect', 'message'=>'Excuse Me, You have entered wrong email password!']);
                 }
 
             }else{
