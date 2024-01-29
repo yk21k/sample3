@@ -11,7 +11,38 @@ use Auth;
 
 class UserController extends Controller
 {
-    public function loginUser(){
+    public function loginUser(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|max:250|exists:users',
+                'password' => 'required|min:6'
+            ],
+            [
+                'email.exists' => 'Email does not Exists!!'
+            ]);
+
+            if($validator->passes()){
+
+                if(Auth::attempt(['email'=>$data['email'], 'password'=>$data['password']])){
+
+                    if(Auth::user()->status==0){
+                        Auth::logout();
+                        return response()->json(['status'=>false, 'type'=>'inactive', 'message'=>'Your Account is Not Activated Yet!!']);
+                    }
+
+                    $redirectUrl = url('cart');
+                    return response()->json(['status'=>true, 'type'=>'success', 'redirectUrl'=>$redirectUrl]);
+                }
+
+            }else{
+                return response()->json(['status'=>false, 'type'=>'error', 'errors'=>$validator->messages()]);
+
+            }
+
+        }
         return view('front.users.login');
     }
 
