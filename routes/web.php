@@ -74,6 +74,9 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // Forgot Password
     Route::match(['get', 'post'], 'user/forgot-password', [UserController::class, 'forgotPassword']);
 
+    // Reset Pasword
+    Route::match(['get', 'post'], 'user/reset-password/{code?}', [UserController::class, 'resetPassword']);
+
 });
 
 

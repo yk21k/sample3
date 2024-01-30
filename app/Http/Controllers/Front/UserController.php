@@ -45,7 +45,7 @@ class UserController extends Controller
                     $redirectUrl = url('cart');
                     return response()->json(['status'=>true, 'type'=>'success', 'redirectUrl'=>$redirectUrl]);
                 }else{
-                    return response()->json(['status'=>false, 'type'=>'incorrect', 'message'=>'Excuse Me, You have entered wrong email password!']);
+                    return response()->json(['status'=>false, 'type'=>'incorrect', 'message'=>'Excuse Me, You have entered wrong password!']);
                 }
 
             }else{
@@ -177,6 +177,33 @@ class UserController extends Controller
             return view('front.users.forgot_password');
         }
     }
+
+    public function resetPassword(Request $request, $code=null){
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+
+            $email = base64_decode($data['code']);
+            $userCount = User::where('email', $email)->count();
+            if($userCount>0){
+                // Update New Password
+                User::where('email', $email)->update(['password'=>bcrypt($data['password'])]);
+
+                // Send Confirmation Email to User
+                $messageData = ['email'=>$email];
+                Mail::send('emails.new_password_confirmation', $messageData, function($message) use($email){
+                    $message->to($email)->subject('Password Updated - Sample3');
+                });
+
+                // Show success message
+                return response()->json(['type'=>'success', 'message'=>'Password Reset for Your Account You can Login Now!!']);
+            }else{
+                abort(404);
+            }
+        }else{
+            return view('front.users.reset_password')->with(compact('code'));
+        }    
+    }            
 
     public function logoutUser(){
         Auth::logout();

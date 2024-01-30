@@ -252,4 +252,36 @@ $(document).ready(function(){
 		})
 	});
 
+	// Reset form validation
+	$("#resetPwdForm").submit(function(){
+		var formData = $(this).serialize();
+		$.ajax({
+			headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			url:"/user/reset-password",
+			type:'post',
+			data:formData,
+			success:function(resp){
+				// alert(resp);
+				if(resp.type=="error"){
+					$.each(resp.errors, function(i,error){
+						$('.reset-'+i).attr('style', 'color:red');
+						$('.reset-'+i).html(error);
+						setTimeout(function(){
+							$('.reset-'+i).css({
+								'display':'none'
+							})
+						}, 4000);
+					});	
+				}else if(resp.type=="success"){
+					$(".reset-success").attr('style', 'color:green');
+					$(".reset-success").html(resp.message);
+				}
+			},error:function(){
+				alert("Error");
+			}
+		})
+	});
+
 });		
