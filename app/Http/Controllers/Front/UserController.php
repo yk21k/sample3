@@ -28,6 +28,15 @@ class UserController extends Controller
 
                 if(Auth::attempt(['email'=>$data['email'], 'password'=>$data['password']])){
 
+                    // Remember User Email and Password
+                    if(!empty($data['remember-me'])){
+                        setcookie("user-email", $data['email'], time()+3600);
+                        setcookie("user-password", $data['password'], time()+3600);
+                    }else{
+                        setcookie("user-email");
+                        setcookie("user-password");
+                    }
+
                     if(Auth::user()->status==0){
                         Auth::logout();
                         return response()->json(['status'=>false, 'type'=>'inactive', 'message'=>'Your Account is Not Activated Yet!!']);
