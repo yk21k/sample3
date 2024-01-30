@@ -352,5 +352,60 @@
             <!--====== End - Section Content ======-->
         </div>
         <!--====== End - Section 5 ======-->
+
+        <!-- TEST -->
+        <!--====== Section 6 ======-->
+        <div class="u-s-p-b-60">
+            <!--====== Section Intro ======-->
+                                <h1 class="section__heading u-c-secondary u-s-m-b-12">3D test</h1>
+                                <span class="section__span u-c-silver">3D test PRODUCTS</span>
+            <!--====== End - Section Intro ======-->
+            <!--====== Section Content ======-->
+            <div class="3dbody">
+               <div class="content">
+                  <div class="cube-left">
+                    <div class="box-top">
+                        
+                    </div>
+
+                    <div class="box-bottom">
+                        
+                    </div>
+                    <div class="box-front">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest2.jpeg') }}">
+                    </div>
+                    <div class="box-back">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest1.jpeg') }}">
+                    </div>
+                    <div class="box-left">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest6.jpeg') }}">
+                    </div>
+                    <div class="box-right">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest7.jpeg') }}">
+                        
+                    </div>   
+                  </div>
+                  <div class="cube-right">
+                    <div class="box-top"></div>
+                    <div class="box-bottom"></div>
+                    <div class="box-front">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest3.jpeg') }}">
+                    </div>
+                    <div class="box-back">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest8.jpeg') }}">
+                        
+                    </div>
+                    <div class="box-left">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest4.jpeg') }}">
+                    </div>
+                    <div class="box-right">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest5.jpeg') }}">
+                    </div>   
+                  </div>
+                </div> 
+            </div>
+            <!--====== End - Section Content ======-->
+        </div>
+        <!--====== End - Section 6 ======-->
 </div>
 @endsection
