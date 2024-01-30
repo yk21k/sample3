@@ -204,15 +204,47 @@ $(document).ready(function(){
 						}, 4000);
 					});	
 				}else if(resp.type=="inactive"){
-					alert(resp.message);
+					// alert(resp.message);
 					$("#login-error").attr('style', 'color:red');
 					$("#login-error").html(resp.message);
 				}else if(resp.type=="incorrect"){
-					alert(resp.message);
+					// alert(resp.message);
 					$("#login-error").attr('style', 'color:red');
 					$("#login-error").html(resp.message);
 				}else if(resp.type=="success"){
 					window.location.href=resp.redirectUrl;
+				}
+			},error:function(){
+				alert("Error");
+			}
+		})
+	});
+
+	// Forgot form validation
+	$("#forgotForm").submit(function(){
+		var formData = $(this).serialize();
+		$.ajax({
+			headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			url:"/user/forgot-password",
+			type:'post',
+			data:formData,
+			success:function(resp){
+				// alert(resp);
+				if(resp.type=="error"){
+					$.each(resp.errors, function(i,error){
+						$('.forgot-'+i).attr('style', 'color:red');
+						$('.forgot-'+i).html(error);
+						setTimeout(function(){
+							$('.forgot-'+i).css({
+								'display':'none'
+							})
+						}, 4000);
+					});	
+				}else if(resp.type=="success"){
+					$(".forgot-success").attr('style', 'color:green');
+					$(".forgot-success").html(resp.message);
 				}
 			},error:function(){
 				alert("Error");

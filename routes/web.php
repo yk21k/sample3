@@ -71,6 +71,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // User Logout
     Route::get('user/logout', [UserController::class, 'logoutUser']);
 
+    // Forgot Password
+    Route::match(['get', 'post'], 'user/forgot-password', [UserController::class, 'forgotPassword']);
 
 });
 

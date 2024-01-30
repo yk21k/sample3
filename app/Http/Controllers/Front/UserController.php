@@ -146,8 +146,42 @@ class UserController extends Controller
         }
     }
 
+    public function forgotPassword(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|max:250|exists:users',
+            ],
+            [
+                'email.exists' => 'Email does not Exists!!'
+            ]);
+
+            if($validator->passes()){
+                // Send Email to User with Reset Password link
+                $email = $data['email'];
+                $messageData = ['email'=>$data['email'], 'code'=>base64_encode($data['email'])];
+
+                Mail::send('emails.reset_password', $messageData, function($message) use($email){
+                    $message->to($email)->subject('Reset Your Password - Sample3');
+                });
+
+                // Show success message
+                return response()->json(['type'=>'success', 'message'=>'Reset Password link sent to your registered email.']);
+            }else{
+                return response()->json(['status'=>false, 'type'=>'error', 'errors'=>$validator->messages()]);
+            }
+
+        }else{
+            return view('front.users.forgot_password');
+        }
+    }
+
     public function logoutUser(){
         Auth::logout();
         return redirect('user/login');
     }
+
+
 }
