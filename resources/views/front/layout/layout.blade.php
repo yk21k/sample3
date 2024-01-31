@@ -26,7 +26,7 @@
 
     </head>
     <body class="config">
-        <div class="loader">
+        <div class="loader" type="hidden">
            <img src="{{ asset('front/images/loading.gif') }}" alt="loading..." />
         </div>
         <div class="preloader is-active">
