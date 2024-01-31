@@ -21,6 +21,11 @@
         <link rel="stylesheet" href="{{ url('front/css/app.css') }}">
         <!-- ====== Custom ====-->
         <link rel="stylesheet" href="{{ url('front/css/custom.css') }}">
+
+        <!-- ======  Header Custom CSS ====== -->
+
+        <link rel="stylesheet" href="{{ url('front/css/headercustom.css') }}">
+
         <!-- ====== 3D CSS ======-->
         <link rel="stylesheet" href="{{ url('front/css/custom3d.css') }}">
 

@@ -11,7 +11,7 @@
 
 <header class="header--style-1">
     <!--====== Nav 1 ======-->
-    <nav class="primary-nav primary-nav-wrapper--border">
+    <nav class="primary-nav primary-nav-wrapper--border nav1color">
         <div class="container">
             <!--====== Primary Nav ======-->
             <div class="primary-nav">
@@ -79,7 +79,7 @@
     </nav>
     <!--====== End - Nav 1 ======-->
     <!--====== Nav 2 ======-->
-    <nav class="secondary-nav-wrapper">
+    <nav class="secondary-nav-wrapper nav2color">
         <div class="container">
             <!--====== Secondary Nav ======-->
             <div class="secondary-nav">
