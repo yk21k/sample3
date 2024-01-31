@@ -27,7 +27,7 @@
     </head>
     <body class="config">
         <div class="loader" type="hidden">
-           <img src="{{ asset('front/images/loader2.gif') }}" alt="loading..." />
+           <img src="{{ asset('front/images/loader3.gif') }}" alt="loading..." />
         </div>
         <div class="preloader is-active">
             <div class="preloader__wrap">
