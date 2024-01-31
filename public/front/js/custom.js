@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 	// Add to Cart
 	$("#addToCart").submit(function(){
-		$(".loader").show();
+		$(".loader").hide();
 		var formData = $(this).serialize();
 		// alert(formData);
 		$.ajax({
