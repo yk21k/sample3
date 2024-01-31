@@ -2030,9 +2030,14 @@ input::-ms-clear {
 /*--------------------------------------------------------------
 7.0 Footer
 --------------------------------------------------------------*/
+footer{
+  margin-top: 100px;
+  position: absolute;/*20240131*/
+  width: 100%;
+}
 /* 7.1 Outer-Footer */
 .outer-footer {
-  padding: 80px 0;
+  padding: 40px 0;
   background-color: #000000; }
   .outer-footer__content-title {
     display: block;

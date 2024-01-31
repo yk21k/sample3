@@ -6,13 +6,13 @@
                 <div class="outer-footer__content u-s-m-b-40">
                     <span class="outer-footer__content-title">Contact Us</span>
                     <div class="outer-footer__text-wrap"><i class="fas fa-home"></i>
-                        <span>SITEMAKERS.IN</span>
+                        <span>-------.--</span>
                     </div>
                     <div class="outer-footer__text-wrap"><i class="fas fa-phone-volume"></i>
                         <span>(+91) 900 000 000</span>
                     </div>
                     <div class="outer-footer__text-wrap"><i class="far fa-envelope"></i>
-                        <span>contact@sitemakers.in</span>
+                        <span>contact@---------</span>
                     </div>
                     <div class="outer-footer__social">
                         <ul>
