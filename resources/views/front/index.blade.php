@@ -372,7 +372,7 @@
                         
                     </div>
                     <div class="box-front">
-                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest2.jpeg') }}">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest11.jpeg') }}">
                     </div>
                     <div class="box-back">
                         <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest1.jpeg') }}">
@@ -385,6 +385,44 @@
                         
                     </div>   
                   </div>
+                  <div class="cube-center1">
+                    <div class="box-top">                       
+                    </div>
+                    <div class="box-bottom">
+                    </div>
+                    <div class="box-front">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest10.jpeg') }}">
+                    </div>
+                    <div class="box-back">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest1.jpeg') }}">
+                    </div>
+                    <div class="box-left">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest12.jpeg') }}">
+                    </div>
+                    <div class="box-right">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest9.jpeg') }}">
+                        
+                    </div>   
+                  </div>
+                  <div class="cube-center2">
+                    <div class="box-top">                       
+                    </div>
+                    <div class="box-bottom">
+                    </div>
+                    <div class="box-front">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest2.jpeg') }}">
+                    </div>
+                    <div class="box-back">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest1.jpeg') }}">
+                    </div>
+                    <div class="box-left">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest6.jpeg') }}">
+                    </div>
+                    <div class="box-right">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest8.jpeg') }}">
+                        
+                    </div>   
+                  </div>
                   <div class="cube-right">
                     <div class="box-top"></div>
                     <div class="box-bottom"></div>
@@ -392,7 +430,7 @@
                         <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest3.jpeg') }}">
                     </div>
                     <div class="box-back">
-                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest8.jpeg') }}">
+                        <img style="width: 250px; height: 250px;" src="{{ url('front/images/products/3dtest1.jpeg') }}">
                         
                     </div>
                     <div class="box-left">

@@ -1,8 +1,10 @@
 .3dbody {
   background: #000;
+  display: flex;
+  justify-content: center;
   perspective: 1000px;
   overflow: hidden;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 }
 
 .content {
@@ -10,14 +12,14 @@
   transform-style: preserve-3d;
   width: 1500px;
   height: 500px;
-  margin: 10px;
+  margin: 20px;
   animation: rotate 30s infinite linear;
 }
 
 .cube-left {
   position: absolute;
   top: 50%;
-  left: 25%;
+  left: 0%;
   transform-style: preserve-3d;
   width: 250px;
   height: 250px;
@@ -28,13 +30,36 @@
 .cube-right {
   position: absolute;
   top: 50%;
-  right: 25%;
+  left: 80%;
   transform-style: preserve-3d;
   width: 250px;
   height: 250px;
   margin: auto;
   animation: rotate 30s infinite linear;
 }
+
+.cube-center1 {
+  position: absolute;
+  top: 50%;
+  right: 30%;
+  transform-style: preserve-3d;
+  width: 250px;
+  height: 250px;
+  margin: auto;
+  animation: rotate 30s infinite linear;
+}
+
+.cube-center2 {
+  position: absolute;
+  top: 50%;
+  right: 55%;
+  transform-style: preserve-3d;
+  width: 250px;
+  height: 250px;
+  margin: auto;
+  animation: rotate 30s infinite linear;
+}
+
 .box-top {
   position: absolute;
   box-sizing: border-box;
@@ -91,7 +116,7 @@
 }
 @keyframes rotate {
   0% {transform: rotateX(0deg) rotateY(0deg)}
-  33% {transform: rotateX(-20deg) rotateY(120deg)}
-  66% {transform: rotateX(20deg) rotateY(240deg)}
+  33% {transform: rotateX(-10deg) rotateY(100deg)}
+  66% {transform: rotateX(10deg) rotateY(220deg)}
   100% {transform: rotateX(0deg) rotateY(360deg)}
 }
