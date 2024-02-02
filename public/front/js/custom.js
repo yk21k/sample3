@@ -297,4 +297,40 @@ $(document).ready(function(){
 		})
 	});
 
+	// Account Form Validation
+	$("#accountForm").submit(function(){
+		$(".loader").show();
+		var formData = $(this).serialize();
+		// alert(formData); return false;
+		$.ajax({
+			headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			url:'/user/account',
+			type:'post',
+			data:formData,
+			success:function(data){
+				if(data.type=="validation"){
+					$(".loader").hide();
+					$.each(data.errors, function(i,error){
+						$('#account-'+i).attr('style', 'color:red');
+						$('#account-'+i).html(error);
+						setTimeout(function(){
+							$('#account-'+i).css({
+								'display':'none'
+							})
+						}, 4000);
+					});
+				}else if(data.type=="success"){
+					$(".loader").hide();
+					$("#account-success").attr('style', 'color:green');
+					$("#account-success").html(data.message);
+				}
+				alert(resp);
+			},error:function(){
+				alert("Error");
+			}
+		});
+	});
+
 });		

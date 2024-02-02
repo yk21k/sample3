@@ -60,7 +60,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::post('empty-cart', [ProductController::class, 'emptyCart']);
 
     // User Login
-    Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser']);
+    Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser'])->name('login');
 
     // User Register
     Route::match(['get', 'post'], 'user/register', [UserController::class, 'registerUser']);
@@ -68,8 +68,15 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // User Comfirm Account
     Route::match(['get', 'post'], 'user/confirm/{code}', [UserController::class, 'confirmAccount']);
 
-    // User Logout
-    Route::get('user/logout', [UserController::class, 'logoutUser']);
+    Route::group(['middleware'=>['auth']], function(){
+        
+        // User Account
+        Route::match(['get', 'post'], 'user/account', [UserController::class, 'account']);
+
+        // User Logout
+        Route::get('user/logout', [UserController::class, 'logoutUser']);
+    
+    });
 
     // Forgot Password
     Route::match(['get', 'post'], 'user/forgot-password', [UserController::class, 'forgotPassword']);

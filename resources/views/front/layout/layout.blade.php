@@ -32,7 +32,7 @@
     </head>
     <body class="config">
         <div class="loader" type="hidden">
-           <img src="{{ asset('front/images/loader1.gif') }}" alt="loading..." />
+           <img src="{{ asset('front/images/loader6.webp') }}" alt="loading..." />
         </div>
         <div class="preloader is-active">
             <div class="preloader__wrap">

@@ -41,7 +41,7 @@
                                 <ul style="width:120px">
                                     @if(Auth::check())
                                         <li>
-                                            <a href="{{ url('user/accout') }}"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                            <a href="{{ url('user/account') }}"><i class="fas fa-user-circle u-s-m-r-6"></i>
                                             <span>Account</span></a>
                                         </li>
                                         <li>

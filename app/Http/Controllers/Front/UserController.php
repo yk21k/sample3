@@ -203,12 +203,39 @@ class UserController extends Controller
         }else{
             return view('front.users.reset_password')->with(compact('code'));
         }    
-    }            
+    }
 
     public function logoutUser(){
         Auth::logout();
         return redirect('user/login');
     }
 
+    public function account(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data);die;    
 
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:150',
+                'city' => 'required|string|max:150',
+                'state' => 'required|string|max:150',
+                'address' => 'required|string|max:150',
+                'pincode' => 'required|string|max:150',
+                'mobile' => 'required|numeric|digits:10',
+            ]);
+
+            if($validator->passes()){
+                // Update User Details
+                User::where('id', Auth::user()->id)->update(['name'=>$data['name'], 'address'=>$data['address'], 'city'=>$data['city'], 'state'=>$data['state'], 'country'=>$data['country'], 'pincode'=>$data['pincode'], 'mobile'=>$data['mobile']]);
+
+                // Redirect back user with success message
+                return response()->json(['status'=>true, 'type'=>'success', 'message'=>'User Details Successfully updated!']);
+
+            }else{
+                return response()->json(['status'=>false, 'type'=>'validation', 'errors'=>$validator->messages()]);
+            }
+        }else{
+            return view('front.users.account');
+        }
+    }
 }
