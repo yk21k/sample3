@@ -83,8 +83,13 @@
         <script src="{{ url('front/js/jquery.shopnav.js') }}"></script>
         <!--====== App ======-->
         <script src="{{ url('front/js/app.js') }}"></script>
+
         <!--====== Custom Js ======-->
         <script src="{{ url('front/js/custom.js') }}"></script>
+
+        <!--====== Custom 3DJs ======-->
+        <script src="{{ url('front/js/custom3d.js') }}"></script>
+
         <!--====== Filters ======-->
         <script src="{{ url('front/js/filters.js') }}"></script>
 

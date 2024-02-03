@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Models\Country;
 use Validator;
 use Auth;
 
@@ -221,6 +222,7 @@ class UserController extends Controller
                 'state' => 'required|string|max:150',
                 'address' => 'required|string|max:150',
                 'pincode' => 'required|string|max:150',
+                'country' => 'required|string|max:150',
                 'mobile' => 'required|numeric|digits:10',
             ]);
 
@@ -235,7 +237,8 @@ class UserController extends Controller
                 return response()->json(['status'=>false, 'type'=>'validation', 'errors'=>$validator->messages()]);
             }
         }else{
-            return view('front.users.account');
+            $countries = Country::where('status', 1)->get()->toArray();
+            return view('front.users.account')->with(compact('countries'));
         }
     }
 }
