@@ -1,3 +1,43 @@
+/* nav scrooll */
+
+.a3dtest {
+  display: inline-block;
+  width: 50px;
+  padding: 5px; 
+  text-decoration: none;
+}
+
+.scroll-container3d {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.nav3dtest
+{
+  width: 339px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.scroll-container3d {
+  width: 350px;
+  height: 200px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.scroll-page3d {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 5em;
+}
+
+
+
+
+
+
 .3dbody {
   background: #000;
   display: flex;

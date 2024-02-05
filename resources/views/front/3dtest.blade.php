@@ -1,9 +1,24 @@
 @extends('front.layout.layout')
 @section('content')
-
 <!-- TEST -->
-<!--====== Section 6 ======-->
-
+<nav class="nav3dtest">
+  <h5>3dtest</h5>	
+  <a class="a3dtest" href="#page-1"><span>1</span></a>
+  <a class="a3dtest" href="#page-2"><span>2</span></a>
+  <a class="a3dtest" href="#page-3"><span>3</span></a>
+</nav>
+<div class="scroll-container3d">
+  <div class="scroll-page3d" id="page-1">
+  	3dtest 1
+  </div>
+  <div class="scroll-page3d" id="page-2">
+  	3dtest 2
+  </div>
+  <div class="scroll-page3d" id="page-3">
+  	3dtest 3
+  </div>
+</div>
+  	<!--====== Section 6 ======-->
 	<div class="u-s-p-b-60">
 	    <!--====== Section Intro ======-->
         <h1 class="section__heading u-c-secondary u-s-m-b-12">3D test</h1>
@@ -244,11 +259,9 @@
 				</div>    		       
 	    	</div>
 	    <!--====== End - Section Content ======-->
-
 	</div>
-<!--====== End - Section 6 ======-->
-
-<!--====== Section 7 ======-->
+	<!--====== End - Section 6 ======-->
+	<!--====== Section 7 ======-->
 	<div class="u-s-p-b-120">
 	    <!--====== Section Intro ======-->
         <h1 class="section__heading u-c-secondary u-s-m-b-12">3D test</h1>
@@ -278,7 +291,6 @@
 				</div>
 			</section>
 		</div>
-
 	</div>
-<!--====== End - Section 7 ======-->        
+	<!--====== End - Section 7 ======-->
 @endsection
