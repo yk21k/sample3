@@ -91,12 +91,16 @@
                                             <span class="pd-detail__price" style="font-size: 16px;">
                                             ₹{{ $getAttributePrice['final_price']*$item['product_qty'] }}</span>
                                             @if($getAttributePrice['discount']>0)
-                                                <span class="pd-detail__discount">
-                                                    ({{ $getAttributePrice['discount_percent'] }}% OFF)
-                                                </span>
                                                 <del class="pd-detail__del">
                                                     ₹{{ $getAttributePrice['product_price']*$item['product_qty'] }}
                                                 </del>
+                                                <span class="pd-detail__discount">
+                                                    ({{ $getAttributePrice['discount_percent'] }}% OFF)
+                                                </span>
+                                                &nbsp;
+                                                &nbsp;
+                                                <span><small><span style="font-weight:bold margin-left:10px; color:fuchsia;"> ₹{{ $getAttributePrice['final_price'] }} x {{ $item['product_qty'] }}</span></span></small>
+                                                <span style="font-weight:bold margin-left:10px; color:fuchsia;"> </span></span></span>
                                             @endif    
                                         </div>
                                     </td>

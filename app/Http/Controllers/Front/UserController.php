@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Country;
 use Validator;
 use Auth;
+use Hash;
 
 class UserController extends Controller
 {
@@ -239,6 +240,49 @@ class UserController extends Controller
         }else{
             $countries = Country::where('status', 1)->get()->toArray();
             return view('front.users.account')->with(compact('countries'));
+        }
+    }
+
+    public function updatePassword(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data);die;    
+
+            $validator = Validator::make($request->all(), [
+                'current_password' => 'required',
+                'new_password' => 'required|min:6',
+                'confirm_password' => 'required|same:new_password',
+            ]);
+
+            if($validator->passes()){
+
+                // Entered by the User in Update Password Form
+                $current_password = $data['current_password'];
+
+                // Get Current Password from users table
+                $checkPassword = User::where('id', Auth::user()->id)->first();
+
+                // Compare Current Password
+                if(Hash::check($current_password, $checkPassword->password)){
+
+                    // Update User Current Password
+                    $user = User::find(Auth::user()->id);
+                    $user->password = bcrypt($data['new_password']);
+                    $user->save();
+
+                    // Redirect back user with success meesage
+                    return response()->json(['type'=>'success', 'message'=>'Your Password is Successfully Updated!']);
+
+                }else{
+                    // Redirect back user with error meesage
+                    return response()->json(['type'=>'incorrect', 'message'=>'Your Current Password is Incorrect!']);
+                }
+            }else{
+                return response()->json(['type'=>'error', 'errors'=>$validator->messages()]);
+            }
+
+        }else{
+            return view('front.users.update_password');
         }
     }
 }
