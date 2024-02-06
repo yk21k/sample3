@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannersController;
+use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\UserController;
@@ -150,6 +151,11 @@ Route::middleware('admin')->group(function(){
     Route::post('admin/update-banner-status', [BannersController::class, 'updateBannerStatus']);
     Route::get('admin/delete-banner/{id?}', [BannersController::class, 'deleteBanner']);
     Route::match(['get', 'post'], 'admin/add-edit-banner/{id?}', [BannersController::class, 'addEditBanner']);
+
+    // Coupons
+    Route::get('admin/coupons', [CouponsController::class, 'coupons']);
+    Route::post('admin/update-coupon-status', [CouponsController::class, 'updateCouponStatus']);
+    Route::get('admin/delete-coupon/{id?}', [CouponsController::class, 'deleteCoupon']);
 
 });
 
