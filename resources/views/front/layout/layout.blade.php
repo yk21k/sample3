@@ -23,14 +23,17 @@
         <link rel="stylesheet" href="{{ url('front/css/custom.css') }}">
 
         <!-- ======  Header Custom CSS ====== -->
-
         <link rel="stylesheet" href="{{ url('front/css/headercustom.css') }}">
 
         <!-- ====== 3D CSS ======-->
         <link rel="stylesheet" href="{{ url('front/css/custom3d.css') }}">
 
+        <!-- Cookie Consent -->
+        <link rel="stylesheet" href="{{ url('front/css/cookie_consent.css') }}">
+
     </head>
     <body class="config">
+            
         <div class="loader" type="hidden">
            <img src="{{ asset('front/images/loader6.webp') }}" alt="loading..." />
         </div>
@@ -66,6 +69,10 @@
             <!--====== End - Modal Section ======-->
         </div>
         <!--====== End - Main App ======-->
+        <div class="cookie-consent">
+            <div class="cookie-text">当サイトではCookieを使用します。Cookieの使用に関する詳細は「<a href="#privacy-policy">プライバシーポリシー</a>」をご覧ください。</div>
+            <div class="cookie-agree">OK</div>
+        </div>
         <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
         <script>
             window.ga = function() {
@@ -93,6 +100,8 @@
         <!--====== Filters ======-->
         <script src="{{ url('front/js/filters.js') }}"></script>
 
+        <!-- ===== Cookie Consent -->
+        <script src="{{ url('front/js/cookie_consent.js') }}"></script>
 
         <!--====== Noscript ======-->
         <noscript>
@@ -109,5 +118,6 @@
                 </div>
             </div>
         </noscript>
+
     </body>
 </html>
