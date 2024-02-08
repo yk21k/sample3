@@ -279,5 +279,13 @@ $(document).ready(function(){
         x--; //Decrease field counter
     });
 
+    // Show/Hide Coupon field for Manual/Automatic
+    $("#ManualCoupon").click(function(){
+    	$("#couponField").show();
+    });
+
+    $("#AutomaticCoupon").click(function(){
+    	$("#couponField").hide();
+    });
 
 });

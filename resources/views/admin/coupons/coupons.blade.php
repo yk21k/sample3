@@ -66,7 +66,7 @@
                           {{ $coupon['coupon_type'] }}
                       </td>
                       <td>{{ $coupon['amount'] }}
-                        @if($coupon['amount']=="Percentage") % @else INR @endif
+                        @if($coupon['amount_type']=="Percentage") % @else INR @endif
                       </td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($coupon['expiry_date'])); }}</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($coupon['created_at'])); }}</td>

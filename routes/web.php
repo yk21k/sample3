@@ -156,6 +156,7 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/coupons', [CouponsController::class, 'coupons']);
     Route::post('admin/update-coupon-status', [CouponsController::class, 'updateCouponStatus']);
     Route::get('admin/delete-coupon/{id?}', [CouponsController::class, 'deleteCoupon']);
+    Route::match(['get', 'post'], 'admin/add-edit-coupon/{id?}', [CouponsController::class, 'addEditCoupon']);
 
 });
 

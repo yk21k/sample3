@@ -39,7 +39,7 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-md-6">
                 @if ($errors->any())
                   <div class="alert alert-danger alert-dismissible fade show">
                     @foreach ($errors->all() as $error)

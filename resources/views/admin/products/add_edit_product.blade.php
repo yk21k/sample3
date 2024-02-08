@@ -39,7 +39,7 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-md-6">
               	@if ($errors->any())
                   <div class="alert alert-danger alert-dismissible fade show">
                     @foreach ($errors->all() as $error)
@@ -153,7 +153,7 @@
                     </div>
                     <div class="form-group">
                       <label>Added Attributes</label>
-                        <table style="background-color: #264D80; width:60%; cellpadding:"5";>
+                        <table style="background-color: #264D80; width:100%; cellpadding:"5";>
                           <tr>
                             <th>ID</th>
                             <th>Size</th>
