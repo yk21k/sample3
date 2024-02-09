@@ -380,4 +380,34 @@ $(document).ready(function(){
 		});
 	});
 
+	// Apply Coupon 
+	$(document).on('click', '#applyCoupon', function(){
+		var user = $(this).attr("user");
+		if(user==1){
+			// do nothing
+		}else{
+			alert("Please Login to Apply Coupon!!");
+			return false;
+		}
+		var code = $("#code").val();
+		$.ajax({
+			headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			type:'post',
+			data:{code:code},
+			url:'/apply-coupon',
+			success:function(resp){
+				if(resp.status==false){
+					// alert(resp.message);
+					$('.print-error-msg').show();
+					$('.print-error-msg').delay(9000).fadeOut('slow');
+					$('.print-error-msg').html("<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>"+resp['message']+"</div>");
+				}
+			},error:function(){
+				alert("Error");
+			}
+		});
+	});
+
 });		

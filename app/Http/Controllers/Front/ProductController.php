@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\ProductsFilter;
 use App\Models\ProductsAttribute;
 use App\Models\Cart;
+use App\Models\Coupon;
 use DB;
 use Session;
 use Auth;
@@ -339,7 +340,7 @@ class ProductController extends Controller
             // Empty Cart
             emptyCart();
 
-            /// Get Updated Cart Items
+            // Get Updated Cart Items
             $getCartItems = getCartItems();
 
             // Get Total Cart Items
@@ -353,6 +354,33 @@ class ProductController extends Controller
                 'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
 
             ]);
+        }
+    }
+
+    public function applyCoupon(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+
+            // Get Updated Cart Items
+            $getCartItems = getCartItems();
+
+            // Get Total Cart Items
+            $totalCartItems = totalCartItems();
+
+            // Velify Coupon is valid or not
+            $couponCount = Coupon::where('coupon_code', $data['code'])->count();
+            if($couponCount==0){
+                return response()->json([
+                    'status'=>false,
+                    'totalCartItems'=>$totalCartItems,
+                    'message'=>'The Coupon is Not Valid!!',
+                    'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                    'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+                ]);
+            }else{
+                // Check for other coupon conditions
+            }
         }
     }
 }

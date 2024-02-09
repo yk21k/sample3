@@ -79,6 +79,9 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 
         // User Logout
         Route::get('user/logout', [UserController::class, 'logoutUser']);
+
+        // Apply Coupon
+        Route::post('/apply-coupon', [ProductController::class, 'applyCoupon']);
     
     });
 

@@ -162,24 +162,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
-                    <form class="f-cart">
+
                         <div class="row">
                             <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                <div class="f-cart__pad-box">
-
-                                    <h1 class="gl-h1">APPLY COUPON CODE</h1>
-                                    
-                                    <div class="u-s-m-b-30">
-
-                                        <label class="gl-label" for="shipping-zip">Enter Coupon Code to avail Discount</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="shipping-zip" placeholder="Enter Coupon Code"></div>
-                                    <div class="u-s-m-b-30">
-
-                                        <a class="f-cart__ship-link btn--e-transparent-brand-b-2" href="cart.html">APPLY</a></div>
-
-                                    <!-- <span class="gl-text">Note: Any note can come here</span> -->
-                                </div>
+                                <form class="f-cart" action="javascript:;">
+                                    <div class="f-cart__pad-box">
+                                        <h1 class="gl-h1">APPLY COUPON CODE</h1>
+                                        <div class="u-s-m-b-30">
+                                            <label class="gl-label" for="shipping-zip">Enter Coupon Code to avail Discount</label>
+                                            <input class="input-text input-text--primary-style" type="text" id="code" name="code" placeholder="Enter Coupon Code"></div>
+                                            <div class="u-s-m-b-30">
+                                                <button id="applyCoupon" type="submit" class="f-cart__ship-link btn--e-transparent-brand-b-2" style="width:100%;" @if(Auth::check()) user="1" @endif>APPLY</button>
+                                            </div>
+                                        <!-- <span class="gl-text">Note: Any note can come here</span> -->
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-lg-4 col-md-6 u-s-m-b-30">
                             </div>
@@ -206,12 +203,10 @@
                                         </table>
                                     </div>
                                     <div>
-
-                                        <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
+                                        <button type="submit" class="f-cart__ship-link btn--e-transparent-brand-b-2" style="width:100%;">PROCEED TO CHECKOUT</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
