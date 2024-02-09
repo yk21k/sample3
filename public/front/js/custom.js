@@ -402,7 +402,7 @@ $(document).ready(function(){
 					// alert(resp.message);
 					$('.print-error-msg').show();
 					$('.print-error-msg').delay(9000).fadeOut('slow');
-					$('.print-error-msg').html("<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>"+resp['message']+"</div>");
+					$('.print-error-msg').html("<div class='alert'>"+resp['message']+"</div>");
 				}
 			},error:function(){
 				alert("Error");
