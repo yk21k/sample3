@@ -399,7 +399,7 @@ $(document).ready(function(){
 			url:'/apply-coupon',
 			success:function(resp){
 				if(resp.status==false){
-					// alert(resp.message);
+					alert(resp.message);
 					$('.print-error-msg').show();
 					$('.print-error-msg').delay(9000).fadeOut('slow');
 					$('.print-error-msg').html("<div class='alert'>"+resp['message']+"</div>");

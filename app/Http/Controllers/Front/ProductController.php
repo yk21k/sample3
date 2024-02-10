@@ -12,6 +12,7 @@ use App\Models\ProductsFilter;
 use App\Models\ProductsAttribute;
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\User;
 use DB;
 use Session;
 use Auth;
@@ -380,6 +381,81 @@ class ProductController extends Controller
                 ]);
             }else{
                 // Check for other coupon conditions
+                // echo "coupon valid"; die;
+
+                // Get Coupon Details
+                $couponDetails = Coupon::where('coupon_code', $data['code'])->first();
+                // dd($couponDetails);
+
+                // If Coupon is not active
+                if($couponDetails->status==0){
+                    $error_message = "The Coupon is not Active";
+                }
+
+                // If coupon is expired
+                $expired_date = $couponDetails->expiry_date;
+                $current_date = date('Y-m-d');
+                if($expired_date<$current_date){
+                    $error_message = "The coupon is Expired!!";
+                }
+
+                // If coupon is from selected categories
+                // Get all selected categories from coupon
+                $catArr = explode(",", $couponDetails->categories);
+
+                // Check if any cart item does not belong to coupon category
+                foreach($getCartItems as $key => $item){
+                    // echo "<pre>"; print_r($item);die;
+                    // echo "<pre>"; print_r($catArr);die;
+
+                    if(!in_array($item['product']['category_id'], $catArr)){
+                        $error_message = "The Coupon Code is not for one of the Selected Products!!";
+                    }
+                }
+
+                // Get all selected brands from coupon
+                $brandArr = explode(",", $couponDetails->brands);
+
+                // Check if any cart item does not belong to coupon category
+                foreach($getCartItems as $key => $item){
+                    // echo "<pre>"; print_r($item);die;
+                    // echo "<pre>"; print_r($brandArr);die;
+
+                    if(!in_array($item['product']['brand_id'], $brandArr)){
+                        $error_message = "The Coupon Code is not for one of the Selected Brands!!";
+                    }
+                }
+
+                // Get all selected users from coupon
+                $usersArr = explode(",", $couponDetails->users);
+
+                foreach($usersArr as $key => $user){
+                    $getUserID = User::select('id')->where('email', $user)->first()->toArray();
+                    $usersID[] = $getUserID['id'];
+                }
+
+                // Check if any cart item does not belong to coupon user
+                foreach($getCartItems as $key => $item){
+                    // echo "<pre>"; print_r($item);die;
+                    // echo "<pre>"; print_r($userArr);die;
+                    if(count($usersArr)>0){
+                        if(!in_array($item['user_id'], $usersID)){
+                            $error_message = "The Coupon Code is not for You. Try Again with Valid Coupon Code!!";
+                        }
+                    }
+                }
+
+                // If Error message is there
+                if(isset($error_message)){
+                    return response()->json([
+                    'status'=>false,
+                    'totalCartItems'=>$totalCartItems,
+                    'message'=>$error_message,
+                    'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                    'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+                    ]);    
+                }
+
             }
         }
     }

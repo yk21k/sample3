@@ -79,16 +79,30 @@ class CouponsController extends Controller
             $data = $request->all();
             // echo "<pre>"; print_r($data);die;
 
-            // Coupon Validation
-            $rules = [
-                'categories' => 'required',
-                'brands' => 'required',
-                'coupon_option' => 'required',
-                'coupon_type' => 'required',
-                'amount_type' => 'required',
-                'amount' => 'required|numeric',
-                'expiry_date' => 'required',
-            ];
+            if($id==""){
+               // Coupon Validation
+                $rules = [
+                    'categories' => 'required',
+                    'brands' => 'required',
+                    'coupon_option' => 'required',
+                    'coupon_type' => 'required',
+                    'amount_type' => 'required',
+                    'amount' => 'required|numeric',
+                    'expiry_date' => 'required',
+                    'coupon_code' => 'unique:coupons',
+                ]; 
+            }else{
+               // Coupon Validation
+                $rules = [
+                    'categories' => 'required',
+                    'brands' => 'required',
+                    'coupon_option' => 'required',
+                    'coupon_type' => 'required',
+                    'amount_type' => 'required',
+                    'amount' => 'required|numeric',
+                    'expiry_date' => 'required',
+                ]; 
+            }
 
             $customMessages = [
                 'categories.required' => 'Select Categories',
