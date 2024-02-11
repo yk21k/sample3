@@ -1,5 +1,6 @@
 @extends('front.layout.layout')
 @section('content')
+
 <!--====== App Content ======-->
 	<div class="app-content">
 
@@ -102,4 +103,37 @@
 	    <!--====== End - Section 2 ======-->
 	</div>
 <!--====== End - App Content ======-->
+<!-- modal -->
+<div class="modal-overlay modal-xl">
+    <div class="modal-mask"></div>
+      <div class="modal-container">
+        <div class="modal-inner">
+          <div class="modal-title"><h1><strong>TEST Please do not register as a member yet as I am currently studying. Thank you for your cooperation. I don't think so, but if you do, we will not use it and will delete it.
+
+          (entative)Purpose of use of provisional personal information(Tentative)</strong></h1></div>
+	          <div class="modal-text">
+
+				This site may require you to enter personal information such as your name and email address when registering as a member (inquiries or posting comments).
+
+				The acquired personal information will be used only for necessary communications and will not be used for any other purpose.
+
+				Regarding disclosure of personal information to third parties
+
+				Acquired personal information will be managed appropriately and will not be disclosed to third parties except in the following cases.
+
+				<li>When the consent of the person is obtained</li>
+
+				<li>When disclosure is required by law</li>
+			  </div>
+			  
+	            <div>
+				    <input type="checkbox" id="agree"/>
+				    <label for="agree">agree</label>
+	          		<button class="modal1-close" id="modal1-close" disabled>close</button>
+
+			   </div>
+        </div>
+    </div>
+ </div>
+ <!-- end modal -->
 @endsection

@@ -31,6 +31,9 @@
         <!-- Cookie Consent -->
         <link rel="stylesheet" href="{{ url('front/css/cookie_consent.css') }}">
 
+        <!-- Handling of personal information -->
+        <link rel="stylesheet" href="{{ url('front/css/personal_info.css') }}">
+
     </head>
     <body class="config">
             
@@ -61,11 +64,13 @@
             @include('front.layout.footer')
 
             <!--====== Modal Section ======-->
+
             <!--====== Newsletter Subscribe Modal ======-->
 
-            @include('front.newsletter')
+            <!-- @include('front.newsletter') -->
 
             <!--====== End - Newsletter Subscribe Modal ======-->
+            
             <!--====== End - Modal Section ======-->
         </div>
         <!--====== End - Main App ======-->
@@ -102,6 +107,9 @@
 
         <!-- ===== Cookie Consent -->
         <script src="{{ url('front/js/cookie_consent.js') }}"></script>
+
+        <!-- Handling of personal information -->
+        <script src="{{ url('front/js/personal_info.js') }}"></script>
 
         <!--====== Noscript ======-->
         <noscript>
