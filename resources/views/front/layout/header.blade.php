@@ -48,6 +48,12 @@
                                             <a href="{{ url('user/logout') }}"><i class="fas fa-lock-open u-s-m-r-6"></i>
                                             <span>Signout</span></a>
                                         </li>
+                                        <li>
+                                            <a href="{{ url('user/delete-page') }}"><i class="fas fa-square-full "></i>
+                                                <span>Withdrawal</span></a>
+                                                
+                                            
+                                        </li>
                                     @else
                                         <li>
                                             <a href="{{ url('user/register') }}"><i class="fas fa-user-plus u-s-m-r-6"></i>

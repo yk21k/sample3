@@ -212,6 +212,17 @@ class UserController extends Controller
         return redirect('user/login');
     }
 
+    public function deleteUserAccountPage(){
+        return view('front.users.delete-page');
+    }
+
+    public function deleteUserAccount(){
+        $user = Auth::user();
+        $user->delete();
+        Auth::logout();
+        return redirect('user/login');
+    }
+
     public function account(Request $request){
         if($request->ajax()){
             $data = $request->all();

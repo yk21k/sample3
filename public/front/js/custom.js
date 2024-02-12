@@ -128,6 +128,8 @@ $(document).ready(function(){
 		} 
 	});
 
+	
+
 	// Empty Cart Item
 	$(document).on('click', '.emptyCart',function(){
 		var result = confirm("Are You Sure you want to empty your Cart?");

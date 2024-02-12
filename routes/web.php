@@ -80,8 +80,14 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         // User Logout
         Route::get('user/logout', [UserController::class, 'logoutUser']);
 
+        // Delete Account
+        Route::get('user/delete-page', [UserController::class, 'deleteUserAccountPage']);
+        Route::post('user/delete', [UserController::class, 'deleteUserAccount'])->name('user.withdrawal');
+
         // Apply Coupon
         Route::post('/apply-coupon', [ProductController::class, 'applyCoupon']);
+
+        
     
     });
 
