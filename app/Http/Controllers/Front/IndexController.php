@@ -49,4 +49,8 @@ class IndexController extends Controller
 
         return view('front.3dtest')->with(compact('newProducts', 'bestSellers','discountedProducts', 'featuredProducts'));
     }
+
+    public function privacypoliPage(){
+        return view('front.privacy_policy');
+    }
 }

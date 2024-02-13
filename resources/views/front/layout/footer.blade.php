@@ -76,7 +76,7 @@
                                         <a href="terms-conditions.html">Terms & Conditions</a>
                                     </li>
                                     <li>
-                                        <a href="privacy-policy.html">Privacy Policy</a>
+                                        <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
                                     </li>
                                 </ul>
                             </div>

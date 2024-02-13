@@ -100,6 +100,10 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // 3Dtest page
     Route::get('3dtest', [IndexController::class, 'dtest']);
 
+    // Policies page
+    Route::get('privacy-policy', [IndexController::class, 'privacypoliPage']);
+
+
 });
 
 
