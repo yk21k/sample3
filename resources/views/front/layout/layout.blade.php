@@ -34,9 +34,6 @@
         <!-- Handling of personal information -->
         <link rel="stylesheet" href="{{ url('front/css/personal_info.css') }}">
 
-        <!-- Privacy Policy -->
-        <link rel="stylesheet" href="{{ url('front/css/privacy_policy.css') }}">
-
     </head>
     <body class="config">
             
@@ -129,6 +126,5 @@
                 </div>
             </div>
         </noscript>
-
     </body>
 </html>
