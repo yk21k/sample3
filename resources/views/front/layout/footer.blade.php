@@ -73,7 +73,7 @@
                                         <a href="faq.html">FAQ</a>
                                     </li>
                                     <li>
-                                        <a href="terms-conditions.html">Terms & Conditions</a>
+                                        <a href="{{ url('/terms-service') }}">Terms & Conditions</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
@@ -106,8 +106,9 @@
             <div class="col-lg-12">
                 <div class="lower-footer__content">
                     <div class="lower-footer__copyright">
-                        <span>Copyright © 2023</span>
-                        <a href="index.html">SiteMakers.in</a>
+
+                        <!-- Thanks<span>Copyright © 2023</span>
+                        <a href="index.html">SiteMakers.in</a> -->
                         <span>All Right Reserved</span>
                     </div>
                     <div class="lower-footer__payment">

@@ -103,6 +103,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // Policies page
     Route::get('privacy-policy', [IndexController::class, 'privacypoliPage']);
 
+    // Policies page
+    Route::get('terms-service', [IndexController::class, 'termsofservicePage']);
 
 });
 

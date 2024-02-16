@@ -34,7 +34,7 @@
 	<div class="content_body_pp">
 		<div class="scroll-page_1" id="scroll-page_1"><h1>Privacy Policy</h1></div><br><br>
 		<div><h3>＿＿＿＿＿＿＿＿ (hereinafter referred to as ''our company'') has established the following privacy policy (hereinafter referred to as ''this company'') regarding the handling of users' personal information in the services provided on this website (hereinafter referred to as ''this service''). (hereinafter referred to as "this policy").</h3></div><br>
-		<div>
+		<div class="importantdiv">
 			<ul>
 				<div class="scroll-page_2" id="scroll-page_2"><p><h2>Article 1 (Personal information)</h2></p></div>
 				<div>
@@ -139,7 +139,26 @@
 				<br><br>
 			</ul>
 		</div>
-	<!-- 	<div>
+	</div>
+		<div class="policy_index1">
+			<a href="{{ url('/') }}">>> Back (Top Page)</a>
+			<h4>Privacy Policy Index</h4> 
+			<ul>
+				<a href="#scroll-page_1">Index</a><br>
+				<a href="#scroll-page_2">Article 1 (Personal information)</a><br>
+				<a href="#scroll-page_3">Article 2 (Method of collecting personal information)</a><br>
+				<a href="#scroll-page_4">Article 3 (Purpose of collecting and using personal information)</a></li><br>
+				<a href="#scroll-page_5">Article 4 (Change of purpose of use)</a></li><br>
+				<a href="#scroll-page_6">Article 5 (Provision of personal information to third parties)</a></li><br>
+				<a href="#scroll-page_7">Article 6 (Disclosure of personal information)</a></li><br>
+				<a href="#scroll-page_8">Article 7 (Correction and deletion of personal information)</a></li><br>
+				<a href="#scroll-page_9">Article 8 (Suspension of use of personal information, etc.)</a></li><br>
+				<a href="#scroll-page_10">Article 9 (Changes to privacy policy)</a></li><br>
+				<a href="#scroll-page_11">Article 10 (Inquiries)</a>
+			</ul>
+		</div>
+</div>		
+	<!-- <div>
 			<ul>
 				<div><p><h2>Article 9 (Changes to privacy policy)</h2></p></div>
 				<div>
@@ -158,12 +177,12 @@
 
 				<div><p><h2>Article 1 (Personal information)</h2></p></div>
 				<div>
-					<p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.</h3></p>
+					<p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.</h3></p>
 					<ul>
 						<p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ⅰ:</h3></p>
 						<p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b:</h3></p>
 					</ul>
-					<p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.</h3></p>
+					<p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.</h3></p>
 					<ul>
 						<p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ⅰ:</h3></p>
 						<p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b:</h3></p>
@@ -171,26 +190,9 @@
 				</div>
 			</ul>
 		</div> -->
-	</div>
-		<div class="policy_index1">
-		<a href="{{ url('/') }}">>> Back (Top Page)</a>
-		<h4>Privacy Policy Index</h4> 
-		<ul>
-			<a href="#scroll-page_1">Index</a><br>
-			<a href="#scroll-page_2">Article 1 (Personal information)</a><br>
-			<a href="#scroll-page_3">Article 2 (Method of collecting personal information)</a><br>
-			<a href="#scroll-page_4">Article 3 (Purpose of collecting and using personal information)</a></li><br>
-			<a href="#scroll-page_5">Article 4 (Change of purpose of use)</a></li><br>
-			<a href="#scroll-page_6">Article 5 (Provision of personal information to third parties)</a></li><br>
-			<a href="#scroll-page_7">Article 6 (Disclosure of personal information)</a></li><br>
-			<a href="#scroll-page_8">Article 7 (Correction and deletion of personal information)</a></li><br>
-			<a href="#scroll-page_9">Article 8 (Suspension of use of personal information, etc.)</a></li><br>
-			<a href="#scroll-page_10">Article 9 (Changes to privacy policy)</a></li><br>
-			<a href="#scroll-page_11">Article 10 (Inquiries)</a>
-		</ul>
-	</div>
+	
 	<!-- end body -->
-</div>	
+	
 	<!--  end Page -->
 
 

@@ -10,7 +10,8 @@
         <meta name="description" content="">
         <meta name="author" content="SiteMakers.in">
         <link href="images/favicon.png" rel="shortcut icon">
-        <title>Laravel E-commerce Template - By SiteMakers.in</title>
+        <title>Test Page</title>
+        <!-- Thanks<title>Laravel E-commerce Template - By SiteMakers.in</title> -->
         <!--====== Google Font ======-->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
         <!--====== Vendor Css ======-->
