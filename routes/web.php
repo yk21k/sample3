@@ -87,8 +87,6 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         // Apply Coupon
         Route::post('/apply-coupon', [ProductController::class, 'applyCoupon']);
 
-        
-    
     });
 
     // Forgot Password
