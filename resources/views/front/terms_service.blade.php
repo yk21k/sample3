@@ -181,7 +181,7 @@
 					</div><br>									
 
 				<div class="scroll-page_17" id="scroll-page_17"><p><h2>Article 16 (Governing Law/Jurisdiction)</h2></p></div>
-					<div>
+					<div class="page_container_t">
 						<p><h3>When interpreting these Terms, Japanese law shall be the governing law. Please note that the United Nations Convention on Contracts for the International Sale of Goods does not apply to this service.</h3></p>
 					</div><br>
 
