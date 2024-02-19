@@ -401,10 +401,26 @@ $(document).ready(function(){
 			url:'/apply-coupon',
 			success:function(resp){
 				if(resp.status==false){
-					alert(resp.message);
+					// alert(resp.message);
 					$('.print-error-msg').show();
 					$('.print-error-msg').delay(9000).fadeOut('slow');
 					$('.print-error-msg').html("<div class='alert'>"+resp['message']+"</div>");
+				}else if(resp.status==true){
+					// alert(resp.message);
+					if(resp.couponAmount>0){
+						$(".couponAmount").text("₹"+resp.couponAmount);
+					}else{
+						$(".couponAmount").text("₹0");
+					}
+					if(resp.grand_total>0){
+						$(".grandTotal").text("₹"+resp.grandTotal);
+					}
+					$('.print-success-msg').show();
+					$('.print-success-msg').delay(9000).fadeOut('slow');
+					$('.print-success-msg').html("<div class='success'>"+resp['message']+"</div>");
+					$(".totalCartItems").html(resp.totalCartItems);
+					$("#appendCartItems").html(resp.view);
+					$("#appendMiniCartItems").html(resp.minicartview);
 				}
 			},error:function(){
 				alert("Error");

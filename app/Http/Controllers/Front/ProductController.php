@@ -168,6 +168,10 @@ class ProductController extends Controller
             $data = $request->all();
             // echo "<pre>"; print_r($data);die;
 
+            // Forget the coupon sessions
+            Session::forget('couponAmount');
+            Session::forget('couponCode');
+
             // Check Product Stock
             $productStock = ProductsAttribute::productStock($data['product_id'], $data['size']);
             if($data['qty'] > $productStock){
@@ -403,28 +407,8 @@ class ProductController extends Controller
                 // Get all selected categories from coupon
                 $catArr = explode(",", $couponDetails->categories);
 
-                // Check if any cart item does not belong to coupon category
-                foreach($getCartItems as $key => $item){
-                    // echo "<pre>"; print_r($item);die;
-                    // echo "<pre>"; print_r($catArr);die;
-
-                    if(!in_array($item['product']['category_id'], $catArr)){
-                        $error_message = "The Coupon Code is not for one of the Selected Products!!";
-                    }
-                }
-
                 // Get all selected brands from coupon
                 $brandArr = explode(",", $couponDetails->brands);
-
-                // Check if any cart item does not belong to coupon category
-                foreach($getCartItems as $key => $item){
-                    // echo "<pre>"; print_r($item);die;
-                    // echo "<pre>"; print_r($brandArr);die;
-
-                    if(!in_array($item['product']['brand_id'], $brandArr)){
-                        $error_message = "The Coupon Code is not for one of the Selected Brands!!";
-                    }
-                }
 
                 // Get all selected users from coupon
                 $usersArr = explode(",", $couponDetails->users);
@@ -434,16 +418,33 @@ class ProductController extends Controller
                     $usersID[] = $getUserID['id'];
                 }
 
-                // Check if any cart item does not belong to coupon user
+                $total_amount = 0;
                 foreach($getCartItems as $key => $item){
                     // echo "<pre>"; print_r($item);die;
-                    // echo "<pre>"; print_r($userArr);die;
+                    // echo "<pre>"; print_r($brandArr);die;
+
+                    // Check if any cart item does not belong to coupon brand 
+                    if(!in_array($item['product']['brand_id'], $brandArr)){
+                        $error_message = "The Coupon Code is not for one of the Selected Brands!!";
+                    }
+
+                    // Check if any cart item does not belong to coupon category
+                    if(!in_array($item['product']['category_id'], $catArr)){
+                        $error_message = "The Coupon Code is not for one of the Selected Products!!";
+                    }
+
+                    // Check if any cart item does not belong to coupon user
                     if(count($usersArr)>0){
                         if(!in_array($item['user_id'], $usersID)){
                             $error_message = "The Coupon Code is not for You. Try Again with Valid Coupon Code!!";
                         }
                     }
+                    $getAttributePrice = Product::getAttributePrice($item['product_id'], $item['product_size']);
+
+                    $total_amount = $total_amount + ($getAttributePrice['final_price'] * $item['product_qty']);
                 }
+
+                // echo $total_amount; die;
 
                 // If Error message is there
                 if(isset($error_message)){
@@ -454,6 +455,32 @@ class ProductController extends Controller
                     'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
                     'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
                     ]);    
+                }else{
+                    // Apply Coupon if coupon code is correct
+
+                    // Check if Coupon Amount type is Fixed or Percentage
+                    if($couponDetails->amount_type=="Fixed"){
+                        $couponAmount = $couponDetails->amount;
+                    }else{
+                        $couponAmount = $total_amount * ($couponDetails->amount/100);
+                    }
+                    $grand_total = $total_amount - $couponAmount;
+
+                    // Add Coupon Code & Amount in Session Variables
+                    Session::put('couponAmount', $couponAmount);
+                    Session::put('couponCode', $data['code']);
+
+                    $message = "Coupon Code Successfully Applied. You are Available Discount!";
+
+                    return response()->json([
+                    'status'=>true,
+                    'totalCartItems'=>$totalCartItems,
+                    'couponAmount'=>$couponAmount,
+                    'grandTotal'=>$grand_total,
+                    'message'=>$message,
+                    'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                    'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+                    ]);
                 }
 
             }
