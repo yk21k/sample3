@@ -85,6 +85,7 @@
     $("#products").DataTable();
     $("#brands").DataTable();
     $("#coupons").DataTable();
+    $("#users").DataTable();
   });
 </script>
 <!-- Select2 -->

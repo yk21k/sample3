@@ -61,7 +61,7 @@
             @endif     
             <li class="nav-item menu-open">
               <a href="#" class="nav-link {{ $active }}">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>
                   Admin Management
                   <i class="right fas fa-angle-left"></i>
@@ -187,70 +187,102 @@
           </li>
 
           @if(Auth::guard('admin')->user()->type=="admin")
-          @if(Session::get('page')=="banners")
-            @php $active="active" @endphp
-          @else
-            @php $active= "" @endphp
-          @endif 
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link {{ $active }}">
-              <i class="nav-icon fas fa-image"></i>
-              <p>
-                Banner Management
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              @if(Session::get('page')=="banners")
-                @php $active="active" @endphp
-              @else
-                @php $active= "" @endphp
-              @endif
-              <li class="nav-item">
-                <a href="{{ url('admin/banners') }}" class="nav-link {{ $active }}">
-                  <i class="nav-icon fas fa-circle"></i>
-                  <p>
-                    Banners
-                    <span class="badge badge-info right">banner</span>
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </li>
+            @if(Session::get('page')=="users")
+              @php $active="active" @endphp
+            @else
+              @php $active= "" @endphp
+            @endif 
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{ $active }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Users Management
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @if(Session::get('page')=="users")
+                  @php $active="active" @endphp
+                @else
+                  @php $active= "" @endphp
+                @endif
+                <li class="nav-item">
+                  <a href="{{ url('admin/users') }}" class="nav-link {{ $active }}">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                      Users
+                      <span class="badge badge-info right">user</span>
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </li>
           @endif
 
           @if(Auth::guard('admin')->user()->type=="admin")
+            @if(Session::get('page')=="banners")
+              @php $active="active" @endphp
+            @else
+              @php $active= "" @endphp
+            @endif 
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{ $active }}">
+                <i class="nav-icon fas fa-image"></i>
+                <p>
+                  Banner Management
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @if(Session::get('page')=="banners")
+                  @php $active="active" @endphp
+                @else
+                  @php $active= "" @endphp
+                @endif
+                <li class="nav-item">
+                  <a href="{{ url('admin/banners') }}" class="nav-link {{ $active }}">
+                    <i class="nav-icon fas fa-circle"></i>
+                    <p>
+                      Banners
+                      <span class="badge badge-info right">banner</span>
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          @endif
 
-          @if(Session::get('page')=="coupons")
-            @php $active="active" @endphp
-          @else
-            @php $active= "" @endphp
-          @endif 
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link {{ $active }}">
-              <i class="nav-icon fas fa-rupee-sign"></i>
-              <p>
-                Coupons Management
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              @if(Session::get('page')=="coupons")
-                @php $active="active" @endphp
-              @else
-                @php $active= "" @endphp
-              @endif
-              <li class="nav-item">
-                <a href="{{ url('admin/coupons') }}" class="nav-link {{ $active }}">
-                  <i class="nav-icon fas fa-circle"></i>
-                  <p>
-                    Coupons
-                    <span class="badge badge-danger right">coupon</span>
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          @if(Auth::guard('admin')->user()->type=="admin")
+            @if(Session::get('page')=="coupons")
+              @php $active="active" @endphp
+            @else
+              @php $active= "" @endphp
+            @endif 
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{ $active }}">
+                <i class="nav-icon fas fa-rupee-sign"></i>
+                <p>
+                  Coupons Management
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @if(Session::get('page')=="coupons")
+                  @php $active="active" @endphp
+                @else
+                  @php $active= "" @endphp
+                @endif
+                <li class="nav-item">
+                  <a href="{{ url('admin/coupons') }}" class="nav-link {{ $active }}">
+                    <i class="nav-icon fas fa-circle"></i>
+                    <p>
+                      Coupons
+                      <span class="badge badge-danger right">coupon</span>
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </li>
           @endif
 
           <li class="nav-item menu-open">
