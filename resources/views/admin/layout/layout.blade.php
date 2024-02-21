@@ -79,13 +79,27 @@
 <!-- Page specific script -->
 <script>
   $(function () {
-    $("#cmspages").DataTable();
-    $("#subadmins").DataTable();
-    $("#categories").DataTable();
-    $("#products").DataTable();
-    $("#brands").DataTable();
-    $("#coupons").DataTable();
-    $("#users").DataTable();
+    $("#cmspages").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
+    $("#subadmins").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
+    $("#categories").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
+    $("#products").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
+    $("#brands").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
+    $("#coupons").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
+    $("#users").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
   });
 </script>
 <!-- Select2 -->
