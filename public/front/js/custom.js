@@ -128,8 +128,6 @@ $(document).ready(function(){
 		} 
 	});
 
-	
-
 	// Empty Cart Item
 	$(document).on('click', '.emptyCart',function(){
 		var result = confirm("Are You Sure you want to empty your Cart?");
@@ -382,6 +380,11 @@ $(document).ready(function(){
 		});
 	});
 
+	// Withdrawal self-made20240222
+	$(document).on('click', '#withdrawal-triger', function()){
+		alert('test withdrawal-triger');
+	};
+
 	// Apply Coupon 
 	$(document).on('click', '#applyCoupon', function(){
 		var user = $(this).attr("user");
@@ -427,5 +430,7 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+
 
 });		

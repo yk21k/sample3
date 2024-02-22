@@ -131,7 +131,7 @@
                     <div class="route-box">
                         <div class="route-box__g1">
 
-                            <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
+                            <a class="route-box__link" href="{{ url('/')}}"><i class="fas fa-long-arrow-alt-left"></i>
 
                                 <span>CONTINUE SHOPPING</span></a></div>
                         <div class="route-box__g2">

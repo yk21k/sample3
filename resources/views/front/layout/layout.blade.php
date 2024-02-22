@@ -75,10 +75,11 @@
             
             <!--====== End - Modal Section ======-->
             <div class="cookie-consent">
-                <div class="cookie-text">This site uses cookies. For more information about the use of cookies Please refer to the「<a href="{{ url('privacy-policy') }}">privacy policy</a>」.</div>
-                <div class="cookie-agree">OK</div>
-            </div>
+                    <div class="cookie-text">This site uses cookies. For more information about the use of cookies Please refer to the「<a href="{{ url('privacy-policy') }}">privacy policy</a>」.</div>
+                    <div class="cookie-agree">OK</div>
+            </div>    
         </div>
+        
         <!--====== End - Main App ======-->
         
         <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->

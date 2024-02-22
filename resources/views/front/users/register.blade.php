@@ -133,6 +133,6 @@
 			   		</div>
         </div>
     </div>
- </div>
+</div>
  <!-- end modal -->
 @endsection

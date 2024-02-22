@@ -220,7 +220,7 @@ class UserController extends Controller
         $user = Auth::user();
         $user->delete();
         Auth::logout();
-        return redirect('user/login');
+        return redirect('user/login')->with('success_message', 'The withdrawal process has been completed.');
     }
 
     public function account(Request $request){
