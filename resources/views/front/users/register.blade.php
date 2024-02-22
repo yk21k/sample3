@@ -105,7 +105,6 @@
 <!--====== End - App Content ======-->
 <!-- modal -->
 <div class="modal-overlay">
-    <div class="modal-mask"></div>
       <div class="modal-container">
         <div class="modal-inner">
           <div class="modal-title"><h1><strong>TEST Please do not register as a member yet as I am currently studying. Thank you for your cooperation. I don't think so, but if you do, we will not use it and will delete it.
