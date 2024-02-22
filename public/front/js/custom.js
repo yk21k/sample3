@@ -381,9 +381,9 @@ $(document).ready(function(){
 	});
 
 	// Withdrawal self-made20240222
-	$("#withdrawal-triger").click(function()){
-		alert('test withdrawal-triger');
-	};
+	$(".withdrawal-triger").click(function(){
+		alert('test');
+	});
 
 	// Apply Coupon 
 	$(document).on('click', '#applyCoupon', function(){
