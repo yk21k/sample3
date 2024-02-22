@@ -41,7 +41,7 @@
 	                        
 	                        
 	                        <a href="{{ url('/cart') }}"><strong><h2>No</h2></strong></a>
-	                        <span id="withdrawal-triger"><h3>Yes</h3></span>
+	                        <span class="withdrawal-triger"><h3>Yes</h3></span>
 	                        </div>
 	                    </div>
 	                </div>
