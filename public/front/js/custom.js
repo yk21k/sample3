@@ -381,7 +381,7 @@ $(document).ready(function(){
 	});
 
 	// Withdrawal self-made20240222
-	$(document).on('click', '#withdrawal-triger', function()){
+	$("#withdrawal-triger").click(function()){
 		alert('test withdrawal-triger');
 	};
 
