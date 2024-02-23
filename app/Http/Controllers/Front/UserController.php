@@ -63,14 +63,16 @@ class UserController extends Controller
         if($request->ajax()){
 
             $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:150',
-                'mobile' => 'required|unique:users|numeric|digits:10',
+                'name' => 'required|string|max:150|unique:users',
+                'mobile' => 'required|unique:users|numeric|digits:10|unique:users',
                 'email' => 'required|email|max:250|unique:users',
                 'password' => 'required|string|min:6'
             ],
             [
-                'email.email' => 'Please enter the valid Email!!'
-
+                'email.email' => 'Please enter the valid Email!!',
+                'email.unique' => 'That Email Address is no longer available.',
+                'mobile.unique' => 'That Mobile Number is no longer available.',
+                'name.unique' => 'That Name is no longer available.'
             ]);
 
             if($validator->passes()){
