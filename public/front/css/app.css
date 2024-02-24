@@ -42,11 +42,13 @@ custom-colors, box-mode, custom-header, custom-menu, custom-logo, featured-image
 /**
  * Setup box-sizing
  */
+
+
 html {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent; }
   html.boxed {
-    background-color: #eee; }
+    background-color: #eee;}
 
 *,
 *::before,
@@ -56,13 +58,15 @@ html {
 /**
  * Set up a background-color and height on the root and body element.
  */
+ 
 body {
   line-height: 1.5;
   font-size: 1rem;
   -webkit-font-smoothing: antialiased; }
 
 .config {
-  overflow: hidden; }
+  height: 100%;
+  overflow: scroll; }
 
 /**
  * Basic styles for headings and paragraph

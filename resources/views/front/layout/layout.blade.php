@@ -5,8 +5,8 @@
         <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <![endif]-->
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- <meta name="viewport" content="width=device-width"> -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="description" content="">
         <meta name="author" content="SiteMakers.in">
@@ -48,7 +48,7 @@
             </div>
         </div>
         <!--====== Main App ======-->
-        <div id="app">
+        <div id="app" style="overflow-y: scroll;">
             <!--====== Main Header ======-->
 
             @include('front.layout.header')
@@ -74,10 +74,11 @@
             <!--====== End - Newsletter Subscribe Modal ======-->
             
             <!--====== End - Modal Section ======-->
-            <div class="cookie-consent">
-                    <div class="cookie-text">This site uses cookies. For more information about the use of cookies Please refer to the「<a href="{{ url('privacy-policy') }}">privacy policy</a>」.</div>
-                    <div class="cookie-agree">OK</div>
-            </div>    
+                
+        </div>
+        <div class="cookie-consent">
+            <div class="cookie-text">This site uses cookies. For more information about the use of cookies Please refer to the「<a href="{{ url('privacy-policy') }}">privacy policy</a>」.</div>
+            <div class="cookie-agree">OK</div>
         </div>
         
         <!--====== End - Main App ======-->

@@ -36,9 +36,18 @@
 	                            <h1 class="section__heading u-c-secondary">Are you sure you want to proceed with the withdrawal procedure?</h1>
 	                        
 	                        
-	                        <a href="{{ url('/cart') }}"><strong><h2>No</h2></strong></a>
-	                        <div class="modal-open">Yes</div>
-	                        <!-- <div class="withdrawal-triger"><h3>Yes</h3></div> -->
+		                        <a href="{{ url('/cart') }}"><strong><h2>No</h2></strong></a><br><br>
+		                        <div style="background-color:dodgerblue; color:whitesmoke; text-align: center;"><h3>If you really want to withdraw from membership&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Information on withdrawal)</h3></div>
+		                        <div style="background-color: lightcyan; color:wdarkturquoise; text-align: center;"><h3></h3></div>
+		                        <div style="background-color: darksalmon; color:whitesmoke; text-align: center;"><h4>As stated in the terms and conditions, even if you withdraw your membership, we will not be able to cancel or return any products that have been paid.</h4></div>
+		                        
+
+		                        
+	                            <div >
+	                                <form id="withdrawal-form" action="{{ route('user.withdrawal') }}" method="post" style="display:none;">{{ csrf_field() }}</form>
+									<a href="{{ route('user.withdrawal') }}" onclick="alert('(Tentative) If there are any items in your cart, they will remain unpaid. Even if you withdraw from membership after payment has been made, cancellations and returns are not possible.thank you very much. Until next registration, goodbye');event.preventDefault();document.getElementById('withdrawal-form').submit();"><h3>Withdrawal</h3></a>
+	                                
+	                            </div>
 	                        </div>
 	                    </div>
 	                </div>
@@ -47,33 +56,7 @@
 	        <!--====== End - Section Intro ======-->
 	        <!--====== Section Content ======-->
 			
-				<div class="modal-container">
-
-				  <div class="modal-body">
-				    <div class="modal-close">×</div>
-		    		<div><a href="{{ url('/') }}"><h3>Back to Top Page</h3></a></div>
-
-				    <div class="modal-content">
-
-				    	<div class="section__content">
-				            <div class="container">
-				                <div class="row row--center">
-				                    <div class="col-lg-6 col-md-8 u-s-m-b-30">
-				                        <div class="l-f-o">
-				                            <div class="l-f-o__pad-box">
-				                                <form id="withdrawal-form" action="{{ route('user.withdrawal') }}" method="post" style="display:none;">{{ csrf_field() }}</form>
-												<a href="{{ route('user.withdrawal') }}" onclick="alert('(Tentative) If there are any items in your cart, they will remain unpaid. Even if you withdraw from membership after payment has been made, cancellations and returns are not possible.thank you very much. Until next registration, goodbye');event.preventDefault();document.getElementById('withdrawal-form').submit();"><h3>Withdrawal</h3></a>
-				                                
-				                            </div>
-				                        </div>
-				                    </div>
-				                </div>
-				            </div>
-	        			</div>
-
-				    </div>
-				  </div>
-				</div>
+				
 			</div>		        
 	        <!--====== End - Section Content ======-->
 	    <!--====== End - Section 2 ======-->
