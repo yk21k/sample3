@@ -48,7 +48,7 @@
             </div>
         </div>
         <!--====== Main App ======-->
-        <div id="app" style="overflow-y: scroll;">
+        <div id="app">
             <!--====== Main Header ======-->
 
             @include('front.layout.header')

@@ -148,6 +148,8 @@
 						<p><h3>1.Users may withdraw from this service by following the prescribed withdrawal procedures.</h3></p>
 						<p><h3>222.Even if you cancel your membership, you cannot cancel or return items that have been paid for (including those that are being prepared for shipping).222</h3></p>
 						</h3></p>
+						<p><h3>333.Once you press the withdrawal button, you cannot cancel your withdrawal.333</h3></p>
+						</h3></p>
 					</div><br>
 					
 				<div class="scroll-page_11" id="scroll-page_11"><p><h2>Article 10 (Disclaimer of Warranty and Disclaimer)</h2></p></div>
