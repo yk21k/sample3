@@ -12,7 +12,9 @@ use App\Models\Brand;
 use App\Models\User;
 use Session;
 use Auth;
-use Validator;
+// use Validator;
+use Illuminate\Support\Facades\Validator;
+
 
 class CouponsController extends Controller
 {

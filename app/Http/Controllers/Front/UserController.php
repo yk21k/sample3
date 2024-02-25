@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+// use Validator;
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\User;
 use App\Models\Country;
-use Validator;
+use App\Models\Cart;
 use Auth;
 use Hash;
+use Session;
 
 class UserController extends Controller
 {
@@ -42,6 +46,13 @@ class UserController extends Controller
                     if(Auth::user()->status==0){
                         Auth::logout();
                         return response()->json(['status'=>false, 'type'=>'inactive', 'message'=>'Your Account is Not Activated Yet!!']);
+                    }
+
+                    // Update User Cart with user id
+                    if(!empty(Session::get('session_id'))){
+                        $user_id = Auth::user()->id;
+                        $session_id = Session::get('session_id');
+                        Cart::where('session_id', $session_id)->update(['user_id'=>$user_id]);
                     }
 
                     $redirectUrl = url('cart');

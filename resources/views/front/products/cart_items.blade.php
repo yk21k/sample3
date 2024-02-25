@@ -216,7 +216,7 @@
                                         </table>
                                     </div>
                                     <div>
-                                        <button type="submit" class="f-cart__ship-link btn--e-transparent-brand-b-2" style="width:100%;">PROCEED TO CHECKOUT</button>
+                                        <a href="{{ url('checkout') }}"><button style="cursor:pointer;" class="f-cart__ship-link btn--e-transparent-brand-b-2" style="width:100%;">PROCEED TO CHECKOUT</button></a>
                                 </div>
                             </div>
                         </div>

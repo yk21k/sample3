@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\UserController;
+use App\Http\Controllers\Front\AddressController;
 
 use App\Models\Category;
 
@@ -87,6 +88,14 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 
         // Apply Coupon
         Route::post('/apply-coupon', [ProductController::class, 'applyCoupon']);
+
+        // Checkout
+        Route::match(['get', 'post'], '/checkout', [ProductController::class, 'checkout']);
+
+        // Save Delivery Address
+        Route::post('save-delivery-address', [AddressController::class, 'saveDeliveryAddress']);
+
+
 
     });
 

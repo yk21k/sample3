@@ -13,6 +13,8 @@ use App\Models\ProductsAttribute;
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\User;
+use App\Models\DeliveryAddress;
+use App\Models\Country;
 use DB;
 use Session;
 use Auth;
@@ -485,5 +487,15 @@ class ProductController extends Controller
 
             }
         }
+    }
+
+    public function checkout(){
+        // Get User Cart Items
+        $getCartItems = getCartItems();
+        // Get User Delivery Addresses
+        $deliveryAddresses = DeliveryAddress::deliveryAddresses(); 
+        // Get All Countries
+        $countries = Country::where('status',1)->get()->toArray();
+        return view('front.products.checkout')->with(compact('getCartItems', 'deliveryAddresses', 'countries'));
     }
 }
