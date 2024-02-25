@@ -26,7 +26,7 @@ $('.modal-overlay').hide();  // Modal is initially hidden
 
   // When the checkbox is clicked
   agreeCheckbox.addEventListener("click", () => {
-    if (!agreeCheckbox){
+    if (agreeCheckbox === null){
        return false;
     }
 
