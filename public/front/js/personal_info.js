@@ -28,7 +28,9 @@ $('.modal-overlay').hide();  // Modal is initially hidden
       closeBtn.disabled = false; // Remove disabled
 
     }
-    else if (!agreeCheckbox.checked ){ return false;}
+    else if (agreeCheckbox.checked === null){ 
+      closeBtn.disabled = false;
+    }
     // If not checked
     else {
       closeBtn.disabled = true; // Add disabled
