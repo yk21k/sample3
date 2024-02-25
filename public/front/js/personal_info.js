@@ -17,7 +17,16 @@ $('.modal-overlay').hide();  // Modal is initially hidden
 
 
   // Get “Agree” checkbox
-  const agreeCheckbox = document.getElementById("agree").val();
+  const agreeCheckbox = document.getElementById("agree");
+  var checkedValue = null; 
+  var inputElements = document.getElementsByClassName('agreeCheckbox');
+  for(var i=0; inputElements[i]; ++i){
+        if(inputElements[i].checked){
+             checkedValue = inputElements[i].value;
+             break;
+        }
+  }
+
   // if (!agreeCheckbox){
   //   return false;
   // }
