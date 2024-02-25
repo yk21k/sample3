@@ -18,8 +18,12 @@ $('.modal-overlay').hide();  // Modal is initially hidden
 
   // Get “Agree” checkbox
   const agreeCheckbox = document.getElementById("agree");
+  if (!agreeCheckbox){
+    return false;
+  }
   // close button
   const closeBtn = document.getElementById("modal1-close");
+
 
   // When the checkbox is clicked
   agreeCheckbox.addEventListener("click", () => {
@@ -28,9 +32,7 @@ $('.modal-overlay').hide();  // Modal is initially hidden
       closeBtn.disabled = false; // Remove disabled
 
     }
-    else if (agreeCheckbox.checked === null){ 
-      closeBtn.disabled = false;
-    }
+    
     // If not checked
     else {
       closeBtn.disabled = true; // Add disabled
