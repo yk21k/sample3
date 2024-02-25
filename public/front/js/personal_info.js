@@ -17,10 +17,10 @@ $('.modal-overlay').hide();  // Modal is initially hidden
 
 
   // Get “Agree” checkbox
-  const agreeCheckbox = document.getElementById("agree");
-  if (!agreeCheckbox){
-    return false;
-  }
+  const agreeCheckbox = document.getElementById("agree").val();
+  // if (!agreeCheckbox){
+  //   return false;
+  // }
   // close button
   const closeBtn = document.getElementById("modal1-close");
 
