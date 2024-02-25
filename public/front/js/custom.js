@@ -454,7 +454,7 @@ $(document).ready(function(){
 
 	// Save Delivery Address
 	$(document).on('click', '#deliveryForm', function(){
-		// $(".loader").show();
+		$(".loader").show();
 		var formData = $("#deliveryAddressForm").serialize();
 		// alert(formData);
 		$.ajax({
@@ -478,6 +478,8 @@ $(document).ready(function(){
 						},3000);
 					});
 				}else{
+					$(".loader").hide();
+					$("#deliveryAddressForm").trigger('reset');
 					$("#deliveryAddresses").html(resp.view);
 				}
 			},error:function(){
