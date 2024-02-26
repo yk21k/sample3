@@ -7,7 +7,7 @@
             @foreach($deliveryAddresses as $address)
             <div class="ship-b__box u-s-m-b-10">
                 <input type="radio" id="address{{ $address['id'] }}" name="address_id" value="{{ $address['id'] }}">
-                <p class="ship-b__p">{{ $address['name'] }}, {{ $address['address'] }}, {{ $address['city'] }}, {{ $address['state'] }}, {{ $address['country'] }}, </p>
+                <p class="ship-b__p">{{ $address['name'] }}, <small>pincode,zipcode,<mark style="color:red;">〒</mark></small>{{ $address['pincode'] }}, {{ $address['address'] }}, {{ $address['city'] }}, {{ $address['state'] }}, {{ $address['country'] }}, </p>
 
                 <a class="ship-b__edit btn--e-transparent-platinum-b-2 editAddress" data-modal="modal" data-modal-id="#edit-ship-address" data-addressid="{{ $address['id'] }}" href="javascript:;">Edit</a>
                 <a class="ship-b__edit btn--e-transparent-platinum-b-2 deleteAddress" data-modal="modal" data-modal-id="#edit-ship-address" data-addressid="{{ $address['id'] }}" href="javascript:;">Delete</a>
