@@ -103,7 +103,7 @@
                             <div id="deliveryAddresses">
                         	   @include('front.products.delivery_addresses')
                             </div>   
-                            <h1 class="checkout-f__h1">ADD NEW DELIVERY ADDRESS</h1>
+                            <h1 class="checkout-f__h1 deliveryText">ADD NEW DELIVERY ADDRESS</h1>
                             <form class="checkout-f__delivery" id="deliveryAddressForm" action="javascript:;" method="post">@csrf
                                 <input type="hidden" name="delivery_id">
                                 <div class="u-s-m-b-30">

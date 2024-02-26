@@ -40,7 +40,7 @@ class AddressController extends Controller
                 
                 if(!empty($data['delivery_id'])){
                     // Edit Delivery Address
-
+                    DeliveryAddress::where('id', $data['delivery_id'])->update($address);
                 }else{
                     // Add Delivery Address
                     DeliveryAddress::create($address);
@@ -56,6 +56,29 @@ class AddressController extends Controller
                 return response()->json(['type'=>'error', 'errors'=>Validator->messages()]);
             }
             
+        }
+    }
+
+    public function getDeliveryAddress(Request $request){
+        if($request->all()){
+            $data = $request->all();
+            $deliveryAddresses = DeliveryAddress::where('id', $data['addressid'])->first()->toArray();
+            return response()->json(['address'=>$deliveryAddresses]);
+        }
+    }
+
+    public function removeDeliveryAddress(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            DeliveryAddress::where('id', $data['addressid'])->delete();
+            // Get Updated Delivery Address
+            $deliveryAddresses = DeliveryAddress::deliveryAddresses();
+            // Get All Countries
+            $countries = Country::where('status',1)->get()->toArray();
+            return response()->json([
+                'view'=>(String)View::make('front.products.delivery_addresses')->with(compact('deliveryAddresses', 'countries'))
+            ]);
+            return response()->json(['address'=>$deliveryAddress]);
         }
     }
 }
