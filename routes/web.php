@@ -101,6 +101,9 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         // Remove Delivery Address
         Route::post('remove-delivery-address', [AddressController::class, 'removeDeliveryAddress']);
 
+        // Set Default Delivery Address
+        Route::post('set-default-delivery-address', [AddressController::class, 'setDefaultDeliveryAddress']);
+
     });
 
     // Forgot Password

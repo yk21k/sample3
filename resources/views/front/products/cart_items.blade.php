@@ -116,7 +116,7 @@
                                     </td>
                                     <td>
                                         <div class="table-p__del-wrap">
-                                            <a class="far fa-trash-alt table-p__delete-link deleteCartItem" href="#" data-cartid="{{ $item['id'] }}"></a>
+                                            <a class="far fa-trash-alt table-p__delete-link deleteCartItem" href="#" data-cartid="{{ $item['id'] }}" data-page="Cart"></a>
                                         </div>
                                     </td>
                                 </tr>

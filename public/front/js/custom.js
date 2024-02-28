@@ -106,6 +106,7 @@ $(document).ready(function(){
 	// Delete Cart Item
 	$(document).on('click', '.deleteCartItem',function(){
 		var cartid = $(this).data('cartid');
+		var page = $(this).data('page');
 		var result = confirm("Are You Sure you want to Delete this Cart Items?");
 
 		if(result){
@@ -120,6 +121,9 @@ $(document).ready(function(){
 					$(".totalCartItems").html(resp.totalCartItems);
 					$("#appendCartItems").html(resp.view);
 					$("#appendMiniCartItems").html(resp.minicartview);
+					if(page=="Checkout"){
+						window.location.href="/checkout";
+					}
 				},
 				error:function(){
 					alert("Error");
@@ -537,6 +541,26 @@ $(document).ready(function(){
 				}
 			});
 		}
+	});
+
+	// Set Delivery Address
+	$(document).on('click', '.setDefaultAddress', function(){
+		var addressid = $(this).data('addressid');
+		// alert(addressid);
+		$.ajax({
+			headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			data:{addressid:addressid},
+			url:'/set-default-delivery-address',
+			type:'post',
+			success:function(resp){
+				// alert(resp);
+					$("#deliveryAddresses").html(resp.view);
+			},error:function(){
+				alert("Error");
+			}
+		});
 	});
 
 });		

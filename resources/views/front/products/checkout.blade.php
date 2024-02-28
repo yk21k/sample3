@@ -1,4 +1,5 @@
 <?php  use App\Models\DeliveryAddress; ?>
+<?php  use App\Models\Product; ?>
 @extends('front.layout.layout')
 @section('content')
 
@@ -40,9 +41,9 @@
                         <div id="checkout-msg-group">
                             <div class="msg u-s-m-b-30">
 
-                                <span class="msg__text">Would you like to check our cancellation policy??
+                                <span class="msg__text">Would you like to check our Cancellation policy??
 
-                                    <a class="gl-link" href="#cancellation-policy" data-toggle="collapse">Click here to our ancellation policy</a></span>
+                                    <a class="gl-link" href="#cancellation-policy" data-toggle="collapse">Click here to our Cancellation policy</a></span>
                                 <div class="collapse" id="cancellation-policy" data-parent="#checkout-msg-group">
                                     <div class="l-f u-s-m-b-16">
                                         <span class="gl-text u-s-m-b-16">If you have an account with us, please log in.</span>
@@ -98,6 +99,14 @@
         <div class="section__content">
             <div class="container">
                 <div class="checkout-f">
+                    @if(Session::has('error_message'))
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error:</strong> {{ Session::get('error_message') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="border: 0px; float:right;">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    @endif
                     <div class="row">
                         <div class="col-lg-6">
                             <div id="deliveryAddresses">
@@ -232,60 +241,34 @@
                             <div class="o-summary">
                                 <div class="o-summary__section u-s-m-b-30">
                                     <div class="o-summary__item-wrap gl-scroll">
+                                        @php $total_price = 0 @endphp
+                                        @foreach($getCartItems as $item)
+                                        @php 
+                                            $getAttributePrice = Product::getAttributePrice($item['product_id'], $item['product_size']);
+                                        @endphp
                                         <div class="o-card">
                                             <div class="o-card__flex">
                                                 <div class="o-card__img-wrap">
-
-                                                    <img class="u-img-fluid" src="" alt=""></div>
+                                                    @if(isset($item['product']['images'][0]['image']) && !empty($item['product']['images'][0]['image'])) 
+                                                    <a href="{{ url('product/'.$item['product']['id'])}}">   
+                                                    <img class="u-img-fluid" src="{{ asset('front/images/products/small/'.$item['product']['images'][0]['image']) }}" alt=""></a>
+                                                    @else
+                                                        <a href="{{ url('product/'.$item['product']['id'])}}"><img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirts.png') }}" alt=""></a>
+                                                    @endif
+                                                </div>    
                                                 <div class="o-card__info-wrap">
-
                                                     <span class="o-card__name">
-
-                                                        <a href="product-detail.html">Product Name</a></span>
-
-                                                    <span class="o-card__quantity">Quantity x 1</span>
-
-                                                    <span class="o-card__price">₹900</span></div>
+                                                        <a href="{{ url('product/'.$item['product']['id'])}}">{{ $item['product']['product_name'] }}</a></span>
+                                                    <span class="o-card__quantity">Size: {{ $item['product_size'] }}</span><span class="o-card__quantity">Quantity x {{ $item['product_qty'] }}</span>
+                                                    <span class="o-card__price">₹{{ $getAttributePrice['final_price'] * $item['product_qty'] }}</span>
+                                                </div>
                                             </div>
 
-                                            <a class="o-card__del far fa-trash-alt"></a>
+                                            <a class="o-card__del far fa-trash-alt deleteCartItem" data-cartid="{{ $item['id'] }}" data-page="Checkout"></a>
                                         </div>
-                                        <div class="o-card">
-                                            <div class="o-card__flex">
-                                                <div class="o-card__img-wrap">
-
-                                                    <img class="u-img-fluid" src="" alt=""></div>
-                                                <div class="o-card__info-wrap">
-
-                                                    <span class="o-card__name">
-
-                                                        <a href="product-detail.html">Product Name</a></span>
-
-                                                    <span class="o-card__quantity">Quantity x 1</span>
-
-                                                    <span class="o-card__price">₹900</span></div>
-                                            </div>
-
-                                            <a class="o-card__del far fa-trash-alt"></a>
-                                        </div>
-                                        <div class="o-card">
-                                            <div class="o-card__flex">
-                                                <div class="o-card__img-wrap">
-
-                                                    <img class="u-img-fluid" src="" alt=""></div>
-                                                <div class="o-card__info-wrap">
-
-                                                    <span class="o-card__name">
-
-                                                        <a href="product-detail.html">Product Name</a></span>
-
-                                                    <span class="o-card__quantity">Quantity x 1</span>
-
-                                                    <span class="o-card__price">₹900</span></div>
-                                            </div>
-
-                                            <a class="o-card__del far fa-trash-alt"></a>
-                                        </div>
+                                        @php $total_price = $total_price + ($getAttributePrice['final_price']*$item['product_qty'])
+                                        @endphp
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="o-summary__section u-s-m-b-30">
@@ -295,9 +278,26 @@
 
                                             <span class="ship-b__text">Bill to:</span>
                                             <div class="ship-b__box u-s-m-b-10">
-                                                <p class="ship-b__p">Amit Gupta, 5678 CP New Delhi, Delhi, India (+91) 9700000000</p>
+                                                <p class="ship-b__p">
+                                                    {{ Auth::user()->name }},
+                                                    @if(!empty(Auth::user()->address))
+                                                        {{ Auth::user()->address }},
+                                                    @endif
+                                                    @if(!empty(Auth::user()->city))
+                                                        {{ Auth::user()->city }}, 
+                                                    @endif
+                                                    @if(!empty(Auth::user()->state))
+                                                        {{ Auth::user()->state }},
+                                                    @endif
+                                                    @if(!empty(Auth::user()->country))
+                                                        {{ Auth::user()->country }}, 
+                                                    @endif
+                                                    @if(!empty(Auth::user()->mobile))
+                                                        M: {{ Auth::user()->mobile }}
+                                                    @endif
+                                                </p>
 
-                                                <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
+                                                <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address" href="{{ url('user/account') }}">Edit</a>
                                             </div>
                                         </div>
                                     </div>
@@ -308,7 +308,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>SUBTOTAL</td>
-                                                    <td>₹2700</td>
+                                                    <td>₹{{ $total_price }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>SHIPPING (+)</td>
@@ -320,11 +320,17 @@
                                                 </tr>
                                                 <tr>
                                                     <td>DISCOUNT (-)</td>
-                                                    <td>₹0.00</td>
+                                                    <td>
+                                                        @if(Session::has('couponAmount'))
+                                                            ₹{{ Session::get('couponAmount') }}
+                                                        @else
+                                                            ₹0
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>GRAND TOTAL</td>
-                                                    <td>₹2700</td>
+                                                    <td>₹{{ $total_price - Session::get('couponAmount') }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -333,13 +339,13 @@
                                 <div class="o-summary__section u-s-m-b-30">
                                     <div class="o-summary__box">
                                         <h1 class="checkout-f__h1">PAYMENT METHODS</h1>
-                                        <form class="checkout-f__payment">
+                                        <form class="checkout-f__payment" name="checkoutForm" action="{{ url('checkout') }}" method="post">@csrf
                                             <div class="u-s-m-b-10">
 
                                                 <!--====== Radio Box ======-->
                                                 <div class="radio-box">
 
-                                                    <input type="radio" id="cash-on-delivery" name="payment">
+                                                    <input type="radio" id="cash-on-delivery" name="payment_gateway" value="COD">
                                                     <div class="radio-box__state radio-box__state--primary">
 
                                                         <label class="radio-box__label" for="cash-on-delivery">Cash on Delivery</label></div>
@@ -353,7 +359,7 @@
                                                 <!--====== Radio Box ======-->
                                                 <div class="radio-box">
 
-                                                    <input type="radio" id="direct-bank-transfer" name="payment">
+                                                    <input type="radio" id="direct-bank-transfer" name="payment_gateway" value="Bank Transfer">
                                                     <div class="radio-box__state radio-box__state--primary">
 
                                                         <label class="radio-box__label" for="direct-bank-transfer">Direct Bank Transfer</label></div>
@@ -367,7 +373,7 @@
                                                 <!--====== Radio Box ======-->
                                                 <div class="radio-box">
 
-                                                    <input type="radio" id="pay-with-check" name="payment">
+                                                    <input type="radio" id="pay-with-check" name="payment_gateway" value="Check">
                                                     <div class="radio-box__state radio-box__state--primary">
 
                                                         <label class="radio-box__label" for="pay-with-check">Pay With Check</label></div>
@@ -382,7 +388,7 @@
                                                 <!--====== Radio Box ======-->
                                                 <div class="radio-box">
 
-                                                    <input type="radio" id="pay-pal" name="payment">
+                                                    <input type="radio" id="pay-pal" name="payment_gateway" value="Paypal">
                                                     <div class="radio-box__state radio-box__state--primary">
 
                                                         <label class="radio-box__label" for="pay-pal">PayPal (Pay With Credit / Debit Card / Paypal Credit)</label></div>
@@ -396,14 +402,14 @@
                                                 <!--====== Check Box ======-->
                                                 <div class="check-box">
 
-                                                    <input type="checkbox" id="term-and-condition">
+                                                    <input type="checkbox" id="term-and-condition" name="agree" value="Yes">
                                                     <div class="check-box__state check-box__state--primary">
 
                                                         <label class="check-box__label" for="term-and-condition">I consent to the</label></div>
                                                 </div>
                                                 <!--====== End - Check Box ======-->
 
-                                                <a class="gl-link">Terms of Service.</a>
+                                                <a href="{{ url('terms-service') }}" class="gl-link">Terms of Service.</a>
                                             </div>
                                             <div>
 

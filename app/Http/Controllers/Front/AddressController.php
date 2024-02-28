@@ -81,4 +81,20 @@ class AddressController extends Controller
             return response()->json(['address'=>$deliveryAddress]);
         }
     }
+
+    public function setDefaultDeliveryAddress(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            DeliveryAddress::where('user_id', Auth::user()->id)->update(['is_default'=>0]);
+            DeliveryAddress::where('id', $data['addressid'])->update(['is_default'=>1]);
+            // Get Updated Delivery Address
+            $deliveryAddresses = DeliveryAddress::deliveryAddresses();
+            // Get All Countries
+            $countries = Country::where('status',1)->get()->toArray();
+            return response()->json([
+                'view'=>(String)View::make('front.products.delivery_addresses')->with(compact('deliveryAddresses', 'countries'))
+            ]);
+            return response()->json(['address'=>$deliveryAddress]);
+        }
+    }
 }
