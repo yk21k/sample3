@@ -73,4 +73,14 @@ class Product extends Model
         return $productStatus->status;
     } 
 
+    public static function getProductDetails($product_id){
+        $getProductDetails = Product::where('id', $product_id)->first()->toArray();
+        return $getProductDetails;
+    }
+
+    public static function getAttributeDetails($product_id, $size){
+        $getAttributeDetails = ProductsAttribute::where(['product_id'=>$product_id, 'size'=>$size])->first()->toArray();
+        return $getAttributeDetails;
+    }
+
 }

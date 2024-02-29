@@ -15,6 +15,8 @@ use App\Models\Coupon;
 use App\Models\User;
 use App\Models\DeliveryAddress;
 use App\Models\Country;
+use App\Models\Order;
+use App\Models\OrdersProduct;
 use DB;
 use Session;
 use Auth;
@@ -523,7 +525,85 @@ class ProductController extends Controller
             if(!isset($data['agree'])){
                 return redirect()->back()->with('error_message', 'Please agree to T&C!!');
             }
-            echo "Proceed to Place Other"; die;
+
+            // Check for Default Address
+            $deliveryAddressDefaultCount = DeliveryAddress::where('user_id', Auth::user()->id)->with('is_default', 1)->count();
+            if($deliveryAddressDefaultCount==0){
+                return redirect()->back()->with('error_message', 'Please Select your Delivery Address');
+            }else{
+                $deliveryAddress = DeliveryAddress::where('user_id', Auth::user()->id)->where('is_default', 1)->first()->toArray();
+                // dd($deliveryAddress);
+            }
+            // Set Payment Method as COD and Order Status as New if COD is selected from user otherwise Set Payment Method as Prepaid and Order Status as Pending
+
+            if($data['payment_gateway']=="COD"){
+                $payment_method = "COD";
+                $order_status = "New";
+            }else{
+                $payment_method = "Prepaid";
+                $order_status = "Pending";    
+            }
+            // echo "Proceed to Place Other"; die;
+
+            DB::beginTransaction();
+
+            // Fetch Order Total Price
+            $total_price = 0;
+            foreach($getCartItems as $item){
+                $getAttributePrice = Product::getAttributePrice($item['product_id'], $item['product_size']);
+                $total_price = $total_price + ($getAttributePrice['final_price']*$item['product_qty']);
+            }
+
+            // Get Shipping Charges
+            $shipping_charges = 0;
+
+            // Calculate Grand Total
+            $grand_total = $total_price + $shipping_charges - Session::get('couponAmount');
+
+            // Insert Grand Total in Session Varriable
+            Session::put('grand_total', $grand_total);
+
+            // Insert Order Details
+            $order = New Order;
+            $order->user_id = Auth::user()->id;
+            $order->name = $deliveryAddress['name'];
+            $order->address = $deliveryAddress['address'];
+            $order->city = $deliveryAddress['city'];
+            $order->state = $deliveryAddress['state'];
+            $order->country = $deliveryAddress['country'];
+            $order->pincode = $deliveryAddress['pincode'];
+            $order->mobile = $deliveryAddress['mobile'];
+            $order->shipping_charges = $shipping_charges;
+            $order->coupon_code = Session::get('couponCode');
+            $order->coupon_amount = Session::get('couponAmount');
+            $order->order_status = $order_status;
+            $order->payment_method = $payment_method;
+            $order->payment_gateway = $data['payment_gateway'];
+            $order->grand_total = $grand_total;
+            $order->save();
+            $order_id = DB::getPdo()->lastInsertId();
+
+            foreach($getCartItems as $key => $item){
+                $getProductDetails = Product::getProductDetails($item['product_id']);
+                $getAttributeDetails = Product::getAttributeDetails($item['product_id'], $item['product_size']);
+                $getAttributePrice = Product::getAttributePrice($item['product_id'], $item['product_size']);
+                $cartItem = new OrdersProduct;
+                $cartItem->order_id = $order_id; 
+                $cartItem->user_id = Auth::user()->id; 
+                $cartItem->product_id = $item['product_id']; 
+                $cartItem->product_code = $getProductDetails['product_code']; 
+                $cartItem->product_name = $getProductDetails['product_name']; 
+                $cartItem->product_color = $getProductDetails['product_color']; 
+                $cartItem->product_size = $item['product_size']; 
+                $cartItem->product_sku = $getAttributeDetails['sku']; 
+                $cartItem->product_price = $getAttributePrice['final_price']; 
+                $cartItem->product_qty = $item['product_qty'];
+                $cartItem->save(); 
+            }
+            // Insert Order Id in Session Variable
+            Session::put('order_id', $order_id);
+            DB::commit();
+            echo "Order Done"; die;
         }
 
         // Get User Cart Items
