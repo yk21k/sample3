@@ -491,6 +491,19 @@ class ProductController extends Controller
 
     public function checkout(Request $request){
 
+        // Get User Cart Items
+        $getCartItems = getCartItems();
+
+        if(count($getCartItems)==0){
+            $message = "Shopping Cart is empty!! Please add products to Checkout!";
+            return redirect('cart')->with('error_message', $message);
+        }
+
+        // Get User Delivery Addresses
+        $deliveryAddresses = DeliveryAddress::deliveryAddresses(); 
+        // Get All Countries
+        $countries = Country::where('status',1)->get()->toArray();
+
         if($request->isMethod('post')){
             $data = $request->all();
             // print_r($data);die;
