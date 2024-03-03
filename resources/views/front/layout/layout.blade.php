@@ -74,12 +74,48 @@
             <!--====== End - Newsletter Subscribe Modal ======-->
             
             <!--====== End - Modal Section ======-->
-                
+            <div class="wrapper">
+                <header>
+                    <i class="fas fa-cookie-bite"></i>
+                    <h2>Cookie Consent</h2>
+                </header>
+
+                <div class="data">This website uses cookies or similar technologies, to enhance your browsing experience and provide personalized recommendations. By continuing to use our website, you agree to our<a style="color:#fff;" href="{{ url('cookie-policy') }}">  Cookie Policy</a></p></div>
+
+                 <div class="buttons">
+                     <button class="button" id="acceptBtn">Accept</button>
+                     <button class="button">Decline</button>
+                 </div>
+
+            </div>    
         </div>
-        <div class="cookie-consent">
+        <!-- <div class="cookie-consent">
             <div class="cookie-text">This site uses cookies. For more information about the use of cookies Please refer to the「<a href="{{ url('privacy-policy') }}">privacy policy</a>」.</div>
             <div class="cookie-agree">OK</div>
-        </div>
+        </div> -->
+
+        <!-- <div id="cookieNotice" class="light display-right" style="display: none;">
+            <div class="wrapper">
+                <header>
+                    <i class="fas fa-cookie-bite"></i>
+                </header>
+            </div>
+            <div id="closeIcon" style="display: none;">
+            </div>
+            <div class="title-wrap">
+                <h4>Cookie Consent</h4>
+            </div>
+            <div class="content-wrap">
+                <div class="msg-wrap">
+                    <p>This website uses cookies or similar technologies, to enhance your browsing experience and provide personalized recommendations. By continuing to use our website, you agree to our  <a style="color:#115cfa;" href="{{url('privacy-policy') }}">Privacy Policy</a></p>
+                    <div class="btn-wrap">
+                        <button class="btn-primary" onclick="acceptCookieConsent();">Accept</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        
         
         <!--====== End - Main App ======-->
 

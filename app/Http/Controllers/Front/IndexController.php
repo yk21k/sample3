@@ -57,4 +57,8 @@ class IndexController extends Controller
     public function termsofservicePage(){
         return view('front.terms_service');
     }
+
+    public function cookiepoliPage(){
+        return view('front.cookie_policy');
+    }
 }

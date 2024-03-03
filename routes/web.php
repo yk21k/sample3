@@ -115,11 +115,14 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // 3Dtest page
     Route::get('3dtest', [IndexController::class, 'dtest']);
 
-    // Policies page
+    // Privacy policy page
     Route::get('privacy-policy', [IndexController::class, 'privacypoliPage']);
 
-    // Policies page
+    // Terms service page
     Route::get('terms-service', [IndexController::class, 'termsofservicePage']);
+
+    // Cookie policy page
+    Route::get('cookie-policy', [IndexController::class, 'cookiepoliPage']);
 
 });
 
