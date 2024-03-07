@@ -61,4 +61,18 @@ class IndexController extends Controller
     public function cookiepoliPage(){
         return view('front.cookie_policy');
     }
+
+    public function searchTest(Request $request){
+        $searchProducts = Product::query();
+        // dd($searchProducts);
+        $keyword = $request->input('keyword');
+        if(!empty($keyword)){
+            $searchProducts = Product::where('product_name', 'LIKE', '%' . $keyword . '%')->get();
+        }else{
+            return redirect('/');
+        }
+        $searchPosts = $searchProducts->paginate(5);
+        // dd($searchPosts);
+        return view('front.search_products')->with(compact('searchProducts', 'searchPosts'));
+    }
 }

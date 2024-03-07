@@ -19,13 +19,15 @@
                 <a class="main-logo" href="{{ url('/') }}">
                 <img src="{{ asset('front/images/logo/logo-1.png') }}" alt=""></a>
                 <!--====== End - Main Logo ======-->
+
                 <!--====== Search Form ======-->
-                <form class="main-form">
+                <form action="{{ url('/search') }}" method="post" class="main-form" >@csrf
                     <label for="main-search"></label>
-                    <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" placeholder="Search">
+                    <input class="input-text input-text--border-radius input-text--style-1" type="text" name="keyword" id="main-search"  placeholder="Search">
                     <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
                 </form>
                 <!--====== End - Search Form ======-->
+
                 <!--====== Dropdown Main plugin ======-->
                 <div class="menu-init" id="navigation">
                     <button class="btn btn--icon toggle-button toggle-button--secondary fas fa-cogs" type="button"></button>

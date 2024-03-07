@@ -124,6 +124,10 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     // Cookie policy page
     Route::get('cookie-policy', [IndexController::class, 'cookiepoliPage']);
 
+    // Search Page
+    Route::match(['get', 'post'], '/search', [IndexController::class, 'searchTest']);
+
+
 });
 
 
