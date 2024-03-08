@@ -67,7 +67,7 @@ class IndexController extends Controller
         // dd($searchProducts);
         $keyword = $request->input('keyword');
         if(!empty($keyword)){
-            $searchProducts = Product::where('product_name', 'LIKE', '%' . $keyword . '%')->get();
+            $searchProducts = Product::where('product_name', 'LIKE', '%' . $keyword . '%')->orWhere('product_color', 'LIKE', '%' . $keyword . '%')->get();
         }else{
             return redirect('/');
         }
