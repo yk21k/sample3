@@ -63,6 +63,9 @@ class IndexController extends Controller
     }
 
     public function searchTest(Request $request){
+        // Get New Arrival Products
+        $newProducts = Product::with(['brand', 'images'])->where('status', 1)->orderBy('id', 'Desc')->limit(9)->get()->toArray();
+
         $searchProducts = Product::query();
         // dd($searchProducts);
         $keyword = $request->input('keyword');
@@ -73,6 +76,7 @@ class IndexController extends Controller
         }
         $searchPosts = $searchProducts->paginate(5);
         // dd($searchPosts);
-        return view('front.search_products')->with(compact('searchProducts', 'searchPosts', 'keyword'));
+        // dd($searchProducts);
+        return view('front.search_products')->with(compact('searchProducts', 'searchPosts', 'keyword', 'newProducts'));
     }
 }
