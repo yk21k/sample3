@@ -1,7 +1,6 @@
 @extends('front.layout.layout')
 @section('content')
 
-
 <!--====== App Content ======-->
 <div class="app-content">
 
@@ -19,7 +18,7 @@
                                 <a href="{{ url('/') }}">Home</a></li>
                             <li class="is-marked">
 
-                                <a href="">Search</a></li>
+                                <a href="">Thanks</a></li>
                         </ul>
                     </div>
                 </div>
@@ -40,24 +39,12 @@
                         <div class="about">
                             <div class="about__container">
                                 <div class="about__info">
-                                    <h2 class="about__h2">These are the results of the --{{ $keyword }}-- search you entered!</h2>
-                            		
-                                    <button class="" style="color: aquamarine;" href="{{ url('/') }}" target="_blank">Continue Shopping</button>
-                                </div>
-                                <div>
-                                	<a 
-                            			class="" 
-                            			style="
-                            				height: 100px;
-    										width: 100px;
-                            				justify-content: center;
-                            				align-items: center;
-                            		">
-										@foreach($searchPosts as $searchProduct)
-											<a>Name:{{ $searchProduct->product_name }}</a>
-											<a>Color:{{ $searchProduct->product_color }}</a>
-										@endforeach
-									</a>
+                                    <h2 class="about__h2">YOUR ORDER HAS BEEN PALCED SUCCESSFULLY!</h2>
+                                    <div class="about__p-wrap">
+                                        <p class="about__p">Your Order ID is {{ Session::get('order_id') }} and Grand Total is INR {{ Session::get('grand_total') }}</p>
+                                    </div>
+
+                                    <a class="about__link btn--e-secondary" href="{{ url('/') }}" target="_blank">Continue Shopping</a>
                                 </div>
                             </div>
                         </div>
@@ -71,9 +58,5 @@
 
 </div>
 <!--====== End - App Content ======-->
-
-<div class="table-responsive">
-
-
 
 @endsection

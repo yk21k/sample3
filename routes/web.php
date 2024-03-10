@@ -104,6 +104,10 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         // Set Default Delivery Address
         Route::post('set-default-delivery-address', [AddressController::class, 'setDefaultDeliveryAddress']);
 
+        // Order Thanks Page
+        Route::get('/thanks', [ProductController::class, 'thanks']);
+
+
     });
 
     // Forgot Password

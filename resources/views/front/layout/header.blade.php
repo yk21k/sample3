@@ -23,7 +23,7 @@
                 <!--====== Search Form ======-->
                 <form action="{{ url('/search') }}" method="post" class="main-form" >@csrf
                     <label for="main-search"></label>
-                    <input class="input-text input-text--border-radius input-text--style-1" type="text" name="keyword" id="main-search"  placeholder="Search">
+                    <input class="input-text input-text--border-radius input-text--style-1" type="text" name="keyword" id="main-search" placeholder="Enter Product name or Color">
                     <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
                 </form>
                 <!--====== End - Search Form ======-->

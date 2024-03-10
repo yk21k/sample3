@@ -603,15 +603,20 @@ class ProductController extends Controller
             // Insert Order Id in Session Variable
             Session::put('order_id', $order_id);
             DB::commit();
-            echo "Order Done"; die;
+            // echo "Order Done"; die;
+            return redirect('/thanks');
         }
 
-        // Get User Cart Items
-        $getCartItems = getCartItems();
-        // Get User Delivery Addresses
-        $deliveryAddresses = DeliveryAddress::deliveryAddresses(); 
-        // Get All Countries
-        $countries = Country::where('status',1)->get()->toArray();
         return view('front.products.checkout')->with(compact('getCartItems', 'deliveryAddresses', 'countries'));
+    }
+
+    public function thanks(){
+        if(Session::has('order_id')){
+            // Empty the User Cart
+            Cart::where('user_id', Auth::user()->id)->delete();
+            return view('front.orders.thanks');
+        }else{
+            return redirect('/cart');
+        }
     }
 }

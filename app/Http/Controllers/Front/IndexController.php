@@ -73,6 +73,6 @@ class IndexController extends Controller
         }
         $searchPosts = $searchProducts->paginate(5);
         // dd($searchPosts);
-        return view('front.search_products')->with(compact('searchProducts', 'searchPosts'));
+        return view('front.search_products')->with(compact('searchProducts', 'searchPosts', 'keyword'));
     }
 }
