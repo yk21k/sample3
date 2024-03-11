@@ -13,6 +13,7 @@ use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\AddressController;
+use App\Http\Controllers\Front\OrderController;
 
 use App\Models\Category;
 
@@ -107,6 +108,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         // Order Thanks Page
         Route::get('/thanks', [ProductController::class, 'thanks']);
 
+        // My Orders
+        Route::get('user/orders', [OrderController::class, 'orders']);
 
     });
 

@@ -36,22 +36,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-md-12">
-
-                            <!--====== Dashboard Features ======-->
-                            <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
-                                <div class="dash__pad-1">
-
-                                    <span class="dash__text u-s-m-b-16">Hello, Amit Gupta</span>
-                                    <ul class="dash__f-list">
-                                        <li><a href="account.html">My Billing/Contact Address</a></li>
-                                        <li><a href="orders.html">My Orders</a></li>
-                                        <li><a href="wishlist.html">My Wish List</a></li>
-                                        <li><a href="{{ url('user/update-password') }}">Update Password</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <!--====== End - Dashboard Features ======-->
+                            @include('front.layout.account_sidebar')
                         </div>
                         <div class="col-lg-9 col-md-12">
                             <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white">
