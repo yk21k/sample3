@@ -110,6 +110,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 
         // My Orders
         Route::get('user/orders', [OrderController::class, 'orders']);
+        Route::get('user/orders/{id}', [OrderController::class, 'orderDetails']);
 
     });
 

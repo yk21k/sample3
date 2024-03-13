@@ -11,4 +11,12 @@ class Order extends Model
     public function orders_products(){
         return $this->hasMany('App\Models\OrdersProduct', 'order_id');
     }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    public static function user_name(){
+        $user_name = Order::get('name');
+    }
 }

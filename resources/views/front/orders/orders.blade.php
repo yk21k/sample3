@@ -39,17 +39,8 @@
                         <div class="col-lg-3 col-md-12">
 
                             <!--====== Dashboard Features ======-->
-                            <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
-                                <div class="dash__pad-1">
-
-                                    <span class="dash__text u-s-m-b-16">Hello, Amit Gupta</span>
-                                    <ul class="dash__f-list">
-                                        <li><a href="account.html">My Billing/Contact Address</a></li>
-                                        <li><a href="orders.html">My Orders</a></li>
-                                        <li><a href="wishlist.html">My Wish List</a></li>
-                                        <li><a href="update-password.html">Update Password</a></li>
-                                    </ul>
-                                </div>
+                            <div class="col-lg-3 col-md-12">
+                                @include('front.layout.account_sidebar', ['orders'=>$orders])
                             </div>
                             
                             <!--====== End - Dashboard Features ======-->
@@ -84,7 +75,7 @@
                                                     <div>
                                                         <div class="dash__link dash__link--brand">
 
-                                                            <a href="order-details.html">VIEW DETAILS</a></div>
+                                                            <a href="{{ url('user/orders/'.$order->id ) }}">VIEW DETAILS</a></div>
                                                     </div>
                                                 </div>
                                             </div>
