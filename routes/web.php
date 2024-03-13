@@ -14,6 +14,7 @@ use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\AddressController;
 use App\Http\Controllers\Front\OrderController;
+use App\Http\Controllers\Front\UserProfileController;
 
 use App\Models\Category;
 
@@ -111,6 +112,12 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         // My Orders
         Route::get('user/orders', [OrderController::class, 'orders']);
         Route::get('user/orders/{id}', [OrderController::class, 'orderDetails']);
+
+        // Upload ID
+        Route::get('user/upload_page', [UserProfileController::class, 'uploadPage']);
+        Route::post('user/upload_page_confirm', [UserProfileController::class, 'uploadConfirm']);
+        Route::post('user/upload_page_complete', [UserProfileController::class, 'uploadComplete']);
+
 
     });
 
