@@ -1,7 +1,7 @@
 @extends('front.layout.layout')
 @section('content')
 
-<form action="{{ url('user/upload_page_confirm') }}" method="post">@csrf
+<form action="{{ url('user/upload_page_complete') }}" method="post">@csrf
 <br>
 ID card image：<br>
     <img src="{{ url('/storage/'.$image_path) }}" alt="" width="40%">
