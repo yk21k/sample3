@@ -68,7 +68,7 @@ class UserProfileController extends Controller
             $new_name2 = substr($new_name, 0, -1);
             // echo print_r($request->extension);die;
             // echo print_r($new_name);die;
-            echo print_r($new_name2);die;
+            // echo print_r($new_name2);die;
             // echo print_r($request->image_path);die;
             // echo print_r($data);die;
             if($request->image_path == '/images/noimage.png' || $request->image_path == '/images/noimage2.png'){

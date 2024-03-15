@@ -1,3 +1,4 @@
+@php use App\Models\Product; @endphp
 @extends('front.layout.layout')
 @section('content')
 
@@ -108,8 +109,14 @@
 						                <div class="manage-o__description">
 						                    <div class="description__container">
 						                        <div class="description__img-wrap">
-
-						                            <img class="u-img-fluid" src="images/product/sitemakers-tshirt.png" alt=""></div>
+						                        	@php $getProductImage = Product::getProductImage($product['product_id'])
+						                        	@endphp
+						                        	@if($getProductImage!="")
+						                        		<img class="u-img-fluid" src="{{ asset('front/images/products/small/'.$getProductImage) }}" alt="">
+						                        	@else
+						                            	<img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
+						                            @endif	
+						                        </div>
 						                        <div class="description-title">{{ $product['product_name'] }} ({{ $product['product_code'] }})<br>Size:{{ $product['product_size'] }}</div>
 						                    </div>
 						                    <div class="description__info-wrap">
