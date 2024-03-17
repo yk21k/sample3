@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\UserProfile;
+use Auth;
 
 class UserProfileController extends Controller
 {
@@ -27,10 +28,11 @@ class UserProfileController extends Controller
             ],[
                 'image.mimes' => 'Please jpeg,png,jpg'
             ]);
+
             $image = $request->file('image');
 
             if($validator->passes()){
-            
+                
                 if($image){
                     $extension = $image->getClientOriginalExtension();
 
@@ -55,10 +57,14 @@ class UserProfileController extends Controller
     }
 
     public function uploadComplete(Request $request){
+        $data = $request->all();
+        // dd($data);
         try{
             DB::beginTransaction();
             $data = UserProfile::create([
                 "extension" => $request->extension,
+                "user_id" => $request->user_id,
+                "image_path" => $request->image_path
             ]);
             DB::commit();
             // $new_name = $data->id .'.'.'jpeg';

@@ -9,6 +9,6 @@ class UserProfile extends Model
 {
     use HasFactory;
         protected $fillable = [
-        'extension',
+        'user_id', 'extension', 'image_path'
     ];
 }

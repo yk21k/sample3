@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\UsersProfileController;
+
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\UserController;
@@ -218,6 +220,10 @@ Route::middleware('admin')->group(function(){
     // Order
     Route::get('admin/orders', [OrdersController::class, 'orders']);
     Route::get('admin/orders/{id}', [OrdersController::class, 'orderDetails']);
+
+    // ID
+    Route::get('admin/users-prof', [UsersProfileController::class, 'usersProfile']);
+
 
 
 });
