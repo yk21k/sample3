@@ -186,6 +186,34 @@
             </ul>
           </li>
 
+          @if(Session::get('page')=="orders")
+            @php $active="active" @endphp
+          @else
+            @php $active= "" @endphp
+          @endif 
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link {{ $active }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Orders Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              @if(Session::get('page')=="orders")
+                @php $active="active" @endphp
+              @else
+                @php $active= "" @endphp
+              @endif
+              <li class="nav-item">
+                <a href="{{ url('admin/orders')}}" class="nav-link {{ $active }}">
+                  <i class="nav-icon fas fa-circle"></i>
+                  <p>Orders&nbsp;&nbsp;<span class="badge badge-info">orders</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </a>
+              
+            </ul>
+          </li>
+
           @if(Auth::guard('admin')->user()->type=="admin")
             @if(Session::get('page')=="users")
               @php $active="active" @endphp

@@ -100,6 +100,9 @@
     $("#users").DataTable({
       "order": [[0, "desc"]], //or asc
     });
+    $("#orders").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
   });
 </script>
 <!-- Select2 -->

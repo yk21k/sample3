@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\UserController;
@@ -214,6 +215,9 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/users', [UsersController::class, 'users']);
     Route::post('admin/update-user-status', [UsersController::class, 'updateUserStatus']);
 
+    // Order
+    Route::get('admin/orders', [OrdersController::class, 'orders']);
+    Route::get('admin/orders/{id}', [OrdersController::class, 'orderDetails']);
 
 
 });
