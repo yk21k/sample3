@@ -18,6 +18,7 @@ use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\AddressController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\UserProfileController;
+use App\Http\Controllers\Front\CustomerContactController;
 
 use App\Models\Category;
 
@@ -120,6 +121,10 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         Route::get('user/upload_page', [UserProfileController::class, 'uploadPage']);
         Route::post('user/upload_page_confirm', [UserProfileController::class, 'uploadConfirm']);
         Route::post('user/upload_page_complete', [UserProfileController::class, 'uploadComplete']);
+
+        // Customer Inquiry
+        Route::get('user/customer-inquiries', [CustomerContactController::class, 'inquiryAnswer']);
+
 
 
     });

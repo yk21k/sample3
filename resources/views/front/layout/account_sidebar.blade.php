@@ -10,6 +10,7 @@
             <li><a href="{{ url('user/account') }}">My Billing/Contact Address</a></li>
             <li><a href="{{ url('user/orders') }}">My Orders</a></li>
             <li><a href="wishlist.html">My Wish List</a></li>
+            <li><a href="{{ url('user/customer-inquiries') }}">Contact Us</a></li>
             <li><a href="{{ url('user/upload_page')}}">Unavailable due to work in progress　Upload your ID (driver's license only, ??50cc motorcycle only, no driver's license??)</a></li>
             <li><a href="{{ url('user/update-password') }}">Update Password</a></li>
         </ul>
