@@ -56,39 +56,46 @@
                                 <div class="contact-area__heading">
                                     <h2>Get In Touch</h2>
                                 </div>
-                                <form class="contact-f" method="post" action="index.html">
+                                <p style="font-weight: bold; margin-top: 10px;" id="inqcusto-success"><br></p>
+                                <p id="inqcusto-error"><br></p>
+                                <form class="contact-f" id="inqcustoForm" method="post" action="javascript:;">@csrf
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 u-h-100">
                                             <div class="u-s-m-b-30">
                                                 <h3>Customer</h3>
+                                                <input class="" type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}" readonly="">
                                                 <label for="c-subject"></label>
 
-                                                <input class="input-text input-text--border-radius input-text--primary-style" type="text" id="c-subject" placeholder="Subject (Required)" required>
+                                                <input class="input-text input-text--border-radius input-text--primary-style" type="text" id="c-subject" name="inq_subject" placeholder="Subject (Required)" required>
+                                                <p id="inqcusto-inq_subject"></p>
+
                                             </div>
                                             <div class="u-s-m-b-30">
 
-                                                <label for="c-message"></label><textarea class="text-area text-area--border-radius text-area--primary-style" id="c-message" placeholder="Compose a Message (Required)" required></textarea>
+                                                <label for="c-message"></label><textarea class="text-area text-area--border-radius text-area--primary-style" id="c-message" name="inquiry_details" placeholder="Compose a Message (Required)" required></textarea>
+                                                <p id="inqcusto-inquiry_details"></p>
+
                                             </div>
-
-
+                                        </div>    
+                                        <div class="col-lg-12">
+                                            <button class="btn btn--e-brand-b-2" type="submit">Send Message</button>
                                         </div>
+                                    </div>
+                                </form>
+                                <form class="contact-f">
                                         <div class="col-lg-6 col-md-6 u-h-100">
                                             <div class="u-s-m-b-30">
                                                 <h3>Answer</h3>
                                                 <label for="c-subject"></label>
 
-                                                <input class="input-text input-text--border-radius input-text--primary-style" type="text" id="c-subject" placeholder="Subject (Required)" required>
+                                                <input class="input-text input-text--border-radius input-text--primary-style" type="text" id="c-subject" name="ans_subject"placeholder="Subject (Required)" readonly>
                                             </div>
                                             <div class="u-s-m-b-60">
                                                 
-                                                <label for="c-message"></label><textarea class="text-area text-area--border-radius text-area--primary-style" id="c-message" placeholder="Compose a Message (Required)" required></textarea>
+                                                <label for="c-message"></label><textarea class="text-area text-area--border-radius text-area--primary-style" id="c-message" name="answer" placeholder="Compose a Message (Required)" readonly></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12">
-
-                                            <button class="btn btn--e-brand-b-2" type="submit">Send Message</button></div>
-                                    </div>
-                                </form>
+                                </form>        
                             </div>
                         </div>
                     </div>

@@ -563,4 +563,42 @@ $(document).ready(function(){
 		});
 	});
 
+	// Inquiry Form Validation
+	$("#inqcusto-success").hide();
+	$("#inqcustoForm").submit(function(){
+		$(".loader").hide();
+		var formData = $(this).serialize();
+		// alert(formData); return false;
+		$.ajax({
+			headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+			},
+			url:'/user/customer-inquiries',
+			type:'post',
+			data:formData,
+			success:function(resp){
+				if(resp.type=="error"){
+					$(".loader").hide();
+					$.each(resp.errors, function(i,error){
+						$('#inqcusto-'+i).attr('style', 'color:red');
+						$('#inqcusto-'+i).html(error);
+						setTimeout(function(){
+							$('#inqcusto-'+i).css({
+								'display':'none'
+							})
+						}, 4000);
+					});
+				}else if(resp.type=="success"){
+					$(".loader").hide();
+					$("#inqcusto-success").attr('style', 'color:green');
+					$("#inqcusto-success").html(resp.message);
+				}
+				alert(resp);
+			},error:function(){
+				$(".loader").hide();
+				alert("Error");
+			}
+		});
+	});	
+
 });		

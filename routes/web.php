@@ -123,7 +123,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         Route::post('user/upload_page_complete', [UserProfileController::class, 'uploadComplete']);
 
         // Customer Inquiry
-        Route::get('user/customer-inquiries', [CustomerContactController::class, 'inquiryAnswer']);
+        Route::match(['get', 'post'], 'user/customer-inquiries', [CustomerContactController::class, 'inquiryAnswer']);
 
 
 
