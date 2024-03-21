@@ -593,7 +593,7 @@ $(document).ready(function(){
 					$("#inqcusto-success").attr('style', 'color:green');
 					$("#inqcusto-success").html(resp.message);
 				}
-				alert(resp);
+				// alert(resp);
 			},error:function(){
 				$(".loader").hide();
 				alert("Error");
