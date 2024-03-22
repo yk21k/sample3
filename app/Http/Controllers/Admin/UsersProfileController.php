@@ -17,7 +17,7 @@ class UsersProfileController extends Controller
 {
     public function usersProfile(){
         Session::put('page', 'usersProfile');
-        $usersProfiles = UserProfile::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        $usersProfiles = UserProfile::all()->sortByDesc('id');
         return view('admin.users.users_prof')->with(compact('usersProfiles'));
     }
 }

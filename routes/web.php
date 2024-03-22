@@ -229,6 +229,8 @@ Route::middleware('admin')->group(function(){
     // ID
     Route::get('admin/users-prof', [UsersProfileController::class, 'usersProfile']);
 
+    
+
 
 
 });

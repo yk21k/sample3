@@ -107,10 +107,10 @@
             </li>
           @endif 
           @if(Session::get('page')=="cms-pages")
-              @php $active="active" @endphp
-            @else
-              @php $active= "" @endphp
-            @endif
+            @php $active="active" @endphp
+          @else
+            @php $active= "" @endphp
+          @endif
           <li class="nav-item menu-open">
             <a href="#" class="nav-link {{ $active }}">
               <i class="nav-icon fas fa-file"></i>
