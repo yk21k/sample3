@@ -346,6 +346,39 @@
             </li>
           @endif
 
+          @if(Auth::guard('admin')->user()->type=="admin")
+            @if(Session::get('page')=="usersProfile")
+              @php $active="active" @endphp
+            @else
+              @php $active= "" @endphp
+            @endif 
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{ $active }}">
+                <i class="nav-icon fas fa-rupee-sign"></i>
+                <p>
+                  Users Inq Management
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @if(Session::get('page')=="usersProfile")
+                  @php $active="active" @endphp
+                @else
+                  @php $active= "" @endphp
+                @endif
+                <li class="nav-item">
+                  <a href="{{ url('admin/users-inquiries') }}" class="nav-link {{ $active }}">
+                    <i class="nav-icon fas fa-circle"></i>
+                    <p>
+                      Users inq
+                      <span class="badge badge-danger right">users inq</span>
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          @endif
+
           <li class="nav-item menu-open">
               <a href="pages/widgets.html" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>

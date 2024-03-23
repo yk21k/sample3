@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\UsersProfileController;
+use App\Http\Controllers\Admin\CustomerContactsController;
 
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
@@ -229,7 +230,9 @@ Route::middleware('admin')->group(function(){
     // ID
     Route::get('admin/users-prof', [UsersProfileController::class, 'usersProfile']);
 
-    
+    // Customer Inq
+    Route::get('admin/users-inquiries', [CustomerContactsController::class, 'inquiryAnswers']);
+    Route::get('admin/users-inquiries/{id}', [CustomerContactsController::class, 'inquiryAnswersDetails']);
 
 
 
