@@ -57,6 +57,8 @@
                                     <h2>Get In Touch</h2>
                                 </div>
                                 <p style="font-weight: bold; margin-top: 10px;" id="inqcusto-success"><br></p>
+                                <div align="center"><div class="inqcusto-success" style="width:90%;"></div></div>
+
                                 <p id="inqcusto-error"><br></p>
                                 <form class="contact-f" id="inqcustoForm" method="post" action="javascript:;">@csrf
                                     <div class="row">

@@ -566,7 +566,7 @@ $(document).ready(function(){
 	// Inquiry Form Validation
 	$("#inqcusto-success").hide();
 	$("#inqcustoForm").submit(function(){
-		$(".loader").hide();
+		$(".loader").show();
 		var formData = $(this).serialize();
 		// alert(formData); return false;
 		$.ajax({

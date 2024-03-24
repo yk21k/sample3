@@ -11,4 +11,5 @@ class CustomerInquiry extends Model
     protected $fillable = [
         'user_id', 'inq_subject', 'inquiry_details'
     ];
+
 }
