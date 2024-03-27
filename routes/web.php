@@ -125,6 +125,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 
         // Customer Inquiry
         Route::match(['get', 'post'], 'user/customer-inquiries', [CustomerContactController::class, 'inquiryAnswer']);
+        Route::get('user/your-inquiries/{user_id}', [CustomerContactController::class, 'pastInquiry']);
+
 
 
 

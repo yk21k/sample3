@@ -16,7 +16,6 @@ use Auth;
 class CustomerContactController extends Controller
 {
     public function inquiryAnswer(Request $request){
-        // addresskara
         if($request->ajax()){
             $validator = Validator::make($request->all(), [
                 'inq_subject' => 'required|string|max:30',
@@ -54,6 +53,14 @@ class CustomerContactController extends Controller
                 return response()->json(['type'=>'error', 'errors'=>Validator->messages()]);
             }
         }
-        return view('front.users.customer-inquiry');    
+        $user_id = Auth::user()->id;
+        // echo "<pre>"; print_r($user_id);die;
+        return view('front.users.customer-inquiry')->with(compact('user_id'));    
+    }
+
+    public function pastInquiry($user_id){
+        $pastInqs = CustomerInquiry::where(['user_id'=>$user_id, 'status'=>1])->orderBy('created_at', 'DESC')->get();
+        // echo "<pre>"; print_r($pastInq);die;
+        return view('front.users.your-inquiry')->with(compact('pastInqs'));
     }
 }
