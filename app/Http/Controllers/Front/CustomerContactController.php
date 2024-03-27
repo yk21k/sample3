@@ -59,7 +59,7 @@ class CustomerContactController extends Controller
     }
 
     public function pastInquiry($user_id){
-        $pastInqs = CustomerInquiry::where(['user_id'=>$user_id, 'status'=>1])->orderBy('created_at', 'DESC')->get();
+        $pastInqs = CustomerInquiry::where(['user_id'=>Auth::user()->id, 'status'=>1])->orderBy('created_at', 'DESC')->get();
         // echo "<pre>"; print_r($pastInq);die;
         return view('front.users.your-inquiry')->with(compact('pastInqs'));
     }
