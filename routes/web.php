@@ -232,7 +232,10 @@ Route::middleware('admin')->group(function(){
 
     // Customer Inq
     Route::get('admin/users-inquiries', [CustomerContactsController::class, 'inquiryAnswers']);
-    Route::get('admin/users-inquiries/{user_id}', [CustomerContactsController::class, 'inquiryAnswersDetails']);
+
+    Route::match(['get', 'post'], 'admin/users-inquiries/{user_id}', [CustomerContactsController::class, 'inquiryAnswersDetails']);
+
+    
 
 
 

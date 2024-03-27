@@ -9,7 +9,7 @@ class CustomerInquiry extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'inq_subject', 'inquiry_details'
+        'user_id', 'inq_subject', 'inquiry_details', 'ans_subject', 'answers'
     ];
 
     public function user_id(){

@@ -37,7 +37,7 @@ class CustomerContactController extends Controller
 
                 // Send Confirmation Email
                 $email = config('inquiry_answer.inquiry_answer');
-;
+
                 $messageData = ['name'=>Auth::user()->name, 'email'=>$email, 'code'=>base64_encode($email)];
 
                 Mail::send('emails.inquiry_answer', $messageData, function($message) use($email){
