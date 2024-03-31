@@ -234,9 +234,7 @@
           <!-- /.col -->
         </div>
         <!-- /.row -->
-            <!-- Chat
-            <a href="{{ url('admin/adminchat') }}" >chat</a> -->
-
+          
         <!-- Main row -->
         <div class="row">
           <!-- Left col -->
