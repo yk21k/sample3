@@ -164,6 +164,8 @@ Route::middleware('admin')->group(function(){
     Route::match(['GET', 'POST'], 'admin/update-password', [AdminController::class, 'updatePassword']);
     Route::match(['GET', 'POST'], 'admin/update-details', [AdminController::class, 'updateDetails']);
     Route::post('admin/check-current-password', [AdminController::class, 'checkCurrentPassword']);
+    // Chat
+    // Route::match(['GET', 'POST'], 'admin/adminchat', [AdminController::class, 'sendMessage']);    
 
     // Display CMS Pages (CRUD - READ)
     Route::get('admin/cms-pages', [CmsController::class, 'index']);
@@ -236,6 +238,8 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/users-inquiries', [CustomerContactsController::class, 'inquiryAnswers']);
 
     Route::match(['get', 'post'], 'admin/users-inquiries/{user_id}', [CustomerContactsController::class, 'inquiryAnswersDetails']);
+
+
 
     
 
