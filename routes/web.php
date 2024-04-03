@@ -229,7 +229,12 @@ Route::middleware('admin')->group(function(){
 
     // Order
     Route::get('admin/orders', [OrdersController::class, 'orders']);
+
+    // Orders Detail
     Route::get('admin/orders/{id}', [OrdersController::class, 'orderDetails']);
+
+    // Update Order Status
+    Route::post('admin/update-order-status', [OrdersController::class, 'updateOrderStatus']);
 
     // ID
     Route::get('admin/users-prof', [UsersProfileController::class, 'usersProfile']);
@@ -238,10 +243,6 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/users-inquiries', [CustomerContactsController::class, 'inquiryAnswers']);
 
     Route::match(['get', 'post'], 'admin/users-inquiries/{user_id}', [CustomerContactsController::class, 'inquiryAnswersDetails']);
-
-
-
-    
 
 
 

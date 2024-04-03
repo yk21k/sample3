@@ -20,7 +20,14 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+    @if(Session::has('success_message'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success:</strong> {{ Session::get('success_message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -249,18 +256,21 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <table class="table table-bordered">
-                  <!-- <thead>                  
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Task</th>
-                      <th>Progress</th>
-                      <th style="width: 40px">Label</th>
-                    </tr>
-                  </thead> -->
                   <tbody>
                     <tr>
-                      <td>Select Status</td>
-                      <td><button>Update</button></td>
+                      <td colspan="2">
+                        <form action="{{ url('admin/update-order-status') }}" method="post">@csrf
+                          <input type="hidden" name="order_id" value="{{ $orderDetails['id'] }}">
+                          <select name="order_status">
+                            <option value="">Select Status</option>
+                            @foreach($orderStatuses as $status)
+                              <option value="{{ $status['name'] }}">{{ $status['name'] }}</option>
+                            @endforeach
+                          </select>
+                          Now:{{ $orderDetails['order_status'] }} 
+                          <td><button>Update</button></td>
+                        </form>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
