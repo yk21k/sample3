@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Mail;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -603,8 +605,29 @@ class ProductController extends Controller
             // Insert Order Id in Session Variable
             Session::put('order_id', $order_id);
             DB::commit();
-            // echo "Order Done"; die;
-            return redirect('/thanks');
+
+            if($data['payment_gateway']=="COD"){
+
+                // Send Order Email
+
+                $orderDetails = Order::with('orders_products', 'user')->where('id', $order_id)->first()->toArray();
+                // echo "Order Done"; die;
+                $email = Auth::user()->email;
+                $messageData = [
+                    'email' => $email,
+                    'name' => Auth::user()->name,
+                    'order_id' => $order_id,
+                    'orderDetails' => $orderDetails
+                ];
+                Mail::send('emails.order', $messageData, function($message)use($email){
+                    $message->to($email)->subject('Order Place - Sample3');
+                });
+                
+                return redirect('/thanks');
+            }else{
+                echo "Prepaid methods coming soon";die;
+            }
+            
         }
 
         return view('front.products.checkout')->with(compact('getCartItems', 'deliveryAddresses', 'countries'));
