@@ -16,6 +16,10 @@ class Order extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
+    public function log(){
+        return $this->hasmany('App\Models\OrdersLog', 'order_id')->orderBy('id', 'Desc');
+    }
+
     public static function user_name(){
         $user_name = Order::get('name');
     }

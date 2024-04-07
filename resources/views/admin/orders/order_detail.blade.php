@@ -268,7 +268,12 @@
                             @endforeach
                           </select>
                           Now:{{ $orderDetails['order_status'] }} 
-                          <td><button>Update</button></td>
+                          <button>Update</button><br>
+                          @foreach($orderDetails['log'] as $log)
+                            <br><strong>{{ $log['order_status'] }}</strong>&nbsp;
+                            {{ date("Y-m-d H:i:s", strtotime($log['created_at'])); }}
+                            <hr style="margin-left:0; width:250px; background-color:turquoise;">
+                          @endforeach
                         </form>
                       </td>
                     </tr>
