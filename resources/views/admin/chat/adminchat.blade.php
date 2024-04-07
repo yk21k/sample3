@@ -192,10 +192,8 @@
 
      <h1>Chat app</h1>
 
-    <ul id="list_message">
-        <li><strong></strong><div></div></li>
-        <li><strong>次郎</strong><div>ハロー</div></li>
-        <li><strong>三郎</strong><div>こんばんわ</div></li>
+    <ul class="list_message">
+        
     </ul>
   
 
@@ -232,7 +230,7 @@
         console.log(error.response)
       });
     elementInputMessage.value = "";  
-  }
+  
   
 
   window.addEventListener( "DOMContentLoaded", ()=>
@@ -251,12 +249,12 @@
         elementUsername.textContent = strUsername;
         elementMessage.textContent = strMessage;
         elementLi.append(elementUsername);
-        $("#list_message").append('<li>' + e.message.username + '</li>');
+        $(".list_message").append('<li>' + e.message.username + '</li>');
         elementLi.append(elementMessage);
         elementListMessage.prepend(elementLi);
         // elementListMessage.append(elementLi);
       });
   });
-
+}
      
 </script>
