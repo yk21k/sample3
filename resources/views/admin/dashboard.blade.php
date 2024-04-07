@@ -133,7 +133,6 @@
                     <p class="text-center">
                       <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
                     </p>
-
                     <div class="chart">
                       <!-- Sales Chart Canvas -->
                       <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
@@ -251,9 +250,9 @@
 
 
             <!-- /.row -->
+          <!-- DIRECT CHAT -->
 
-            
-          </div>
+          <!--/.direct-chat -->
           <!-- /.col -->
 
           <div class="col-md-4">

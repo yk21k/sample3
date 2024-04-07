@@ -35,4 +35,8 @@ class MessageSent implements ShouldBroadcast
         return new PrivateChannel('sample3');
         
     }
+    public function broadcastAs()
+    {
+        return 'message';
+    }
 }

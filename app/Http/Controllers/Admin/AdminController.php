@@ -67,33 +67,6 @@ class AdminController extends Controller
         return view('admin.dashboard')->with(compact('categoriesCount', 'productsCount', 'brandsCount', 'usersCount'));
     }
 
-    // public function sendMessage(Request $request){
-    //     if($request->isMethod('post')){
-    //         // echo "<pre>"; print_r($request);die;
-    //         // dd($request);
-
-    //         $chat_user = Auth::guard('admin');
-    //         $strUsername = $chat_user->name;
-    //         $strMessage = $request->input_message;
-    //         // echo "<pre>"; print_r($strMessage);die;
-    //         // echo "<pre>"; print_r($chat_user);die;
-    //         // dd($chat_user);
-
-
-    //         $message = new Message;
-    //         $message->username = $strUsername;
-    //         $message->body = $strMessage;
-
-    //         MessageSent::dispatch($message);
-    //     }
-    //     // return view('admin.adminchat');
-    //     return view('admin.adminchat')->with(compact('request'));
-    //     // return $request;
-    //     // broadcast( new MessageSent($message))->toOthers();
-    //     // return ['message' => $strMessage, 'user' => $strUsername];
-        
-    //     // return view('admin.adminchat')->with(['message' => $strMessage, 'user' => $strUsername]);
-    // }
 
     public function logout(){
         Auth::guard('admin')->logout();
