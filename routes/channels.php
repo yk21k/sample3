@@ -18,5 +18,5 @@ Broadcast::channel('App.Models.Admin.{id}', function ($chat_user, $id) {
 });
 
 Broadcast::channel('sample3', function ($chat_user) {
-    return Auth::check();
+    return Auth::check('admin');
 });

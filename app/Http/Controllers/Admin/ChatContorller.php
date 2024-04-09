@@ -11,32 +11,23 @@ use Auth;
 
 
 class ChatContorller extends Controller
-{
-    public function sendMessage(Request $request){
-        if($request->isMethod('post')){
-            // echo "<pre>"; print_r($request);die;
-            // dd($request);
-
-            $chat_user = Auth::guard('admin');
-            $strUsername = $chat_user->name;
-            $strMessage = $request->input_message;
-            // echo "<pre>"; print_r($strMessage);die;
-            // echo "<pre>"; print_r($chat_user);die;
-            // dd($chat_user);
-
-
-            $message = new Message;
-            $message->username = $strUsername;
-            $message->body = $strMessage;
-
-            MessageSent::dispatch($message);
-        }
-        // return view('admin.adminchat');
-        return view('admin.chat.adminchat')->with(compact('request'));
-        // return $request;
-        // broadcast( new MessageSent($message))->toOthers();
-        // return ['message' => $strMessage, 'user' => $strUsername];
-        
-        // return view('admin.adminchat')->with(['message' => $strMessage, 'user' => $strUsername]);
+{   
+    public function chatIndex(){
+        return view('admin.chat.adminchat');
     }
+
+    public function sendMessage(Request $request){
+        $user = Auth::user('admin');
+
+        $message = $user->messages()->create([
+            'message' => $request->message,
+        ]);
+
+        broadcast(new MessageSent($user, $message))->toOthers();
+        // MessageSent::dispatch($user, $message)
+
+        return ['status' => 'Message Sent!'];
+    }
+        
+
 }
