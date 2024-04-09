@@ -244,9 +244,7 @@ Route::middleware('admin')->group(function(){
 
     Route::match(['get', 'post'], 'admin/users-inquiries/{user_id}', [CustomerContactsController::class, 'inquiryAnswersDetails']);
 
-     // Chat
-    Route::get('admin/adminchat', [ChatContorller::class, 'chatIndex']); 
-    Route::post('admin/adminchat', [ChatContorller::class, 'sendMessage']); 
+
 
 
 });
