@@ -34,6 +34,11 @@ class OrdersController extends Controller
             // echo "<pre>"; print_r($data);die;
             Order::where('id', $data['order_id'])->update(['order_status'=>$data['order_status']]);
 
+            // Update Courier Name & Tracking Number
+            if(!empty($data['courier_name'])&&!empty($data['tracking_number'])){
+                Order::where('id', $data['order_id'])->update(['courier_name'=>$data['courier_name'], 'tracking_number'=>$data['tracking_number']]);
+            }
+
             // Insert Order Status in Order Logs
             $log = new OrdersLog;
             $log->order_id = $data['order_id'];

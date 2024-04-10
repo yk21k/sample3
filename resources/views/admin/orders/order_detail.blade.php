@@ -261,20 +261,32 @@
                       <td colspan="2">
                         <form action="{{ url('admin/update-order-status') }}" method="post">@csrf
                           <input type="hidden" name="order_id" value="{{ $orderDetails['id'] }}">
-                          <select name="order_status">
+                          <select name="order_status" id="order_status">
                             <option value="">Select Status</option>
                             @foreach($orderStatuses as $status)
                               <option value="{{ $status['name'] }}">{{ $status['name'] }}</option>
                             @endforeach
                           </select>
+                          <input style="width: 120px;" type="text" name="courier_name" id="courier_name" placeholder="Courier Name">
+                          <input style="width: 120px;" type="text" name="tracking_number" id="tracking_number" placeholder="Tracking Number">
                           Now:{{ $orderDetails['order_status'] }} 
-                          <button>Update</button><br>
+                          <button>Update</button>
+                          </form><br>
+                          
                           @foreach($orderDetails['log'] as $log)
-                            <br><strong>{{ $log['order_status'] }}</strong>&nbsp;
+                            <span style="height: 10px;"></span><strong>{{ $log['order_status'] }}</strong><br>
+                            @if($log['order_status']=="Shipped")
+                              @if(!empty($orderDetails['courier_name']))
+                                Courier Name: {{ $orderDetails['courier_name'] }}<br>
+                              @endif
+                              @if(!empty($orderDetails['tracking_number']))
+                                Tracking Number: {{ $orderDetails['tracking_number'] }}<br>
+                              @endif
+                            @endif
                             {{ date("Y-m-d H:i:s", strtotime($log['created_at'])); }}
                             <hr style="margin-left:0; width:250px; background-color:turquoise;">
                           @endforeach
-                        </form>
+                        
                       </td>
                     </tr>
                   </tbody>
