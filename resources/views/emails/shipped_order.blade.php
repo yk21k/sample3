@@ -57,7 +57,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 25px;">Your Order has been Shipped with below Tracking Details:<br>
-                                                        <strong>Order Status:</strong> {{ $order_status }} | <strong>Courier Name:</strong>{{ $courier_name }} | <strong>Tracking Number:</strong>{{ $tracking_number }}<strong>Opprating Date:</strong> {{ date("Y-m-d H:i:s", strtotime($orderDetails['created_at'])); }}
+                                                        <strong>Order Status:</strong> {{ $order_status }} | <strong>Courier Name:</strong>{{ $courier_name }} | <strong>Tracking Number:</strong>{{ $tracking_number }}
                                                     </td>
                                                 </tr>
                                             </tbody>
