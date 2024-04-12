@@ -134,7 +134,7 @@
 						                </div>
 						            </div>
 						        </div>
-						    </div>
+						    
 						    @endforeach
 						    <div class="row">
 						        <div class="col-lg-6">
@@ -148,7 +148,7 @@
 						                    <span class="dash__text-2">(+0) {{ $orderDetails['mobile'] }}</span>
 						                </div>
 						            </div>
-						            <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
+						            <div class="dash__box dash__box--bg-white dash__box--shadow dash__box--w">
 						                <div class="dash__pad-3">
 						                    <h2 class="dash__h2 u-s-m-b-8">Billing Address</h2>
 						                    <h2 class="dash__h2 u-s-m-b-8">{{ $orderDetails['user']['name'] }}</h2>
@@ -186,6 +186,38 @@
 
 						                    <span class="dash__text-2">Paid by {{ $orderDetails['payment_method'] }}</span>
 						                </div>
+						            </div>
+						        </div>
+						    </div>
+						    </div>	
+						    <h1 class="dash__h1 u-s-m-b-30">Order Logs / Tracking Details</h1>
+						    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+
+						        <div class="dash__pad-2">
+
+						            <div class="manage-o">
+
+						                <div class="manage-o__header u-s-m-b-30">
+						                    <div class="manage-o__icon"><i class="fas fa-box u-s-m-r-5"></i>
+
+						                        <span class="manage-o__text">Order Logs / Tracking Details</span></div>
+						                </div>
+						                <div class="dash__pad-2">
+						                      @foreach($orderDetails['log'] as $log)
+					                            <span style="height: 10px;"></span><strong>{{ $log['order_status'] }}</strong><br>
+					                            @if($log['order_status']=="Shipped")
+					                              @if(!empty($orderDetails['courier_name']))
+					                                Courier Name: {{ $orderDetails['courier_name'] }}<br>
+					                              @endif
+					                              @if(!empty($orderDetails['tracking_number']))
+					                                Tracking Number: {{ $orderDetails['tracking_number'] }}<br>
+					                              @endif
+					                            @endif
+					                            {{ date("Y-m-d H:i:s", strtotime($log['created_at'])); }}
+					                            <hr>
+					                          @endforeach
+						                </div>
+						                
 						            </div>
 						        </div>
 						    </div>
