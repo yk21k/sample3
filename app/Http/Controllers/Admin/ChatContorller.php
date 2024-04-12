@@ -17,16 +17,21 @@ class ChatContorller extends Controller
     }
 
     public function sendMessage(Request $request){
-        $user = Auth::user('admin');
+        if($request->isMethod('post')){
+            $chat_user = Auth::user('admin');
 
-        $message = $user->messages()->create([
-            'message' => $request->message,
-        ]);
+            $strUsername = $chat_user->name;
+            $strMessage = $request->input_message('message'); 
 
-        broadcast(new MessageSent($user, $message))->toOthers();
-        // MessageSent::dispatch($user, $message)
+            $message = new Message;
+            $message->username = $strUsername;
+            $message->body = $strMessage;
 
-        return ['status' => 'Message Sent!'];
+            MessageSent::dispatch($message); 
+
+            broadcast(new MessageSent($chat_user, $message))->toOthers();
+        }
+        return ['message' => $strMessage];
     }
         
 

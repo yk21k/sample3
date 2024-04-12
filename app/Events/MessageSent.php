@@ -9,7 +9,6 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-
 use App\Library\Message;
 
 class MessageSent implements ShouldBroadcast
@@ -32,7 +31,7 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn(): Channel
     {
-        return new PrivateChannel('sample3');
+        return new Channel('sample3');
         
     }
     public function broadcastAs()
