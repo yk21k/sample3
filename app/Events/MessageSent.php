@@ -31,7 +31,8 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn(): Channel
     {
-        return new Channel('sample3');
+        // return new Channel('sample3');
+        return ['sample3'];
         
     }
     public function broadcastAs()

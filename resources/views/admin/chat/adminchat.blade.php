@@ -55,7 +55,7 @@
             const elementListMessage = document.getElementById( "list_message" );
 
             
-            window.Echo.bind('sample3').listen( 'MessageSent', (e) =>
+            window.Echo.channel('sample3').listen( 'MessageSent', (e) =>
             {
                 console.log(e.message);
                 let strUsername = e.message.username;
