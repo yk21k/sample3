@@ -29,14 +29,10 @@ class MessageSent implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): Channel
+    public function broadcastOn(): 
     {
-        // return new Channel('sample3');
-        return ['sample3'];
-        
+        return new PrivateChannel('sample3');
+
     }
-    public function broadcastAs()
-    {
-        return 'message';
-    }
+    
 }

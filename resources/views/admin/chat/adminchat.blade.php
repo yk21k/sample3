@@ -15,6 +15,15 @@
         <button type="submit" class="text-white bg-blue-700 px-5 py-2">送信</button>
     </form>@csrf
 
+    <form action="{{ url('admin/chat-send-message') }}" method="post" onsubmit="return false;">
+      <div class="input-group">
+        <input type="text" name="input_message" id="input_message" placeholder="Type Message ..." class="form-control" autocomplete="off">
+        <span class="input-group-append">
+          <button type="button" class="btn btn-warning">Send</button>
+        </span>
+      </div>
+    </form>@csrf
+
     <ul class="list-disc" id="list_message">
         
     </ul>
@@ -24,8 +33,13 @@
         </div>
     </div>
 
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
 
     <script defer>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
         const elementInputMessage = document.getElementById( "input_message" );
         
         function onsubmit_Form()
@@ -55,7 +69,7 @@
             const elementListMessage = document.getElementById( "list_message" );
 
             
-            window.Echo.channel('sample3').listen( 'MessageSent', (e) =>
+            window.Echo.private('sample3').listen( 'MessageSent', (e) =>
             {
                 console.log(e.message);
                 let strUsername = e.message.username;

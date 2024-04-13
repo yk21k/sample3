@@ -156,7 +156,6 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
-        Illuminate\Broadcasting\BroadcastServiceProvider::class,
         /*
          * Package Service Providers...
          */
