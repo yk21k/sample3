@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Library\Message;
+// use App\Library\Message;
 use App\Events\MessageSent;
 use Auth;
 
@@ -17,18 +17,14 @@ class ChatContorller extends Controller
     }
 
     public function sendMessage(Request $request){
-            $chat_user = Auth::user('admin');
-            $strUsername = $chat_user->name;
+        broadcast(new MessageSent($request->get('message')))->toOthers();
 
-            $strMessage = $request->input_message('message'); 
+        return view('admin.layout.broadcast', ['message' => $request->get('message')]);
+    }
 
-            $message = new Message;
-            $message->username = $strUsername;
-            $message->body = $strMessage;
+    public function receiveMessage(Request $request){
+        return view('admin.layout.receive', ['message' => $request->get('message')]);
 
-            MessageSent::dispatch($message); 
-
-        return $request;
     }
         
 

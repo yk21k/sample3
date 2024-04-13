@@ -248,6 +248,7 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/chat', [ChatContorller::class, 'chatIndex']);
 
     Route::post('admin/chat-send-message', [ChatContorller::class, 'sendMessage']);
+    Route::post('admin/chat-receive-message', [ChatContorller::class, 'receiveMessage']);
 
 
 
