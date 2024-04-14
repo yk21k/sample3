@@ -4,6 +4,6 @@ namespace App\Library;
 
 class Message
 {
-	public $username;
+	public $chat_user;
 	public $message;
 }

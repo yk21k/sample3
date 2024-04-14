@@ -1,3 +1,3 @@
 <div class="left message">
-	<p>se{{ $message }}</p>
+	<p>re {{ $message }}</p>
 </div>

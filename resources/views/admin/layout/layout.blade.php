@@ -68,34 +68,27 @@
 <script src="{{ url('admin/js/pages/dashboard2.js') }}"></script>
 <!-- Custom JS -->
 <script src="{{ url('admin/js/custom.js') }}"></script>
-<!-- jQuery -->
-<!-- Bootstrap 4 -->
-<script src="{{ url('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- DataTables  & Plugins -->
-<script src="{{ url('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ url('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ url('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<!-- chat -->
-<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
 <script>
+    // Chat
   const pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {cluster:'ap3'});
   const channel = pusher.subscribe('public');
 
   // Receive messages
   channel.bind('chat', function(data){
-    $.post("/admin/chat-receive-message", {
-      _token: '{{ csrf_token() }}',
-      message: data.message,
-    })
-      .done(function(res){
-        $(".messages > .message").last().after(res);
-        $(document).scrollTop($(document).height());
-      });
+  $.post("/admin/chat-receive-message", {
+    _token: '{{ csrf_token() }}',
+    message: data.message,
+  })
+    .done(function(res){
+      $(".messages > .message").last().after(res);
+      $(document).scrollTop($(document).height());
+    });
   });
 
   // Broadcast message
   $("form").submit(function(event){
-    event.preventDefault();
+  event.preventDefault();
 
     $.ajax({
       url: "/admin/chat-send-message",
@@ -110,6 +103,7 @@
     }).done(function(res){
         $(".messages > .message").last().after(res);
         $("form #message").val('');
+        $("form #chat_user").val('');
         $(document).scrollTop($(document).height());
 
     });
@@ -117,6 +111,13 @@
 </script>
 
 
+<!-- jQuery -->
+<!-- Bootstrap 4 -->
+<script src="{{ url('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ url('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
