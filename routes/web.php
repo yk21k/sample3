@@ -227,11 +227,14 @@ Route::middleware('admin')->group(function(){
     Route::get('admin/users', [UsersController::class, 'users']);
     Route::post('admin/update-user-status', [UsersController::class, 'updateUserStatus']);
 
-    // Order
+    // View Order
     Route::get('admin/orders', [OrdersController::class, 'orders']);
 
     // Orders Detail
     Route::get('admin/orders/{id}', [OrdersController::class, 'orderDetails']);
+
+    // Print HTML Order Invoice
+    Route::get('admin/print-order-invoice/{id}', [OrdersController::class, 'printHTMLOrderInvoice']);
 
     // Update Order Status
     Route::post('admin/update-order-status', [OrdersController::class, 'updateOrderStatus']);

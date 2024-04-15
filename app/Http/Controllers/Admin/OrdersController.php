@@ -27,7 +27,6 @@ class OrdersController extends Controller
         $orderStatuses = OrderStatus::where('status',1)->get()->toArray();
         // dd($orderDetails);
         // dd($orderStatuses);
-
         return view('admin.orders.order_detail')->with(compact('orderDetails', 'orderStatuses'));
 
     }
@@ -74,5 +73,11 @@ class OrdersController extends Controller
             $message = "Order Status has been updated Successfully!!";
             return redirect()->back()->with('success_message', $message);
         }
+    }
+
+    public function printHTMLOrderInvoice($order_id){
+        $orderDetails = Order::with('orders_products', 'user')->where('id', $order_id)->first()->toArray();
+        return view('admin.orders.print_html_order_invoice')->with(compact('orderDetails'));
+
     }
 }

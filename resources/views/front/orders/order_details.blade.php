@@ -88,7 +88,7 @@
 						                        </div>
 						                        <div class="col-lg-4 u-s-m-b-30">
 						                            <div class="timeline-step">
-						                                <div @if($orderDetails['order_status']=="Shipped") class="timeline-l-i timeline-l-i--finish" @else class="timeline-l-i" @endif>
+						                                <div @if($orderDetails['order_status']=="Shipped" || $orderDetails['order_status']=="Delivered") class="timeline-l-i timeline-l-i--finish" @else class="timeline-l-i" @endif>
 
 						                                    <span class="timeline-circle"></span></div>
 
