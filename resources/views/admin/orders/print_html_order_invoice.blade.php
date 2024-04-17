@@ -55,6 +55,13 @@
                                                         <strong>Order Number:</strong> {{ $orderDetails['id'] }}<strong>Order Date:</strong> {{ date("Y-m-d H:i:s", strtotime($orderDetails['created_at'])); }}
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td align="center" style=" line-height: 18px; color: ; padding-bottom: 25px;">
+                                                       <?php
+                                                          echo DNS1D::getBarcodeHTML($orderDetails['id'] , 'C39',3,33, '#f8b500'); 
+                                                        ?> 
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </td>
@@ -70,7 +77,7 @@
                                                     <td style="width: 55%; font-size: 16px; font-weight: bold; color: #666666; padding-bottom: 5px;">
                                                         Delivery Adderss
                                                     </td>
-                                                    <td style="width: 45%; font-size: 16px; font-weight: bold; color: #666666; padding-bottom: 5px;">
+                                                    <td style="width: 45%; font-size: 16px; font-weight: bold; color: #666666; text-align: right; padding-bottom: 5px;">
                                                         Billing Address
                                                     </td>
                                                 </tr>
@@ -78,7 +85,7 @@
                                                     <td style="width: 55%; font-size: 14px; line-height: 18px; color: #666666;">
                                                         {{ $orderDetails['name'] }}
                                                     </td>
-                                                    <td style="width: 45%; font-size: 14px; line-height: 18px; color: #666666;">
+                                                    <td style="width: 45%; font-size: 14px; line-height: 18px; color: #666666; text-align: right;" >
                                                         {{ $orderDetails['user']['name'] }}
                                                     </td>
                                                 </tr>
@@ -86,7 +93,7 @@
                                                     <td style="width: 55%; font-size: 14px; line-height: 18px; color: #666666;">
                                                         {{ $orderDetails['address'] }}
                                                     </td>
-                                                    <td style="width: 45%; font-size: 14px; line-height: 18px; color: #666666;">
+                                                    <td style="width: 45%; font-size: 14px; line-height: 18px; color: #666666; text-align: right;">
                                                         {{ $orderDetails['user']['address'] }}
                                                     </td>
                                                 </tr>
@@ -94,7 +101,7 @@
                                                     <td style="width: 55%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;">
                                                         {{ $orderDetails['city'] }}, {{ $orderDetails['pincode']}}
                                                     </td>
-                                                    <td style="width: 45%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;">
+                                                    <td style="width: 45%; font-size: 14px; line-height: 18px; color: #666666; text-align: right; padding-bottom: 10px;">
                                                         {{ $orderDetails['user']['city'] }}, {{ $orderDetails['user']['pincode']}}
                                                     </td>
                                                 </tr>
@@ -127,6 +134,11 @@
                                                         {{ $order['product_name'] }}
                                                         {{ $order['product_code'] }}
 
+                                                    </td>
+                                                    <td colspan="2" style="font-size: 14px; font-weight: bold; color: #666666; text-align: right; padding-bottom: 5px;">
+                                                        <?php
+                                                          echo DNS2D::getBarcodeSVG($order['product_code'] , 'DATAMATRIX',3,3,'tomato'); 
+                                                        ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
