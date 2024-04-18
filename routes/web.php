@@ -236,6 +236,9 @@ Route::middleware('admin')->group(function(){
     // Print HTML Order Invoice
     Route::get('admin/print-order-invoice/{id}', [OrdersController::class, 'printHTMLOrderInvoice']);
 
+    // Print PDF Order Invoice
+    Route::get('admin/print-pdf-order-invoice/{id}', [OrdersController::class, 'printPDFOrderInvoice']);
+
     // Update Order Status
     Route::post('admin/update-order-status', [OrdersController::class, 'updateOrderStatus']);
 

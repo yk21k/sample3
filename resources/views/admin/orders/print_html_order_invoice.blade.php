@@ -197,7 +197,11 @@
                                                         Coupon Discount
                                                     </td>
                                                     <td style="font-size: 14px; font-weight: bold; line-height: 18px; color: #666666; padding-top: 10px; text-align: right;">
-                                                        INR{{ $orderDetails['coupon_amount'] }}
+                                                        @if($orderDetails['coupon_amount']>0)
+                                                            INR{{ $orderDetails['coupon_amount'] }}
+                                                        @else
+                                                            INR 0 
+                                                        @endif       
                                                     </td>
                                                 </tr>
                                                 <tr>
