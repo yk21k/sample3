@@ -264,4 +264,5 @@ Route::middleware('admin')->group(function(){
 });
 
 Route::match(['GET', 'POST'], 'admin/login', [AdminController::class, 'login']);
+Route::get('download-order-pdf-invoice/{id}', [OrdersController::class, 'printPDFOrderInvoice']);
 

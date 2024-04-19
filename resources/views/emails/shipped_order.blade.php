@@ -208,6 +208,38 @@
                                 </tr>
                                 <!-- End calculation Section -->
                                 
+                                <!-- Start footer Section -->
+                                <tr>
+                                    <td style="padding-top: 30px;">
+                                        <table width="560" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner" style="border-bottom: 1px solid #eeeeee; text-align: center;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-bottom: 10px;">
+                                                        <a href="https://htmlcodex.com"><img src="{{ asset('front/images/logo/logo-1.png')}}"  /></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size: 14px; line-height: 18px; color: #666666;">
+                                                        Download Order Invoice at <a href="{{ url('download-order-pdf-invoice/'.$order_id.'') }}">{{ url('download-order-pdf-invoice/'.$order_id.'') }}</a><br>
+                                                        (Copy & Paste to open if link does not work)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size: 14px; line-height: 18px; color: #666666;">
+                                                        If you have any questions, please log in below and contact us through your account.<a href="{{ url('user/login') }}"></a><br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size: 14px; line-height: 18px; color: #666666;">
+                                                        Regards,<br>Sample3 sup
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- End footer Section -->
+
                                 <!-- Start payment method Section -->
                                 <tr>
                                     <td style="padding: 0 10px;">
