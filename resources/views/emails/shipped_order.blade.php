@@ -226,7 +226,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="font-size: 14px; line-height: 18px; color: #666666;">
-                                                        If you have any questions, please log in below and contact us through your account.<a href="{{ url('user/login') }}"></a><br>
+                                                        <a href="{{ url('user/login') }}">If you have any questions, please log in below and contact us through your account.</a><br>
                                                     </td>
                                                 </tr>
                                                 <tr>
