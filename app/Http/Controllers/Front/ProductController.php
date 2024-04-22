@@ -633,6 +633,9 @@ class ProductController extends Controller
                 });
                 
                 return redirect('/thanks');
+            }if($data['payment_gateway']=="Paypal"){
+                // Paypal - Redirect user to Paypal page after saving order
+                return redirect('paypal'); 
             }else{
                 echo "Prepaid methods coming soon";die;
             }

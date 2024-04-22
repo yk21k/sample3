@@ -21,6 +21,8 @@ use App\Http\Controllers\Front\AddressController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\UserProfileController;
 use App\Http\Controllers\Front\CustomerContactController;
+use App\Http\Controllers\Front\PaypalController;
+
 
 use App\Models\Category;
 
@@ -119,6 +121,14 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         Route::get('user/orders', [OrderController::class, 'orders']);
         Route::get('user/orders/{id}', [OrderController::class, 'orderDetails']);
 
+        // Paypal 
+        Route::get('/paypal', [PaypalController::class, 'paypal']);
+        Route::post('/pay', [PaypalController::class, 'pay'])->name('payment');
+        Route::get('success', [PaypalController::class, 'success']);
+        Route::get('error', [PaypalController::class, 'error']);
+
+
+
         // Upload ID
         Route::get('user/upload_page', [UserProfileController::class, 'uploadPage']);
         Route::post('user/upload_page_confirm', [UserProfileController::class, 'uploadConfirm']);
@@ -127,8 +137,6 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         // Customer Inquiry
         Route::match(['get', 'post'], 'user/customer-inquiries', [CustomerContactController::class, 'inquiryAnswer']);
         Route::get('user/your-inquiries/{user_id}', [CustomerContactController::class, 'pastInquiry']);
-
-
 
 
     });
