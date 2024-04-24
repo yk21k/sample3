@@ -124,8 +124,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         // Paypal 
         Route::get('/paypal', [PaypalController::class, 'paypal']);
         Route::post('/pay', [PaypalController::class, 'pay'])->name('payment');
-        Route::get('success', [PaypalController::class, 'success']);
-        Route::get('error', [PaypalController::class, 'error']);
+        Route::get('/success', [PaypalController::class, 'success']);
+        Route::get('/error', [PaypalController::class, 'error']);
 
 
 

@@ -631,8 +631,8 @@ class ProductController extends Controller
                 Mail::send('emails.order', $messageData, function($message)use($email){
                     $message->to($email)->subject('Order Place - Sample3');
                 });
-                
                 return redirect('/thanks');
+                
             }if($data['payment_gateway']=="Paypal"){
                 // Paypal - Redirect user to Paypal page after saving order
                 return redirect('paypal'); 

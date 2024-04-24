@@ -41,7 +41,7 @@
                                 <div class="about__info">
                                     <h2 class="about__h2">YOUR ORDER HAS BEEN PALCED!</h2>
                                     <div class="about__p-wrap">
-                                        <p class="about__p">Your Order ID is {{ Session::get('order_id') }} and Grand Total is INR {{ Session::get('grand_total') }}</p>
+                                        <p class="about__p">Your Order ID is {{ Session::get('order_id') }} and Grand Total is INR {{ Session::get('grand_total') }} ({{ round(Session::get('grand_total')/83, 2) }} USD)　({{ round(Session::get('grand_total')/0.53, 2) }} JPY)</p>
                                         <p>
                                             Please make payment to confirm your Order
                                         </p>

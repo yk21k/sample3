@@ -39,9 +39,9 @@
                         <div class="about">
                             <div class="about__container">
                                 <div class="about__info">
-                                    <h2 class="about__h2">YOUR ORDER HAS BEEN PLACED SUCCESSFULLY!</h2>
+                                    <h2 class="about__h2">THANKS FOR PAYMENT. YOUR ORDER HAS BEEN CONFIRMED SUCCESSFULLY!</h2>
                                     <div class="about__p-wrap">
-                                        <p class="about__p">Your Order ID is {{ Session::get('order_id') }} and Grand Total is INR {{ Session::get('grand_total') }}</p>
+                                        <p class="about__p">We will Ship your order soon. Your Order ID is {{ Session::get('order_id') }} and Grand Total is INR {{ Session::get('grand_total') }}</p>
                                     </div>
 
                                     <a class="about__link btn--e-secondary" href="{{ url('/') }}" target="_blank">Continue Shopping</a>

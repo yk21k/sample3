@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Cart;
+
 use Session;
 use Omnipay\Omnipay;
 use App\Models\Payment;
+use Auth;
+
 
 class PaypalController extends Controller
 {
@@ -64,16 +70,45 @@ class PaypalController extends Controller
                 $payment->currency = env('PAYPAL_CURRENCY');
                 $payment->payment_status = $arr['state'];
                 $payment->save();
-                return "Payment is Succesful . Your Transaction Id is : ".$arr['id'];
+                // return "Payment is Succesful . Your Transaction Id is : ".$arr['id'];
+
+                // Get the Order ID
+                $order_id = Session::get('order_id');
+
+                // Update Order Status to Payment Capture
+                Order::where('id', $order_id)->update(['order_status'=>'Payment Captured']);
+
+                $orderDetails = Order::with('orders_products', 'user')->where('id', $order_id)->first()->toArray();
+
+                // Send Order Email
+                $email = Auth::user()->email;
+                $messageData = [
+                    'email' => $email,
+                    'name' => Auth::user()->name,
+                    'order_id' => $order_id,
+                    'orderDetails' => $orderDetails
+                ];
+                Mail::send('emails.order', $messageData, function($message)use($email){
+                    $message->to($email)->subject('Order Comfirmed - Sample3');
+                });
+
+                // Empty the User Cart
+                Cart::where('user_id', Auth::user()->id)->delete();
+
+                return view('front.paypal.success');
+
             }else{
                 return $response->getMessage();
             }    
         }else{
-            return 'Payment decline!!';
+            // return 'Payment decline!!';
+            return view('front.paypal.fail');
+
         }
     }
 
     public function error(){
-        return 'User decline the Payment!';
+        // return 'User decline the Payment!';
+        return view('front.paypal.fail');
     }
 }
