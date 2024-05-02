@@ -1,3 +1,3 @@
 <div class="left message">
-	<p>re {{ $message }}</p>
+	<p>receive  {{ $message }} @php echo now(); @endphp </p>
 </div>

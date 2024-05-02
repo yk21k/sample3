@@ -12,7 +12,10 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\UsersProfileController;
 use App\Http\Controllers\Admin\CustomerContactsController;
-use App\Http\Controllers\Admin\ChatContorller;
+use App\Http\Controllers\Admin\ChatsController;
+use App\Events\MessageSent;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductController;
@@ -259,10 +262,15 @@ Route::middleware('admin')->group(function(){
     Route::match(['get', 'post'], 'admin/users-inquiries/{user_id}', [CustomerContactsController::class, 'inquiryAnswersDetails']);
 
     // Chat
-    Route::get('admin/chat', [ChatContorller::class, 'chatIndex']);
+    Route::get('admin/chat', [ChatsController::class, 'index']);
+    // Route::get('admin/messages', [ChatsController::class, 'fetchMessages']);
+    // Route::post('admin/messages', [ChatsController::class, 'sendMessages']);
 
-    Route::post('admin/chat-send-message', [ChatContorller::class, 'sendMessage']);
-    Route::post('admin/chat-receive-message', [ChatContorller::class, 'receiveMessage']);
+    Route::post('admin/chat-send-message', [ChatsController::class, 'sendMessage']);
+    Route::post('admin/chat-receive-message', [ChatsController::class, 'receiveMessage']);
+
+
+    
 
 
 

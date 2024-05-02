@@ -12,6 +12,7 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "laravel/ui": "^4.5",
         "league/omnipay": "^3.2",
         "milon/barcode": "^11.0",
         "omnipay/paypal": "^3.0",
