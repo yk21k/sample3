@@ -38,7 +38,23 @@
                             <button type="submit">Send</button>
                         </form>
                     </div>
-                </div>    
+                </div>
+
+                <div id="app2">
+                @vite(['public/admin/js/admin_chat.js'])
+
+                  <div class="container">
+                      <div class="card">
+                          <div class="card-header">Chats</div>
+                          <div class="card-body">
+                              <chat-messages :messages="messages"></chat-messages>
+                          </div>
+                          <div class="card-footer">
+                              <chat-form v-on:messagesent="addMessage" :user="{{ Auth::user() }}"></chat-form>
+                          </div>
+                      </div>
+                  </div>
+                </div>      
         </div>
     </div>
     <script>
@@ -81,6 +97,7 @@
       });
 
     </script>
+    
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </div>  
