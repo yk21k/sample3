@@ -9,7 +9,7 @@
         @vite(['resources/js/app.js'])
     </head>
     <body>
-        <div id="app3"></div>
+        <div id="app3">Vite</div>
     </body>
 </html>
 
