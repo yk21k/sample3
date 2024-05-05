@@ -100,6 +100,52 @@
         <!-- /.row -->
 
         <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="container mt-4">
+                <div class="mb-4">
+                    <a href="{{ route('posts.create') }}" class="btn btn-primary">
+                     Create a New Post
+                    </a>
+                </div>                
+                  @foreach ($posts as $post)
+                      <div class="card mb-4">
+                          <div class="card-header">
+                              <a href="{{ route('posts.show', ['post' => $post]) }}">{{ $post->title }}&nbsp;&nbsp;&nbsp; Date {{ $post->created_at->format('Y.m.d H:i:s') }}@if ($post->comments->count())
+                                  <span class="badge badge-primary">
+                                      comment {{ $post->comments->count() }} 
+                                  </span>
+                              @endif</a>
+                          </div>
+                          <div class="card-body">
+                              <p class="card-text">
+                                  {{ \Illuminate\Support\Str::limit($post->body, 200) }}
+                              </p>
+                              <a class="card-link" href="{{ route('posts.show', ['post' => $post]) }}">
+                                  Read more 
+                              </a>
+                          </div>
+                          <div>
+                            @empty($post->admin->name)
+                              There are no Name.
+                            @endempty
+                          </div>
+                          @isset($post->admin->name)
+                           <p>{{$post->admin->name}}</p>
+                          @endisset
+
+                        </div>
+                        <div class="d-flex justify-content-center mb-5">
+                            {{ $posts->links() }} 
+                        </div>
+                                             
+                  @endforeach
+              </div> 
+            </div>  
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">

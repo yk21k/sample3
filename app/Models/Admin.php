@@ -30,5 +30,7 @@ class Admin extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
+    
+
 
 }

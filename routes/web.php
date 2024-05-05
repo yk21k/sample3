@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\UsersProfileController;
 use App\Http\Controllers\Admin\CustomerContactsController;
 use App\Http\Controllers\Admin\ChatsController;
+use App\Http\Controllers\Admin\CommentsController;
+
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -171,12 +173,20 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 
 
 Route::middleware('admin')->group(function(){
-    Route::get('admin/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('top-board');
     Route::get('admin/logout', [AdminController::class, 'logout']);
     Route::match(['GET', 'POST'], 'admin/update-password', [AdminController::class, 'updatePassword']);
     Route::match(['GET', 'POST'], 'admin/update-details', [AdminController::class, 'updateDetails']);
     Route::post('admin/check-current-password', [AdminController::class, 'checkCurrentPassword']);
-      
+    // Bulletin Board
+    Route::get('admin/b-board', [AdminController::class, 'board']);
+    Route::resource('admin/posts', AdminController::class)->only(['create', 'store']);      
+    Route::resource('admin/posts', AdminController::class)->only(['create', 'store', 'show']);
+    Route::resource('admin/comments', CommentsController::class)->only(['store']);
+    Route::resource('admin/posts', AdminController::class)->only(['create', 'store', 'show', 'edit', 'update']);
+    Route::resource('admin/posts', AdminController::class)->only(['create', 'store', 'show', 'edit', 'update', 'destroy']);
+              
+
 
     // Display CMS Pages (CRUD - READ)
     Route::get('admin/cms-pages', [CmsController::class, 'index']);
@@ -263,11 +273,10 @@ Route::middleware('admin')->group(function(){
 
     // Chat
     Route::get('admin/chat', [ChatsController::class, 'index']);
-    // Route::get('admin/messages', [ChatsController::class, 'fetchMessages']);
-    // Route::post('admin/messages', [ChatsController::class, 'sendMessages']);
-
     Route::post('admin/chat-send-message', [ChatsController::class, 'sendMessage']);
     Route::post('admin/chat-receive-message', [ChatsController::class, 'receiveMessage']);
+
+
 
 
     

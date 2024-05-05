@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\User;
+use App\Models\Post;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 // use Validator;
@@ -64,8 +65,78 @@ class AdminController extends Controller
         $brandsCount = Brand::get()->count();
         $usersCount = User::get()->count();
 
-        return view('admin.dashboard')->with(compact('categoriesCount', 'productsCount', 'brandsCount', 'usersCount'));
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+
+        $name = Post::with(['admin'])->get();
+        // dd($name);
+        return view('admin.dashboard')->with(compact('categoriesCount', 'productsCount', 'brandsCount', 'usersCount', 'posts', 'name'));
     }
+
+    public function board(){
+        return view('admin.board.bboard');
+    }
+
+    Public function create()
+    {
+        return view('admin.board.create');
+    }
+
+    public function store(Request $request)
+    {
+        $params = $request->validate([
+            'title' => 'required|max:50',
+            'body' => 'required|max:2000',
+            'admin_id' => 'required'
+        ]);
+        // dd($params);
+        Post::create($params);
+
+        return redirect()->route('top-board');
+    }
+
+    public function show($post_id)
+    {
+        $post = Post::findOrFail($post_id);
+
+        return view('admin.board.show', [
+            'post' => $post,
+        ]);
+    }
+
+    public function edit($post_id)
+    {
+        $post = Post::findOrFail($post_id);
+
+        return view('admin.board.edit', [
+            'post' => $post,
+        ]);
+    }
+
+    public function update($post_id, Request $request)
+    {
+        $params = $request->validate([
+            'title' => 'required|max:50',
+            'body' => 'required|max:2000',
+        ]);
+
+        $post = Post::findOrFail($post_id);
+        $post->fill($params)->save();
+
+        return redirect()->route('posts.show', ['post' => $post]);
+    }
+
+    public function destroy($post_id)
+    {
+        $post = Post::findOrFail($post_id);
+
+        \DB::transaction(function () use ($post) {
+            $post->comments()->delete();
+            $post->delete();
+        });
+
+        return redirect()->route('top-board');
+    }
+
 
 
     public function logout(){
