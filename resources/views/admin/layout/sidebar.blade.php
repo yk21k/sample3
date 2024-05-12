@@ -236,7 +236,7 @@
               <li class="nav-item">
                 <a href="{{ url('admin/shipping-charges')}}" class="nav-link {{ $active }}">
                   <i class="nav-icon fas fa-circle"></i>
-                  <p>Orders&nbsp;&nbsp;<span class="badge badge-info">Shipping Charges</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                  <p>Shipping Charges&nbsp;&nbsp;<span class="badge badge-info">Ship</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                 </a>
             </ul>
           </li>
