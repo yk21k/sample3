@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UsersProfileController;
 use App\Http\Controllers\Admin\CustomerContactsController;
 use App\Http\Controllers\Admin\ChatsController;
 use App\Http\Controllers\Admin\CommentsController;
+use App\Http\Controllers\Admin\ShippingController;
 
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
@@ -262,6 +263,11 @@ Route::middleware('admin')->group(function(){
 
     // Update Order Status
     Route::post('admin/update-order-status', [OrdersController::class, 'updateOrderStatus']);
+
+    // Shipping Charges
+    Route::get('admin/shipping-charges', [ShippingController::class, 'shippingCharges']);
+    Route::post('admin/update-shipping-status', [ShippingController::class, 'updateShippngStatus']);
+
 
     // ID
     Route::get('admin/users-prof', [UsersProfileController::class, 'usersProfile']);

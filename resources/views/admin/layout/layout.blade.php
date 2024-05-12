@@ -145,6 +145,9 @@
     $("#orders").DataTable({
       "order": [[0, "desc"]], //or asc
     });
+    $("#shippings").DataTable({
+      "order": [[0, "desc"]], //or asc
+    });
   });
 </script>
 <!-- Select2 -->
